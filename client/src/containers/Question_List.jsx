@@ -22,7 +22,6 @@ class QuestionList extends Component {
 		})
 	}
 render() {
-	console.log('props are : ',this.props)
 	return (
 		<div>
 		<ul className = "QuestionList">
@@ -33,15 +32,17 @@ render() {
 	}
 }
 
-
+//how I pass through state to props
 function mapStateToProps(state) {
 	return {
-		questions: state.questions
+		questions: state.questions,
+		activeQuestion: state.activeQuestion
 	}
 }
 
+//map dispatch to props is how I pass actions to props
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({answerQuestion: answerQuestion}, dispatch)
+	return bindActionCreators({ answerQuestion: answerQuestion }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionList)
