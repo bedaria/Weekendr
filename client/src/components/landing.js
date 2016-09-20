@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+import QuestionList from '../containers/Question_List'
 
 class Landing extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
-		console.log('we are in Landing')
 		return (
-		<div>
-			<h1>Welcome to our app</h1>
-		</div>
-	)
+			<div>
+				<h1>Welcome to our app</h1>
+				<QuestionList />
+			</div>
+		)
+	}
 }
-}
+
 
 export default Landing;
 
