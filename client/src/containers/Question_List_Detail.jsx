@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { activeQuestion } from '../actions/index';
+import { activeQuestion, postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class QuestionDetail extends Component {
 	constructor(props) {
 		super(props)
+
 	}
 	render() {
 		if (!this.props.question) {
@@ -15,6 +16,8 @@ class QuestionDetail extends Component {
 			<div>
 				<h3>Answered Question</h3>
 				<div>Selected Answer is: {this.props.question.answer}</div>
+				<button onClick={()=> this.props.postQuestionListInput(this.props.question.answer)}>Click to send</button>
+				<p>received data: {this.props.received}</p>
 			</div>
 			)
 	}
@@ -22,9 +25,14 @@ class QuestionDetail extends Component {
 
 function mapStateToProps(state) {
 	return {
-		question: state.activeQuestion
+		question: state.activeQuestion,
+		received: state.received
 	}
 }
 
-export default connect(mapStateToProps)(QuestionDetail)
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ postQuestionListInput: postQuestionListInput}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetail)
 
