@@ -1,7 +1,7 @@
-export function answerQuestion(answer) {
+export function answerQuestion(question) {
 	console.log('we are inside answerQuestion')
 	return {
-		type: 'ANSWER_QUESTION',
-		payload: answer
+		type: 'ANSWER_SELECTED',
+		payload: question
 	} 
 }
