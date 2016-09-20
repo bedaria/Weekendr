@@ -1,4 +1,4 @@
 /node_modules
 .env
-/build
+/client/build
 npm-debug.log
