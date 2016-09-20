@@ -32,7 +32,7 @@ render() {
 	}
 }
 
-
+//how I pass through state to props
 function mapStateToProps(state) {
 	return {
 		questions: state.questions,
@@ -40,6 +40,7 @@ function mapStateToProps(state) {
 	}
 }
 
+//map dispatch to props is how I pass actions to props
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ answerQuestion: answerQuestion }, dispatch)
 }
