@@ -10,13 +10,14 @@ app.use('/api/yelp', yelpRouter)
 
 app.use(cors());
 app.use(bodyParse.json({limit: '50mb'}));
-app.use(express.static('./build'));
+app.use(express.static('./client'));
 
-app.get('*', function (request, response){
-  response.sendFile(__dirname + '/'+ 'index.html');
+
+app.get('*', (request, response) => {
+	console.log('dirname is: ', __dirname)
+  response.sendFile(path.resolve(__dirname,'../index.html'));
 });
 
-app.use('/api', routes)
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), () => console.log('we are listening on: ', app.get('port')));
