@@ -6,7 +6,7 @@ exports.yelp = {
 
 function getActivities(req,res) {
 	console.log('we are inside yelpController inside getActivities')
-	yelpModel.getActivities(req.body)
+	yelpModel.getBusiness(req.body)
 	.then(function(result) {
 		res.status(200).send(result)
 	})
