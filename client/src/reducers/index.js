@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux'
 
+
 import userReducer from './userReducer';
-import questionsReducer from './questionsReducer';
-import activeQuestionReducer from './activeQuestionReducer';
-import receivedReducer from './receivedReducer';
+import quizData from './QuizData';
+import quizReducer from './reducer_Quiz';
+import receivedReducer from './reducer_Received';
 
 const rootReducer = combineReducers({
   user: userReducer,
-  questions: questionsReducer,
-  activeQuestion: activeQuestionReducer,
+  quiz: quizReducer,
   received: receivedReducer
-});
+})
+
+
 
 export default rootReducer;
