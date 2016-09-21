@@ -12,13 +12,24 @@ class QuizList extends Component {
 	}
 	onAnswerClicked(answer) {
 		console.log('we are inside QuizList inside onAnswerClicked',this.props)
-				console.log('we are inside QuizList inside onAnswerClicked answer is: ',answer)
-
+		//check to see if index = length of quizList
+		if (this.props.questionIndex === this.props.quizList.length) {
+			//invoke API call to backend
+			//invoke this.props.postQuestionListInput
+			console.log('------questionIndex is the length of quizlist')
+		}
 		this.props.answerQuestion(answer, this.props)
 	}
 
 	renderQuiz() {
 		console.log('state inside QuizList: ',this.props)
+		if (this.props.quizList.length === this.props.questionIndex) {
+			return (
+				<div>
+				<p>We are at the end of our list</p>
+				</div>
+				)
+		}
 		let arr = this.props.quizList[this.props.questionIndex].options
 		console.log('inside renderQuiz arr is: ',arr)
 		console.log('this is : ',this)
@@ -26,15 +37,14 @@ class QuizList extends Component {
 			console.log('q is : ',q)
 			return (
 				<QuestionDetail 
-				key={q.id}
-				option={q.option} 
-				src={q.imageUrl} 
-				onAnswerClicked = {this.onAnswerClicked}
+					key={q.id}
+					option={q.option} 
+					src={q.imageUrl} 
+					onAnswerClicked = {this.onAnswerClicked}
 				/>	
-				)	
+			)	
 		})
 	}
-
 
 	render() {
 		return (
@@ -46,13 +56,13 @@ class QuizList extends Component {
 }
 
 
-function mapStateToProps(state) {
-	return {
-		quizList: state.quiz.quizList,
-		questionIndex: state.quiz.questionIndex,
-		quizAnswers: state.quiz.quizAnswers
-	}
-}
+		function mapStateToProps(state) {
+			return {
+				quizList: state.quiz.quizList,
+				questionIndex: state.quiz.questionIndex,
+				quizAnswers: state.quiz.quizAnswers
+			}
+		}
 
 //map dispatch to props is how I pass actions to props
 function mapDispatchToProps(dispatch) {
