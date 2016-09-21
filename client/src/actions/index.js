@@ -1,18 +1,17 @@
 import axios from 'axios';
 
-
-export function answerQuestion(question) {
-	console.log('we are inside answerQuestion')
-	return {
+export function answerQuestion(answer, props) {
+	props.quizAnswers.push(answer)
+		return { 
 		type: 'ANSWER_SELECTED',
-		payload: question
-	} 
+		payload: {answers: props.quizAnswers, questionIndex: props.questionIndex+1}
+		}
 }
 
+
 export function postQuestionListInput(input) {
-	console.log('we are in postQuestionListInput')
+	console.log('we are in postQuestionListInput', input)
 	return function(dispatch) {
-		//add user input to input field here
 		axios.get('https://jsonplaceholder.typicode.com/posts')
 		.then(function(data) {
 			console.log('recevied data inside actions: ',data)
