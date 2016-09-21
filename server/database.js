@@ -12,11 +12,6 @@ var sequelize = new Sequelize('weekendr', process.env.db_username, process.env.d
 });
 
 sequelize
-  .sync()
-  .then(() => console.log('<Weekendr> User model sync() successful'))
-  .catch(error => console.log('<Weekendr> Couldn\'t sync() User model'));
-
-sequelize
 .authenticate()
 .then(() =>console.log('<Weekendr> Connected to DB'))
 .catch(err => console.log('<Weekendr> Failed to connect to DB: ', err));
