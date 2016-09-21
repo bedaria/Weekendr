@@ -12,11 +12,11 @@ import reducers  from './reducers';
 
 
 const createStoreWithMiddleWare = applyMiddleware(reduxThunk)(createStore)
-const storey = createStoreWithMiddleWare(reducers)
+const store = createStoreWithMiddleWare(reducers)
 
 
 ReactDOM.render(
-  <Provider store={storey}>
+  <Provider store={store}>
     <Router history={browserHistory}> 
     	{routes} 
     </Router>

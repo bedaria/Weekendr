@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
+import quizData from './QuizData';
 import quizReducer from './reducer_Quiz';
-import activeQuestion from './reducer_active_Question';
 import receivedReducer from './reducer_received';
+
+console.log('are we inside indexjs')
 
 const rootReducer = combineReducers({
 	quiz: quizReducer,
-	activeQuestion: activeQuestion,
 	received: receivedReducer
 });
 

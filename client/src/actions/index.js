@@ -1,24 +1,12 @@
 import axios from 'axios';
 
-//pas index as this.props.questions.index
-export function answerQuestion(answers, index) {
-	console.log('we are inside answerQuestion')
-	console.log('question input into answerQuestion', answers)
-	console.log('index input into answerQuestion',index)
-	return function(dispatch, getState) {
-		console.log('state inside answerQuestion: ',getState())
-		dispatch({ 
+export function answerQuestion(answer, props) {
+	console.log('props input into answerQuestion', props)
+	console.log('answer input into answerQuestion',answer)
+	props.quizAnswers.push(answer)
+		return { 
 			type: 'ANSWER_SELECTED',
-			payload: {answers: answers, index: index+1 }
-		})
-	}
-}
-
-export function incrementQuestion(index) {
-	console.log('we are inside incrementQuestion: ',index)
-	return {
-			type: 'INCREMENT_INDEX',
-			payload: {index: index+1}
+			payload: {answers: props.quizAnswers, questionIndex: props.questionIndex+1}
 		}
 	}
 

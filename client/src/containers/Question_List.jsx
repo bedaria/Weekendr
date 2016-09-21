@@ -12,9 +12,9 @@ class QuestionList extends Component {
 	}
 	onAnswerClicked(answer) {
 		console.log('we are inside QuestionList inside onAnswerClicked',this.props)
-		this.props.quizAnswers.push(answer)
-		answerQuestion(this.props.quizAnswers, this.props.questionIndex)
-		incrementQuestion(this.props.questionIndex)
+				console.log('we are inside QuestionList inside onAnswerClicked answer is: ',answer)
+			
+		this.props.answerQuestion(answer, this.props)
 	}
 
 	renderQuiz() {
@@ -25,13 +25,12 @@ class QuestionList extends Component {
 		return arr.map((q) => {
 			console.log('q is : ',q)
 			return (
-				<li key={q.id}>
 				<QuestionDetail 
+				key={q.id}
 				option={q.option} 
 				src={q.imageUrl} 
 				onAnswerClicked = {this.onAnswerClicked}
 				/>	
-				</li>		
 				)	
 		})
 	}
@@ -50,6 +49,7 @@ class QuestionList extends Component {
 
 //how I pass through state to props
 function mapStateToProps(state) {
+	console.log("***am I in mapStateToProps",state)
 	return {
 		quizList: state.quiz.quizList,
 		questionIndex: state.quiz.questionIndex,
@@ -59,7 +59,7 @@ function mapStateToProps(state) {
 
 //map dispatch to props is how I pass actions to props
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ answerQuestion: answerQuestion, incrementQuestion: incrementQuestion }, dispatch)
+	return bindActionCreators({ answerQuestion: answerQuestion}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionList)

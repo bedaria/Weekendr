@@ -1,38 +1,17 @@
-export default function() {
-	return {
-		quizList: [
-		{
-			title: 'Beach or Ocean',
-			options: [
-			{
-				id: 1,
-				option: 'BEACH',
-				imageUrl: 'http://imageurlforbeach'
-			},
-			{
-				id: 2,
-				option: 'POOP',
-				imageUrl: 'http://imageurlforbeach'
-			},
-			]
-		},
-		{
-			title: 'Beaasdfch or Ocasdfean',
-			options: [
-			{
-				id: 3,
-				option: 'BEAasdfasdfCH',
-				imageUrl: 'http://imaasdfasdfgeurlforbeach'
-			},
-			{
-				id: 4,
-				option: 'BEdfdfACH',
-				imageUrl: 'http://imasdfasdfasdfasdfageurlforbeach'
-			},
-			]
-		}
-		],
-		quizAnswers: [],
-		questionIndex: 0
+import QuizData from './QuizData';
+
+
+export default function(state = QuizData, action) {
+	console.log('inside reducer_active_Question state is : ',state)
+	console.log('inside reducer_active_Question action is: ', action)
+	switch(action.type) {
+		case 'ANSWER_SELECTED':
+		return {...state, quizAnswers: action.payload.answers, questionIndex: action.payload.questionIndex};
+		// case 'INCREMENT_INDEX':
+		// console.log('we are inside INCREMENT_INDEX')
+		// return {questionIndex: action.payload.index}
+		default: return state
 	}
+	return state;
 }
+
