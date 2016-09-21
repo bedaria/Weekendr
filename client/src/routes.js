@@ -7,7 +7,7 @@ import Home from './components/Home';
 // import Login from './components/Login';
 // import Quiz from './components/Quiz';
 // import TripResults from './components/TripResults';
-// import UserProfile from './containers/UserProfile';
+import UserProfile from './containers/UserProfile';
 
 const routes = (
   <Route path="/" component={App}>
@@ -15,8 +15,8 @@ const routes = (
     {/* <Route path="/signup" component={Signup} />
     <Route path="/login" component={Login} />
     <Route path="/quiz" component={Quiz} />
-    <Route path="/trip-results" component={TripResults} />
-    <Route path="/profile" component={UserProfile} /> */}
+    <Route path="/trip-results" component={TripResults} /> */}
+    <Route path="/profile" component={UserProfile} />
   </Route>
 );
 
