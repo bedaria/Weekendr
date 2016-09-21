@@ -1,32 +1,32 @@
 export default {
 		quizList: [
 		{
-			title: 'Beach or Ocean',
+			title: 'Beach or Back Country',
 			options: [
 			{
 				id: 1,
-				option: 'BEACH',
-				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/24/The_beach_at_North_Seymour_Island_in_the_Galapagos.jpeg'
+				option: 'Beach',
+				imageUrl: '../assets/images/Beach.jpg'
 			},
 			{
 				id: 2,
-				option: 'POOP',
-				imageUrl: 'http://imageurlforbeach'
+				option: 'Back Country',
+				imageUrl: '../assets/images/BackCountry.jpg'
 			},
 			]
 		},
 		{
-			title: 'Beaasdfch or Ocasdfean',
+			title: 'Solitude or Big Crowds',
 			options: [
 			{
 				id: 3,
-				option: 'BEAasdfasdfCH',
-				imageUrl: 'http://imaasdfasdfgeurlforbeach'
+				option: 'Solitude',
+				imageUrl: '../assets/images/Solitude.jpg'
 			},
 			{
 				id: 4,
-				option: 'BEdfdfACH',
-				imageUrl: 'http://imasdfasdfasdfasdfageurlforbeach'
+				option: 'Big Crowds',
+				imageUrl: '../assets/images/Rave.jpg'
 			},
 			]
 		}

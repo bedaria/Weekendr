@@ -10,7 +10,7 @@ export function answerQuestion(answer, props) {
 
 
 export function postQuestionListInput(input) {
-	console.log('we are in postQuestionListInput')
+	console.log('we are in postQuestionListInput', input)
 	return function(dispatch) {
 		axios.get('https://jsonplaceholder.typicode.com/posts')
 		.then(function(data) {

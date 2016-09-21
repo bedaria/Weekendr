@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { answerQuestion, incrementQuestion } from '../actions/index';
+import { answerQuestion, postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import  QuestionDetail  from '../components/Question_Detail'
 
@@ -16,6 +16,13 @@ class QuizList extends Component {
 		if (this.props.questionIndex === this.props.quizList.length) {
 			//invoke API call to backend
 			//invoke this.props.postQuestionListInput
+			var dummyData = {
+				"JSON": [
+				'1','2','3']
+			}
+
+			// this.props.postQuestionListInput(this.props.quizList)
+			this.props.postQuestionListInput(dummyData)
 			console.log('------questionIndex is the length of quizlist')
 		}
 		this.props.answerQuestion(answer, this.props)
@@ -66,7 +73,7 @@ class QuizList extends Component {
 
 //map dispatch to props is how I pass actions to props
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ answerQuestion: answerQuestion}, dispatch)
+	return bindActionCreators({ answerQuestion: answerQuestion, postQuestionListInput}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizList)
