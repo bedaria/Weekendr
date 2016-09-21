@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import QuestionList from '../containers/Question_List';
-import QuestionDetail from '../containers/Question_List_Detail';
+import QuestionList from '../containers/QuestionList';
+import QuestionDetail from '../containers/QuestionListDetail';
 
 export default class Home extends Component {
   render() {
