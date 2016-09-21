@@ -15,7 +15,7 @@ const store = createStoreWithMiddleWare(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}> 
+    <Router history={browserHistory}>
       {routes}
     </Router>
   </Provider>
