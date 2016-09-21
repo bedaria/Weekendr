@@ -4,21 +4,21 @@ import { answerQuestion, incrementQuestion } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import  QuestionDetail  from '../components/Question_Detail'
 
-class QuestionList extends Component {
+class QuizList extends Component {
 	constructor(props) {
 		super(props)
 		this.renderQuiz = this.renderQuiz.bind(this)
 		this.onAnswerClicked = this.onAnswerClicked.bind(this)
 	}
 	onAnswerClicked(answer) {
-		console.log('we are inside QuestionList inside onAnswerClicked',this.props)
-				console.log('we are inside QuestionList inside onAnswerClicked answer is: ',answer)
+		console.log('we are inside QuizList inside onAnswerClicked',this.props)
+				console.log('we are inside QuizList inside onAnswerClicked answer is: ',answer)
 
 		this.props.answerQuestion(answer, this.props)
 	}
 
 	renderQuiz() {
-		console.log('state inside QuestionList: ',this.props)
+		console.log('state inside QuizList: ',this.props)
 		let arr = this.props.quizList[this.props.questionIndex].options
 		console.log('inside renderQuiz arr is: ',arr)
 		console.log('this is : ',this)
@@ -35,11 +35,10 @@ class QuestionList extends Component {
 		})
 	}
 
-	
 
 	render() {
 		return (
-			<div className="QuestionList">
+			<div className="QuizList">
 			{this.renderQuiz()}
 			</div>
 			)
@@ -60,4 +59,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ answerQuestion: answerQuestion}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionList)
+export default connect(mapStateToProps, mapDispatchToProps)(QuizList)
