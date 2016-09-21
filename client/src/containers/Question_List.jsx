@@ -2,41 +2,51 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { answerQuestion } from '../actions/index';
 import { bindActionCreators } from 'redux';
+import  QuestionDetail  from './Question_Detail'
 
 class QuestionList extends Component {
 	constructor(props) {
 		super(props)
+		this.renderQuiz = this.renderQuiz.bind(this)
+		this.onAnswerClicked = this.onAnswerClicked.bind(this)
 	}
-	renderList() {
-		console.log('inside QuestionList inside renderList: ',this.props)
-		return this.props.questions.map((question) => {
+	onAnswerClicked(answer) {
+		this.props.quizAnswers.push(answer)
+		answerQuestion(this.props.quizAnswers, this.props.questionIndex)
+	}
+
+	renderQuiz() {
+		console.log('state inside QuestionList: ',this.props)
+		let arr = this.props.quizList[this.props.questionIndex].options
+		console.log('inside renderQuiz arr is: ',arr)
+		console.log('this is : ',this)
+		return arr.map((q) => {
 			return (
-				<li
-				key = {question.title}
-				onClick= {()=> this.props.answerQuestion(question)}
-				className= "QuestionListBox"
-				>
-				{question.title} 
-				</li>
-				)
+				<QuestionDetail 
+				option={q.option} 
+				src={q.imageUrl} 
+				onAnswerClicked = {this.onAnswerClicked}
+				/>			
+				)	
 		})
 	}
-render() {
-	return (
-		<div>
-		<ul className = "QuestionList">
-		{this.renderList()}
-		</ul>
-		</div>
-		)
+
+	
+
+	render() {
+		return (
+			<div className="QuestionList">
+			{this.renderQuiz()}
+			</div>
+			)
 	}
 }
+
 
 //how I pass through state to props
 function mapStateToProps(state) {
 	return {
-		questions: state.questions,
-		activeQuestion: state.activeQuestion
+		...state.quiz
 	}
 }
 

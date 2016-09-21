@@ -1,12 +1,14 @@
 import axios from 'axios';
 
-
-export function answerQuestion(question) {
+//pas index as this.props.questions.index
+export function answerQuestion(answers, index) {
 	console.log('we are inside answerQuestion')
-	return {
-		type: 'ANSWER_SELECTED',
-		payload: question
-	} 
+	console.log('question input into answerQuestion', answer)
+	console.log('index input into answerQuestion')
+	return function(dispatch) {
+		dispatch({ type: 'ANSWER_SELECTED', payload: {answers, index: index+1 }})
+		// dispatch({type: 'UPDATE_INDEX', payload: index+2})
+	}
 }
 
 export function postQuestionListInput(input) {
