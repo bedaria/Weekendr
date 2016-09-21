@@ -1,11 +1,23 @@
 import React from 'react';
-import { Route, IndexRoute , IndexRedirect} from 'react-router';
-import Landing from './components/Landing.js';
-// import QuestionList from './containers/Question_List';
+import { Route, IndexRoute } from 'react-router';
 
-const routes =  (
-	<Route path="/" component={Landing}>
-	</Route>
-	)
+import App from './components/App';
+import Home from './components/Home';
+// import Signup from './components/Signup';
+// import Login from './components/Login';
+// import Quiz from './components/Quiz';
+// import TripResults from './components/TripResults';
+import UserProfile from './containers/UserProfile';
+
+const routes = (
+  <Route path="/" component={App}>
+    <IndexRoute component={Home} />
+    {/* <Route path="/signup" component={Signup} />
+    <Route path="/login" component={Login} />
+    <Route path="/quiz" component={Quiz} />
+    <Route path="/trip-results" component={TripResults} /> */}
+    <Route path="/profile" component={UserProfile} />
+  </Route>
+);
 
 export default routes;
