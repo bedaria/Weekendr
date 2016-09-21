@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux'
-import QuestionReducer from './reducer_Questions';
-import activeQuestion from './reducer_active_Question';
-import receivedReducer from './reducer_received';
+
+import questionsReducer from './questionsReducer';
+import activeQuestionReducer from './activeQuestionReducer';
+import receivedReducer from './receivedReducer';
 
 const rootReducer = combineReducers({
-	questions: QuestionReducer,
-	activeQuestion: activeQuestion,
-	received: receivedReducer
+  questions: questionsReducer,
+  activeQuestion: activeQuestionReducer,
+  received: receivedReducer
 });
 
 export default rootReducer;
