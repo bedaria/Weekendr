@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { answerQuestion } from '../actions/index';
+import { answerQuestion, incrementQuestion } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import  QuestionDetail  from './Question_Detail'
 
@@ -14,6 +14,7 @@ class QuestionList extends Component {
 		console.log('we are inside QuestionList inside onAnswerClicked',this.props)
 		this.props.quizAnswers.push(answer)
 		answerQuestion(this.props.quizAnswers, this.props.questionIndex)
+		incrementQuestion(this.props.questionIndex)
 	}
 
 	renderQuiz() {
@@ -58,7 +59,7 @@ function mapStateToProps(state) {
 
 //map dispatch to props is how I pass actions to props
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ answerQuestion: answerQuestion }, dispatch)
+	return bindActionCreators({ answerQuestion: answerQuestion, incrementQuestion: incrementQuestion }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionList)
