@@ -11,6 +11,7 @@ class QuestionList extends Component {
 		this.onAnswerClicked = this.onAnswerClicked.bind(this)
 	}
 	onAnswerClicked(answer) {
+		console.log('we are inside QuestionList inside onAnswerClicked',this.props)
 		this.props.quizAnswers.push(answer)
 		answerQuestion(this.props.quizAnswers, this.props.questionIndex)
 	}
@@ -21,12 +22,15 @@ class QuestionList extends Component {
 		console.log('inside renderQuiz arr is: ',arr)
 		console.log('this is : ',this)
 		return arr.map((q) => {
+			console.log('q is : ',q)
 			return (
+				<li key={q.id}>
 				<QuestionDetail 
 				option={q.option} 
 				src={q.imageUrl} 
 				onAnswerClicked = {this.onAnswerClicked}
-				/>			
+				/>	
+				</li>		
 				)	
 		})
 	}
@@ -46,7 +50,9 @@ class QuestionList extends Component {
 //how I pass through state to props
 function mapStateToProps(state) {
 	return {
-		...state.quiz
+		quizList: state.quiz.quizList,
+		questionIndex: state.quiz.questionIndex,
+		quizAnswers: state.quiz.quizAnswers
 	}
 }
 

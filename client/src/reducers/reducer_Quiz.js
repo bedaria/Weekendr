@@ -5,10 +5,12 @@ export default function() {
 			title: 'Beach or Ocean',
 			options: [
 			{
+				id: 1,
 				option: 'BEACH',
 				imageUrl: 'http://imageurlforbeach'
 			},
 			{
+				id: 2,
 				option: 'POOP',
 				imageUrl: 'http://imageurlforbeach'
 			},
@@ -18,17 +20,19 @@ export default function() {
 			title: 'Beaasdfch or Ocasdfean',
 			options: [
 			{
+				id: 3,
 				option: 'BEAasdfasdfCH',
 				imageUrl: 'http://imaasdfasdfgeurlforbeach'
 			},
 			{
+				id: 4,
 				option: 'BEdfdfACH',
 				imageUrl: 'http://imasdfasdfasdfasdfageurlforbeach'
 			},
 			]
 		}
 		],
-		questionIndex: 0,
-		quizAnswers: []
+		quizAnswers: [],
+		questionIndex: 0
 	}
 }

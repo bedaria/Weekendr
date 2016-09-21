@@ -3,8 +3,8 @@ import axios from 'axios';
 //pas index as this.props.questions.index
 export function answerQuestion(answers, index) {
 	console.log('we are inside answerQuestion')
-	console.log('question input into answerQuestion', answer)
-	console.log('index input into answerQuestion')
+	console.log('question input into answerQuestion', answers)
+	console.log('index input into answerQuestion',index)
 	return function(dispatch) {
 		dispatch({ type: 'ANSWER_SELECTED', payload: {answers, index: index+1 }})
 		// dispatch({type: 'UPDATE_INDEX', payload: index+2})

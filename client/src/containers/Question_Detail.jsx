@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react'
 
 
-
-const QuestionDetail = (props) => {
-	console.log('do I get inside QuestionDetail: ',props)
-		const selectAnswer = function(){
-			props.onAnswerClicked(props.option)
+class QuestionDetail extends Component {
+	constructor(props) {
+		super(props)
+		this.selectAnswer = this.selectAnswer.bind(this)
+	}
+	selectAnswer() {
+		console.log('we are inside selectAnswer: ',this.props)
+		this.props.onAnswerClicked(this.props.option)
+	}
+	render() {
+		if (!this.props.option) {
+			return <div>Select an option</div>
 		}
-	return (
-		<div onClick={selectAnswer}
-		key={props.option} >
-				{props}
-				<button onClick={()=> props.answerQuestion()}>Click to get more</button>
+		return (
+		<div onClick={this.selectAnswer}>
+		<p>{this.props.option}
+		{this.props.src}
+		</p>
 		</div>
 		)
+	}
 }
+
+
 
 export default QuestionDetail; 
 
