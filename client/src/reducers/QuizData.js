@@ -6,7 +6,7 @@ export default {
 			{
 				id: 1,
 				option: 'BEACH',
-				imageUrl: 'http://imageurlforbeach'
+				imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/24/The_beach_at_North_Seymour_Island_in_the_Galapagos.jpeg'
 			},
 			{
 				id: 2,

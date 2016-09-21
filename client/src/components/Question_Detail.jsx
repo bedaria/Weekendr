@@ -17,6 +17,7 @@ class QuestionDetail extends Component {
 		return (
 		<div onClick={this.selectAnswer}>
 		<p>{this.props.option}
+		<img src={this.props.src}/>
 		{this.props.src}
 		</p>
 		</div>

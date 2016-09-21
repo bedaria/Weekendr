@@ -14,7 +14,6 @@ export function answerQuestion(answer, props) {
 export function postQuestionListInput(input) {
 	console.log('we are in postQuestionListInput')
 	return function(dispatch) {
-		//add user input to input field here
 		axios.get('https://jsonplaceholder.typicode.com/posts')
 		.then(function(data) {
 			console.log('recevied data inside actions: ',data)

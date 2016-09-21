@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { answerQuestion, incrementQuestion } from '../actions/index';
 import { bindActionCreators } from 'redux';
-import  QuestionDetail  from './Question_Detail'
+import  QuestionDetail  from '../components/Question_Detail'
 
 class QuestionList extends Component {
 	constructor(props) {
@@ -13,7 +13,7 @@ class QuestionList extends Component {
 	onAnswerClicked(answer) {
 		console.log('we are inside QuestionList inside onAnswerClicked',this.props)
 				console.log('we are inside QuestionList inside onAnswerClicked answer is: ',answer)
-			
+
 		this.props.answerQuestion(answer, this.props)
 	}
 
@@ -47,9 +47,7 @@ class QuestionList extends Component {
 }
 
 
-//how I pass through state to props
 function mapStateToProps(state) {
-	console.log("***am I in mapStateToProps",state)
 	return {
 		quizList: state.quiz.quizList,
 		questionIndex: state.quiz.questionIndex,
