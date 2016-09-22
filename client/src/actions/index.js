@@ -3,12 +3,9 @@ import axios from 'axios';
 export function answerQuestion(answer, props, answersArr) {
 	console.log('answerQuestions props are: ',props)
 	props.quizAnswers.push(answer)
-		return { 
-			type: 'ANSWER_SELECTED',
-			payload: {
-				answers: props.quizAnswers, 
-				questionIndex: props.questionIndex+1
-			}
+		return {
+		type: 'ANSWER_SELECTED',
+		payload: {answers: props.quizAnswers, questionIndex: props.questionIndex+1}
 		}
 }
 
@@ -28,4 +25,16 @@ export function postQuestionListInput(input) {
 			console.log('error inside postQuestionListInput inside actions: ',err)
 		})
 	}
+}
+
+export function updateUserInfo(username, lastName, firstName, email) {
+  return {
+    type: 'LOG_IN',
+    payload: {
+      firstName,
+      lastName,
+      username,
+      email
+    }
+  }
 }

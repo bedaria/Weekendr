@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux'
-
-
 import userReducer from './userReducer';
 import quizData from './QuizData';
 import quizReducer from './reducer_Quiz';
@@ -11,7 +9,5 @@ const rootReducer = combineReducers({
   quiz: quizReducer,
   received: receivedReducer
 })
-
-
 
 export default rootReducer;
