@@ -3,28 +3,29 @@ import { connect } from 'react-redux';
 import { postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import _ from 'underscore';
-import  SideBarDetail  from '../components/SideBar_Detail'
 
 class SideBar extends Component {
 	constructor(props) {
 		super(props)
+		this.renderSideBarDetail = this.renderSideBarDetail.bind(this);
 	}
 
 	renderSideBarDetail() {
 		console.log('state inside SideBar: ',this.props)
-		console.log('inside renderSideBarDetail arr is: ',arr)
-		let arr =  quizList.map((question)=> {
+		let array =  this.props.quizList.map((question)=> {
 			return question.options.filter((q) => {
-				return (_.contains(quizAnswers, q.option))
+				console.log('drew is a genius: ',_.contains(this.props.quizAnswers, q.option))
+				return (_.contains(this.props.quizAnswers, q.option))
 			})
 		})
-		return arr.map((question) => {			
+		console.log('array inside renderSideBar is: ****&&&&****: ',array)
+		return array.map((q, index) => {
+		console.log('^^^^inside renderSideBar q is : ',q)
 			return (
-				<SideBarDetail 
-					key={question.id}
-					option={question.option}
-					src={question.imageUrl}
-				/>
+				<div key={index}>
+					<h1>{q[0] && q[0].option}</h1>
+					<img src={q[0] && q[0].imageUrl}/>
+				</div>
 			)	
 		})
 	}
@@ -33,6 +34,7 @@ class SideBar extends Component {
 		return (
 			<div className="SideBar Col-xs={4} xsOffset={2} md={4}">
 			<h1>Title</h1>
+			{console.log('&&&&&&&&&&&&&: ',this.renderSideBarDetail())}
 			{this.renderSideBarDetail()}
 			</div>
 			)
@@ -47,7 +49,7 @@ class SideBar extends Component {
 		}
 	}
 
-//map dispatch to props is how I pass actions to props
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({postQuestionListInput}, dispatch)
 }

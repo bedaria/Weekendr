@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { answerQuestion, postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import  QuestionDetail  from '../components/Question_Detail'
-
 class QuizList extends Component {
 	constructor(props) {
 		super(props)
@@ -21,10 +20,15 @@ class QuizList extends Component {
 				'1','2','3']
 			}
 
+
+
 			// this.props.postQuestionListInput(this.props.quizList)
 			this.props.postQuestionListInput(dummyData)
 			console.log('------questionIndex is the length of quizlist')
 		}
+
+	
+
 		this.props.answerQuestion(answer, this.props)
 	}
 
@@ -39,9 +43,7 @@ class QuizList extends Component {
 		}
 		let arr = this.props.quizList[this.props.questionIndex].options
 		console.log('inside renderQuiz arr is: ',arr)
-		console.log('this is : ',this)
 		return arr.map((q) => {
-			console.log('q is : ',q)
 			return (
 				<QuestionDetail 
 					key={q.id}
@@ -52,11 +54,11 @@ class QuizList extends Component {
 			)	
 		})
 	}
+			// <h1>{this.props.quizList[this.props.questionIndex].title}</h1>
 
 	render() {
 		return (
 			<div className="QuizList Col-xs={4} xsOffset={2} md={4}">
-							<h1>{this.props.quizList[this.props.questionIndex].title}</h1>
 			{this.renderQuiz()}
 			</div>
 			)
@@ -65,6 +67,7 @@ class QuizList extends Component {
 
 
 		function mapStateToProps(state) {
+			console.log('********mapStateToProps inside QuizList: ',state)
 			return {
 				quizList: state.quiz.quizList,
 				questionIndex: state.quiz.questionIndex,
