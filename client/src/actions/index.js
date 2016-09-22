@@ -1,10 +1,14 @@
 import axios from 'axios';
 
-export function answerQuestion(answer, props) {
+export function answerQuestion(answer, props, answersArr) {
+	console.log('answerQuestions props are: ',props)
 	props.quizAnswers.push(answer)
 		return { 
-		type: 'ANSWER_SELECTED',
-		payload: {answers: props.quizAnswers, questionIndex: props.questionIndex+1}
+			type: 'ANSWER_SELECTED',
+			payload: {
+				answers: props.quizAnswers, 
+				questionIndex: props.questionIndex+1
+			}
 		}
 }
 
