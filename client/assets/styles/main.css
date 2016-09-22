@@ -1,0 +1,12 @@
+.SideBar {
+	border: 1px solid;
+}
+.SideBarDetail {
+	border: 1px solid;
+}
+.SideBarImage {
+	vertical-align: middle;
+	height: 182px;
+	float: left;
+	display: flex;
+}
