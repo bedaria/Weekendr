@@ -33,23 +33,22 @@ authenticateUser = (req, resp) => {
   })
   .then(user => {
     if(!user)
-      res.send("ERROR")
+      resp.send("ERROR")
 
-    bcrypt.hash(req.body.password, 8, (err, hash) =>{
-      if(err) {
-        console.log("<Weekendr> Error hashing password (user.controller line 38): ", err)
-        res.end()
+    bcrypt.compare(req.body.password, user.dataValues.password, (err, isFound) => {
+      if(isFound){
+        const token = jwt.sign(req.body, 'catsarecool');
+        resp.send({token: token,
+          username: user.dataValues.username,
+          firstName: user.dataValues.firstName,
+          lastName: user.dataValues.lastName,
+          email: user.dataValues.email
+        })
       }
-
-      bcrypt.compare(hash, user.dataValues.password, (err, isFound) => {
-        if(isFound){
-          const token = jwt.sign(req.body, 'catsarecool');
-          resp.send({token: token})
-        }
-
+      else {
         console.log("<Weekendr> Error authenticating user (user.controller line 46): ", err)
         resp.send("ERROR")
-      })
+      }
     })
   })
   .catch((err) => console.log("<Weekendr> Error authenticating user (user.controller line 52): ", err))
