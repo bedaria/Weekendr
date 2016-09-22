@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
-import _ from 'underscore';
 
 class SideBar extends Component {
 	constructor(props) {
@@ -11,30 +10,20 @@ class SideBar extends Component {
 	}
 
 	renderSideBarDetail() {
-		console.log('state inside SideBar: ',this.props)
-		let array =  this.props.quizList.map((question)=> {
-			return question.options.filter((q) => {
-				console.log('drew is a genius: ',_.contains(this.props.quizAnswers, q.option))
-				return (_.contains(this.props.quizAnswers, q.option))
-			})
-		})
-		console.log('array inside renderSideBar is: ****&&&&****: ',array)
-		return array.map((q, index) => {
-		console.log('^^^^inside renderSideBar q is : ',q)
+		return this.props.quizAnswers.map((q,index) => {
 			return (
 				<div key={index}>
-					<h1>{q[0] && q[0].option}</h1>
-					<img src={q[0] && q[0].imageUrl}/>
+				<h1>Title: {q.title}</h1>
+				<h1>{q.option.option && q.option.option}</h1>
+					<img src={q.option.imageUrl}/>
 				</div>
-			)	
+				)
 		})
 	}
 
 	render() {
 		return (
 			<div className="SideBar Col-xs={4} xsOffset={2} md={4}">
-			<h1>Title</h1>
-			{console.log('&&&&&&&&&&&&&: ',this.renderSideBarDetail())}
 			{this.renderSideBarDetail()}
 			</div>
 			)
