@@ -39,7 +39,7 @@ authenticateUser = (req, resp) => {
       if(isFound){
         const token = jwt.sign(req.body, 'catsarecool');
         resp.send({token: token,
-          username: user.dataValues.username,
+          username: req.body.username,
           firstName: user.dataValues.firstName,
           lastName: user.dataValues.lastName,
           email: user.dataValues.email
