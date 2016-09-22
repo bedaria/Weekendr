@@ -12,7 +12,7 @@ class SideBar extends Component {
 	renderSideBarDetail() {
 		return this.props.quizAnswers.map((q,index) => {
 			return (
-				<div key={index}>
+				<div className="SideBarDetail" key={index}>
 				<h1>Title: {q.title}</h1>
 				<h1>{q.option.option && q.option.option}</h1>
 					<img src={q.option.imageUrl}/>
@@ -23,7 +23,7 @@ class SideBar extends Component {
 
 	render() {
 		return (
-			<div className="SideBar Col-xs={4} xsOffset={2} md={4}">
+			<div className="SideBar">
 			{this.renderSideBarDetail()}
 			</div>
 			)
