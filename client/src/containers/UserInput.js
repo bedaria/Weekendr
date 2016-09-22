@@ -30,12 +30,20 @@ class UserInput extends React.Component {
   render() {
     return (
       <div>
+        <div>
+
         <label>What is your budget?</label>
         	<input type="number" id="budget" onChange={this.updateState} placeholder="$400"/>
+          <div>
         <label>How many total homies are going?</label>
         	<input type="number" id="numTravelers" onChange={this.updateState} placeholder="Number of Homies Going"/>
+          </div>
+          <div>
+
         <label> Date of Departure </label>
 	        <input type="date" id="date" onChange={this.updateState} placeholder="12/20/2016"/>
+          </div>
+          <div>
         <label> Preferred Mode of Transport? </label>
 	        <select id="modeTransport" onChange={this.updateState}>
 	  		    <option value="A">Airplane</option>
@@ -43,6 +51,8 @@ class UserInput extends React.Component {
 	  		    <option value="C">Train</option>
 	  		    <option value="D">Bus</option>
 	        </select>
+          </div>
+          </div>
         <input type="submit" onClick={this.takeToNextPage}/>
       </div>
     )
