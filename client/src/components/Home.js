@@ -8,8 +8,9 @@ export default class Home extends Component {
       <div>
       <SideBar />
         <h1>Welcome to Weekendr</h1>
+        <UserInput/>
+
       </div>
-      <UserInput/>
 
     );
   }
