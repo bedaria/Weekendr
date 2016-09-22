@@ -31,10 +31,10 @@ class Signin extends React.Component {
       else {
         localStorage.setItem('token', resp.data.token)
         this.props.updateUserInfo(
-              this.state.username,
-              this.state.firstName,
-              this.state.lastName,
-              this.state.email
+              resp.data.username,
+              resp.data.firstName,
+              resp.data.lastName,
+              resp.data.email
         )
       }
     })
