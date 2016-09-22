@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { updateUserInfo } from '../actions/index.js'
+import { bindActionCreators } from 'redux'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -34,8 +37,15 @@ class Signup extends React.Component {
         })
         .then(resp => {
           if(resp.data === "ERROR") console.log("Error creating user")
-          else
+          else {
             localStorage.setItem('token', resp.data.token)
+            this.props.updateUserInfo(
+              this.state.username,
+              this.state.firstName,
+              this.state.lastName,
+              this.state.email
+            )
+          }
         })
         .catch(err => console.log("POST /createUser failed", err))
       }
@@ -56,5 +66,7 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default connect(null, {
+  updateUserInfo: updateUserInfo
+})(Signup)
 
