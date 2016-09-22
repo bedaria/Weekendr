@@ -1,18 +1,24 @@
 export default {
 		quizList: [
 		{
-			title: 'Beach or Back Country',
+			title: 'Lodging',
 			options: [
 			{
 				id: 1,
-				option: 'Beach',
-				imageUrl: '../assets/images/Beach.jpg'
+				option: 'Hotel',
+				imageUrl: '../assets/images/Hotel.jpg'
 			},
 			{
 				id: 2,
-				option: 'Back Country',
-				imageUrl: '../assets/images/BackCountry.jpg'
+				option: 'Hostel',
+				imageUrl: '../assets/images/Hostel.jpg'
 			},
+			{
+				id: 3,
+				option: 'AirBnb',
+				imageUrl: '../assets/images/airbnb.jpg'
+
+			}
 			]
 		},
 		{

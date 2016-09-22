@@ -48,14 +48,15 @@ class QuizList extends Component {
 					option={q.option} 
 					src={q.imageUrl} 
 					onAnswerClicked = {this.onAnswerClicked}
-				/>	
+				/>
 			)	
 		})
 	}
 
 	render() {
 		return (
-			<div className="QuizList">
+			<div className="QuizList Col-xs={4} xsOffset={2} md={4}">
+							<h1>{this.props.quizList[this.props.questionIndex].title}</h1>
 			{this.renderQuiz()}
 			</div>
 			)
