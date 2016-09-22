@@ -23,7 +23,6 @@ class Signup extends React.Component {
 
   saveUser(event){
     event.preventDefault();
-    console.log("this.state.password: ", this.state.password)
     if(!!(this.state.username && this.state.firstName && this.state.lastName && this.state.email && this.state.password))
       if(this.state.password.match(this.state.passwordRetype)){
         axios.post('/api/createUser', {
