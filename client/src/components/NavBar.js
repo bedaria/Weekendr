@@ -9,7 +9,6 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 // <Route path="/trip-results" component={TripResults} />
 
 //Links to be added
-  // <Link to="/login"><Button bsStyle="default" className="nav-button float-right pad-right"> Login </Button></Link>
     // <Link to="/about"><Button bsStyle="default" className="nav-button"> About Us </Button></Link>
     // <Link to="/how-it-works"><Button bsStyle="default" className="nav-button"> How It Works </Button></Link>
 
@@ -21,6 +20,7 @@ const NavBar = (props) => (
     <Link to="/quiz"><Button bsStyle="default" className="nav-button float-right pad-right"> Quiz </Button></Link>
     <Link to="/profile"><Button bsStyle="default" className="nav-button float-right pad-right"> Profile </Button></Link>
     <Link to="/signup"><Button bsStyle="default" className="nav-button float-right pad-right"> SignUp </Button></Link>
+    <Link to="/login"><Button bsStyle="default" className="nav-button float-right pad-right"> Login </Button></Link>
   </Nav>
 );
 
