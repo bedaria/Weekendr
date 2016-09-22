@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import SideBar from '../containers/SideBar'
+import SideBar from '../containers/SideBar';
+import UserInput from '../containers/UserInput';
+
 export default class Home extends Component {
   render() {
     return (
@@ -7,6 +9,8 @@ export default class Home extends Component {
       <SideBar />
         <h1>Welcome to Weekendr</h1>
       </div>
+      <UserInput/>
+
     );
   }
 }
