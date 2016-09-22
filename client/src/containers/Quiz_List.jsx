@@ -10,7 +10,6 @@ class QuizList extends Component {
 		this.onAnswerClicked = this.onAnswerClicked.bind(this)
 	}
 	onAnswerClicked(answer) {
-		console.log('we are inside QuizList inside onAnswerClicked',this.props)
 		//check to see if index = length of quizList
 		if (this.props.questionIndex === this.props.quizList.length) {
 			//invoke API call to backend
@@ -24,7 +23,6 @@ class QuizList extends Component {
 
 			// this.props.postQuestionListInput(this.props.quizList)
 			this.props.postQuestionListInput(dummyData)
-			console.log('------questionIndex is the length of quizlist')
 		}
 
 	
@@ -33,7 +31,6 @@ class QuizList extends Component {
 	}
 
 	renderQuiz() {
-		console.log('state inside QuizList: ',this.props)
 		if (this.props.quizList.length === this.props.questionIndex) {
 			return (
 				<div>
@@ -42,7 +39,6 @@ class QuizList extends Component {
 				)
 		}
 		let arr = this.props.quizList[this.props.questionIndex].options
-		console.log('inside renderQuiz arr is: ',arr)
 		return arr.map((q) => {
 			return (
 				<QuestionDetail 
@@ -54,7 +50,6 @@ class QuizList extends Component {
 			)	
 		})
 	}
-			// <h1>{this.props.quizList[this.props.questionIndex].title}</h1>
 
 	render() {
 		return (
@@ -67,7 +62,6 @@ class QuizList extends Component {
 
 
 		function mapStateToProps(state) {
-			console.log('********mapStateToProps inside QuizList: ',state)
 			return {
 				quizList: state.quiz.quizList,
 				questionIndex: state.quiz.questionIndex,
