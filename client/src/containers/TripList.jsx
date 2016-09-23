@@ -28,11 +28,11 @@ class TripList extends Component {
 }
 
 
-		function mapStateToProps(state) {
-			return {
-				received: state.received
-			}
-		}
+function mapStateToProps(state) {
+	return {
+		received: state.received
+	}
+}
 
 //send TripModified Data to trip_reducer
 function mapDispatchToProps(dispatch) {
