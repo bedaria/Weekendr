@@ -10,28 +10,17 @@ class QuizList extends Component {
 		this.onAnswerClicked = this.onAnswerClicked.bind(this)
 	}
 	onAnswerClicked(answer) {
-		//check to see if index = length of quizList
-		if (this.props.questionIndex === this.props.quizList.length) {
-			//invoke API call to backend
-			//invoke this.props.postQuestionListInput
-			var dummyData = {
-				"JSON": [
-				'1','2','3']
-			}
-
-
-
-			// this.props.postQuestionListInput(this.props.quizList)
-			this.props.postQuestionListInput(dummyData)
-		}
-
-	
-
 		this.props.answerQuestion(answer, this.props)
 	}
 
 	renderQuiz() {
 		if (this.props.quizList.length === this.props.questionIndex) {
+			var dummyData = {
+				"JSON": [
+				'1','2','3']
+			}
+			console.log('dummyData is: ',dummyData)
+			this.props.postQuestionListInput(dummyData)
 			return (
 				<div>
 				<p>We are at the end of our list</p>

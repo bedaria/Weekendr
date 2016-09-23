@@ -16,9 +16,9 @@ export function answerQuestion(answer, props, answersArr) {
 
 export function postQuestionListInput(input) {
 	console.log('we are in postQuestionListInput', input)
-	return function(dispatch) {
+	return dispatch => {
 		axios.get('https://jsonplaceholder.typicode.com/posts')
-		.then(function(data) {
+		.then((data) => {
 			console.log('recevied data inside actions: ',data)
 			dispatch({
 				type: 'RECEIVED_DATA',
@@ -30,6 +30,9 @@ export function postQuestionListInput(input) {
 		})
 	}
 }
+
+
+
 
 export function updateUserInfo(username, lastName, firstName, email) {
   return {

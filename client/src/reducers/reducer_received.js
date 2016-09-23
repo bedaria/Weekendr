@@ -1,10 +1,11 @@
 export default function(state = null, action) {
-	console.log('we are inside receivedReducer', state)
-	console.log('action inside receivedReducer: ',action)
+	console.log('receivedData inside receivedReducer: state',state)
+	console.log('receivedData inside receivedReducer: state',action)
 	switch(action.type) {
 		case 'RECEIVED_DATA':
-		console.log('actionpayload inside receivedReducer is: ', action.payload)
-		return action.payload.data
+		return {..state, data: action.payload.data};
+		default: return state
 	}
 	return state;
 }
+
