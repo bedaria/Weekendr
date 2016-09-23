@@ -32,8 +32,6 @@ export function postQuestionListInput(input) {
 }
 
 
-
-
 export function updateUserInfo(username, lastName, firstName, email) {
   return {
     type: 'LOG_IN',
@@ -44,4 +42,15 @@ export function updateUserInfo(username, lastName, firstName, email) {
       email
     }
   }
+}
+
+export function sendInputToState(obj, props){
+	console.log(obj, "_________Inside action reactor, inside of sendInputToState")
+	console.log("*******this is props:", props);
+	props.userInputForm = props.userInputForm || [];
+	props.userInputForm.push(obj);
+	return { 
+		type: "RECEIVED_USER_INPUT_DATA",
+		payload: { userInputForm: props.userInputForm}
+	}
 }

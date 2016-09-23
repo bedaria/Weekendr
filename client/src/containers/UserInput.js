@@ -1,37 +1,31 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { updateUserInfo } from '../actions/index.js'
+import { sendInputToState } from '../actions/index.js'
 import { bindActionCreators } from 'redux'
 
 class UserInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-			page: 'firstQuestions',
 			budget: 400,
 			numTravelers : 1,
 			modeTransport: null,
 			date: 0
     }
-
     this.updateState = this.updateState.bind(this);
-    this.takeToNextPage = this.takeToNextPage.bind(this);
   }
 
   updateState(event) {
-    this.setState({[event.target.id]: event.target.value})
-  }
+  console.log(this.props, "We are inside of USERINPUT")
 
-  takeToNextPage(){
-  	console.log(this.state);
+    this.setState({[event.target.id]: event.target.value})
   }
 
   render() {
     return (
       <div>
         <div>
-
         <label>What is your budget?</label>
         	<input type="number" id="budget" onChange={this.updateState} placeholder="$400"/>
           <div>
@@ -53,12 +47,19 @@ class UserInput extends React.Component {
 	        </select>
           </div>
           </div>
-        <input type="submit" onClick={this.takeToNextPage}/>
+        <input type="submit" onClick={ ()=> this.props.sendInputToState("TEST inside of sendInputToState", this.props)}/>
       </div>
     )
   }
 }
 
-export default connect(null, {
-  updateUserInfo: updateUserInfo
-})(UserInput)
+function mapStateToProps(state){
+  return {userInputForm: state.userInput.userInputForm}
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({  sendInputToState: sendInputToState }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInput)

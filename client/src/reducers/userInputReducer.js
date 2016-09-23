@@ -1,23 +1,15 @@
 import UserInputData from './UserInputData';
 
 
-const initialState = {
-  budget: '',
-  numTravelers: '',
-  date: '',
-  modeTransport: ''
-}
-
-const userInputReducer = (state = initialState, action) => {
+const userInputReducer = (state = UserInputData.userInputForm, action) => {
+  console.log("inside userInputReducer 1", state);
+  console.log("inside userInputReducer 2", action);
   switch(action.type) {
-    case 'FIRST_INPUT':
+    case 'RECEIVED_USER_INPUT_DATA':
       return {...state, 
-        budget: action.payload.budget,
-        numTravelers: action.payload.numTravelers,
-        date: action.payload.date,
-        modeTransport: action.payload.modeTransport
+        userInputForm: action.payload.userInputForm
       }
-    default: return initialState
+    default: return state
   }
 }
 
