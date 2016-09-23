@@ -3,7 +3,7 @@ export default function(state = null, action) {
 	console.log('receivedData inside receivedReducer: state',action)
 	switch(action.type) {
 		case 'RECEIVED_DATA':
-		return {..state, data: action.payload.data};
+		return {...state, data: action.payload.data};
 		default: return state
 	}
 	return state;
