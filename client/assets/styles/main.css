@@ -1,7 +1,4 @@
-.SideBar {
-	border: 1px solid;
-}
-.SidebarPreferences {
+.Sidebar, .SidebarTripInfo, .SidebarPreferences {
 	border: 1px solid;
 }
 .SideBarImage {

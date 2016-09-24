@@ -17,7 +17,7 @@ const NavBar = (props) => (
   <Nav bsStyle="pills" className="button-bar">
     <Link to="/"><Button bsStyle="default" className="nav-button"> Home </Button></Link>
     <Link to="/"><img className="logo-center" /></Link>
-    <Link to="/quiz"><Button bsStyle="default" className="nav-button float-right pad-right"> Quiz </Button></Link>
+    <Link to="/preferences"><Button bsStyle="default" className="nav-button float-right pad-right"> Preferences </Button></Link>
     <Link to="/profile"><Button bsStyle="default" className="nav-button float-right pad-right"> Profile </Button></Link>
     <Link to="/signup"><Button bsStyle="default" className="nav-button float-right pad-right"> SignUp </Button></Link>
     <Link to="/login"><Button bsStyle="default" className="nav-button float-right pad-right"> Login </Button></Link>
