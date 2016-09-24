@@ -1,13 +1,13 @@
 import UserInputData from './UserInputData';
 
 
-const userInputReducer = (state = UserInputData.userInputForm, action) => {
-  console.log("inside userInputReducer 1", state);
-  console.log("inside userInputReducer 2", action);
+const userInputReducer = (state = [], action) => {
+
   switch(action.type) {
     case 'RECEIVED_USER_INPUT_DATA':
+      console.log("test inside of userInputReducer", action.payload);
       return {...state, 
-        userInputForm: action.payload.userInputForm
+        userInputForm: action.payload
       }
     default: return state
   }
