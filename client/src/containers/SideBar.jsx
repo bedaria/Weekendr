@@ -18,8 +18,6 @@ class Sidebar extends Component {
 			budget= {this.props.userInputForm && this.props.userInputForm.budget}
 			numTravelers = {this.props.userInputForm && this.props.userInputForm.numTravelers}
 			date = {this.props.userInputForm && this.props.userInputForm.date}
-			lat =  {this.props.userInputForm && this.props.userInputForm.latLng.lat}
-			lng = {this.props.userInputForm && this.props.userInputForm.latLng.lng}
 			/>
 			)
 	}
@@ -53,6 +51,7 @@ class Sidebar extends Component {
 }
 
 	function mapStateToProps(state) {
+		console.log('state inside sideBar check userInputForm', state)
 		return {
 			quizList: state.quiz.quizList,
 			questionIndex: state.quiz.questionIndex,

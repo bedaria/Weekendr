@@ -48,7 +48,7 @@ class UserInput extends React.Component {
           <div onClick={()=> this.props.getLatLng(this.state)}>
             Click to toggle.
           </div>
-            <input type="submit" onClick={ ()=> this.props.sendInputToState()}/>
+            <input type="submit" onClick={ ()=> this.props.sendInputToState(this.state)}/>
         </div>
       </div>
       )
