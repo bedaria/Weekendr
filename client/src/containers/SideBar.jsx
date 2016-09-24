@@ -13,7 +13,6 @@ class Sidebar extends Component {
 	}
 
 	renderSidebarTripInfo(){
-		console.log('inside renderSidebarTripInfo this.props are: ', this.props)
 		return (
 			<SidebarTripItem
 			budget= {this.props.userInputForm && this.props.userInputForm.budget}
