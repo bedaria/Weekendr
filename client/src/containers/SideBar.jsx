@@ -8,10 +8,10 @@ import SidebarPreferenceItem from '../components/SidebarPreferenceItem'
 class Sidebar extends Component {
 	constructor(props) {
 		super(props)
-		this.renderSidebarDetail = this.renderSidebarDetail.bind(this);
+		this.renderSidebarPreferenceItems = this.renderSidebarPreferenceItems.bind(this);
 	}
 
-	renderSidebarDetail() {
+	renderSidebarPreferenceItems() {
 		return this.props.quizAnswers.map((q,index) => {
 			return (
 				<SidebarPreferenceItem 
@@ -24,36 +24,10 @@ class Sidebar extends Component {
 		})
 	}
 
-	// return (
-	// 			<QuizListItem 
-	// 				key={q.id}
-	// 				option={q.option} 
-	// 				src={q.imageUrl} 
-	// 				onAnswerClicked = {this.onAnswerClicked}
-	// 			/>
-	// 		)	
-
-
-
-
-
-
-		// return (
-		// 		<div className="SidebarDetail" key={index}>
-		// 		<h1>Title: {q.title}</h1>
-		// 		<h1>{q.option.option && q.option.option}</h1>
-		// 			<img src={q.option.imageUrl}/>
-		// 		</div>
-		// 		)
-
-
-
-
-
 	render() {
 		return (
 			<div className="SidebarPreferences">
-			{this.renderSidebarDetail()}
+			{this.renderSidebarPreferenceItems()}
 			</div>
 			)
 	}
