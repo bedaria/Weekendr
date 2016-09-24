@@ -6,7 +6,7 @@ import App from './components/App';
 import Home from './components/Home';
 import Signup from './containers/Signup';
 import Login from './containers/Signin';
-import QuizList from './containers/Quiz_List'
+import QuizList from './containers/QuizList'
 // import TripResults from './components/TripResults';
 import UserProfile from './containers/UserProfile';
 
