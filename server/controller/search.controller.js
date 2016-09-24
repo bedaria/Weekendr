@@ -5,11 +5,11 @@ exports.search = {
 }
 
 function getCity(req, res) {
-	console.log('req.body is: ',req.body)
+	console.log('*****req.body inside searchController inside getCity is: ',req.body)
 	searchModel.getCity(req.body)
-		.then(function(result) {
-			console.log('result inside search.getCity inside searchModel is : ', result)
-			res.status(200).send(result)
+		.then(function(cityList) {
+			console.log('result inside search.getCity inside searchController is : ', cityList)
+			res.status(200).send(cityList)
 		})
 		.catch(function(err) {
 			console.log('Error inside searchController inside getCity: ',err)
