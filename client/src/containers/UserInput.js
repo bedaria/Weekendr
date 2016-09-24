@@ -3,11 +3,14 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { sendInputToState, getLatLng } from '../actions/index.js'
 import { bindActionCreators } from 'redux'
+import ProgressButton from 'react-progress-button'
+
 
 class UserInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      buttonState: '',
       budget: 400,
       numTravelers : 1,
       date: 0,
@@ -24,8 +27,12 @@ class UserInput extends React.Component {
     this.setState({[event.target.id]: event.target.value})
     console.log("this.state: ", this.state)
   }
-
-
+  handleClick () {
+    this.setState({buttonState: 'loading'})
+    setTimeout(function() {
+      this.setState({buttonState: 'success'})
+    }.bind(this), 3000)
+  }
   render() {
     return (
       <div>
@@ -45,10 +52,13 @@ class UserInput extends React.Component {
         </div>
         <div>
           <label> Use your current location as travel origin? </label>
-          <div onClick={()=> this.props.getLatLng(this.state)}>
-            Click to toggle.
-          </div>
-            <input type="submit" onClick={ ()=> this.props.sendInputToState()}/>
+        <div>
+          <ProgressButton onClick={this.handleClick, this.props.getLatLng(this.state)} state={this.state.buttonState}>
+            Go!
+          </ProgressButton>
+        </div>
+
+            <input type="submit" onClick={ ()=> this.props.sendInputToState(this.state)}/>
         </div>
       </div>
       )
