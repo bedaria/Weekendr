@@ -11,13 +11,13 @@ searchModel.getCity = function(params) {
 		lat: 34,
 		lng: 118
 	}
-	
+
 	//increment radius function on next request
 	var changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(latLng)
 
 	//budget be params.userInput.userInputForm.budget and come in as string
-	let budget = 1.05
-	let qs = changeLocationBoundaryWithModifier(budget) 
+	var budget = 1.05
+	var qs = changeLocationBoundaryWithModifier(budget) 
 	console.log('data inside searchModel inside getCity is: ',qs)
 	return new Promise(function(resolve, reject) {
 		var options = {
