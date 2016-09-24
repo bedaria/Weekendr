@@ -44,14 +44,19 @@ export default {
       title: 'Activities',
       options: [
         {
-          id: 3,
-          option: 'Solitude',
-          imageUrl: '../assets/images/Solitude.jpg'
+          id: 1,
+          option: 'Hiking',
+          imageUrl: '../assets/images/hiking.png'
         },
         {
-          id: 4,
-          option: 'Big Crowds',
-          imageUrl: '../assets/images/Rave.jpg'
+          id: 2,
+          option: 'Beach',
+          imageUrl: '../assets/images/beach.png'
+        },
+        {
+          id: 3,
+          option: 'Music Festivals',
+          imageUrl: '../assets/images/festival.png'
         },
       ]
     }
