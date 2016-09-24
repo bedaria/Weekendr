@@ -2,29 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
+import SidebarPreferenceItem from '../components/SidebarPreferenceItem'
 
-class SideBar extends Component {
+
+class Sidebar extends Component {
 	constructor(props) {
 		super(props)
-		this.renderSideBarDetail = this.renderSideBarDetail.bind(this);
+		this.renderSidebarPreferenceItems = this.renderSidebarPreferenceItems.bind(this);
 	}
 
-	renderSideBarDetail() {
+	renderSidebarPreferenceItems() {
 		return this.props.quizAnswers.map((q,index) => {
 			return (
-				<div className="SideBarDetail" key={index}>
-				<h1>Title: {q.title}</h1>
-				<h1>{q.option.option && q.option.option}</h1>
-					<img src={q.option.imageUrl}/>
-				</div>
+				<SidebarPreferenceItem 
+					key={index}
+					title={q.title} 
+					src={q.option.imageUrl}
+					answer={q.option.option} 
+				/>
 				)
 		})
 	}
 
 	render() {
 		return (
-			<div className="SideBar">
-			{this.renderSideBarDetail()}
+			<div className="SidebarPreferences">
+			{this.renderSidebarPreferenceItems()}
 			</div>
 			)
 	}
@@ -43,4 +46,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({postQuestionListInput}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

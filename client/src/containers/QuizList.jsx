@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { answerQuestion, postQuestionListInput } from '../actions/index';
 import { bindActionCreators } from 'redux';
-import  QuestionDetail  from '../components/Question_Detail'
+import  QuizListItem  from '../components/QuizListItem'
 class QuizList extends Component {
 	constructor(props) {
 		super(props)
@@ -30,7 +30,7 @@ class QuizList extends Component {
 		let arr = this.props.quizList[this.props.questionIndex].options
 		return arr.map((q) => {
 			return (
-				<QuestionDetail 
+				<QuizListItem 
 					key={q.id}
 					option={q.option} 
 					src={q.imageUrl} 
