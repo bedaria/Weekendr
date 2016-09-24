@@ -7,27 +7,28 @@ var searchModel = module.exports;
 searchModel.getCity = function(params) {
 	console.log('params inside searchModel.getCity : ', params)
 	console.log('params should be lat,lng')
-	// var params = {
-	// 	lat: '1',
-	// 	lng: '2'
-	// }
 	var latLng = {
 		lat: 34,
 		lng: 118
 	}
-	//price
-	var changeBoxWithModifier = searchModel.getBoxGivenLatLng(latLng)
+
 	//increment radius function on next request
-	let p = 1.05
-	let qs = changeBoxWithModifier(p) 
+	var changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(latLng)
+
+	//budget be params.userInput.userInputForm.budget and come in as string
+	var budget = 1.05
+	var qs = changeLocationBoundaryWithModifier(budget) 
 	console.log('data inside searchModel inside getCity is: ',qs)
 	return new Promise(function(resolve, reject) {
-		request.get('http://api.geonames.org/citiesJSON?north='+qs.north+ '&south=' + qs.south + '&east='+qs.east+'&west='+qs.west+'&lang=de&username='+qs.username, qs, function(err, response, body){
-			if (!err) {
-				console.log('body is: ', body)
-				resolve(body)
+		var options = {
+			uri: 'http://api.geonames.org/citiesJSON',
+			qs: qs
+		}
+		request(options, function(error, response, body) {
+			if (error) {
+				console.log('error inside searchModel inside getCity: ',error)
 			}  else {
-				reject(err)
+				return resolve(body)
 			}
 		})
 	})

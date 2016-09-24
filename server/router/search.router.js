@@ -1,6 +1,6 @@
-var router = require('express').Router();
-var controller = require('../controller/search.controller.js');
+// var router = require('express').Router();
+// var controller = require('../controller/search.controller.js');
 
-router.get('/getcity', controller.search.getCity)
+// router.get('/getcity', controller.search.getCity)
 
-module.exports = router;
+// module.exports = router;
