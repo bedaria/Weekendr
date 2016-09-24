@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import Sidebar from '../containers/Sidebar';
 import UserInput from '../containers/UserInput';
-import TripList from '../containers/TripList';
 
 export default class Home extends Component {
   render() {
     return (
       <div>
-      <Sidebar />
-        <h1>Welcome to Weekendr</h1>
-        <UserInput/>
-
+        <h1>Got plans for the weekend?</h1>
+        <h4>Plan a trip that fits your budget and preferences.</h4>
+        <UserInput />
       </div>
-
     );
   }
 }
