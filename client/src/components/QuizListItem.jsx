@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class QuestionDetail extends Component {
+class QuizListItem extends Component {
 	constructor(props) {
 		super(props)
 		this.selectAnswer = this.selectAnswer.bind(this)
@@ -25,6 +25,6 @@ class QuestionDetail extends Component {
 
 
 
-export default QuestionDetail; 
+export default QuizListItem; 
 
 
