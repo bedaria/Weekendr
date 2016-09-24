@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 import {
-	ANSWER_SELECTED
+	ANSWER_SELECTED,
+	RECEIVED_DATA
 } from './actionTypes';
 
 export function answerQuestion(answer, props, answersArr) {
@@ -16,7 +17,7 @@ export function answerQuestion(answer, props, answersArr) {
 		type: ANSWER_SELECTED,
 		payload: {answers: props.quizAnswers, questionIndex: props.questionIndex+1}
 		}
-}
+}  
 
 
 export function postQuestionListInput(input) {
@@ -25,7 +26,7 @@ export function postQuestionListInput(input) {
 		.then((data) => {
 			console.log('recevied data inside actions: ',data)
 			dispatch({
-				type: 'RECEIVED_DATA',
+				type: RECEIVED_DATA,
 				payload: data
 			})
 		})
