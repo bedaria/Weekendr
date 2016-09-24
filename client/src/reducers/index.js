@@ -2,14 +2,14 @@ import { combineReducers } from 'redux'
 import userReducer from './userReducer';
 import quizListData from './QuizListData';
 import quizListReducer from './reducer_QuizList';
-import receivedReducer from './reducer_Received';
+import receivedCitiesReducer from './reducer_ReceivedCities';
 import userInputReducer from './userInputReducer';
 import coordinatesReducer from './coordinatesReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
   quiz: quizListReducer,
-  received: receivedReducer,
+  receivedCities: receivedCitiesReducer,
   userInput: userInputReducer,
   coordinates: coordinatesReducer
 })
