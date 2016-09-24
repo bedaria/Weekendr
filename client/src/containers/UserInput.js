@@ -12,23 +12,18 @@ class UserInput extends React.Component {
       numTravelers : 1,
       date: 0,
       latLng: {
-        lat: 0,
-        lng: 0
+        lat: this.props.coordinates.latitude,
+        lng: this.props.coordinates.longitude
       }
     }
     this.updateState = this.updateState.bind(this);
   }
-  compnentDidMount(){
-        console.log("what?!!!!")
-    this.props.getLatLng();
-  }
+  
 
   updateState(event) {
     this.setState({[event.target.id]: event.target.value})
     console.log("this.state: ", this.state)
   }
-
-
 
 
   render() {
@@ -46,20 +41,30 @@ class UserInput extends React.Component {
           <input type="date" id="date" onChange={this.updateState} placeholder="12/20/2016"/>
           </div>
           </div>
-        <input type="submit" onClick={ ()=> this.props.sendInputToState(this.state)}/>
+
+        <label> Use your current location as travel origin? </label>
+        <div></div>
+        <div onClick={()=> this.props.getLatLng(this.state)}>
+           Click to toggle.
+        </div>
+        <div></div>
+        <div></div>
+        <input type="submit" onClick={ ()=> this.props.sendInputToState()}/>
       </div>
     )
   }
 }
 
 function mapStateToProps(state){
+  console.log(state, "insider of mapStateToProps")
   return {
-    userInputForm: state.userInput.userInputForm
+    userInputForm: state.userInput.userInputForm, 
+    coordinates: state.coordinates
   }
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({  sendInputToState: sendInputToState, getLatLng }, dispatch)
+  return bindActionCreators({ sendInputToState, getLatLng }, dispatch)
 }
 
 

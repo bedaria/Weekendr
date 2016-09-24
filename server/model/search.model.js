@@ -18,6 +18,7 @@ searchModel.getCity = function(params) {
 	//budget be params.userInput.userInputForm.budget and come in as string
 	var budget = 1.05
 	var qs = changeLocationBoundaryWithModifier(budget) 
+
 	console.log('data inside searchModel inside getCity is: ',qs)
 	return new Promise(function(resolve, reject) {
 		var options = {
