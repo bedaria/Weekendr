@@ -18,8 +18,8 @@ searchModel.getCity = function(params) {
 	//price
 	var changeBoxWithModifier = searchModel.getBoxGivenLatLng(latLng)
 	//increment radius function on next request
-	let p = 1.05
-	let qs = changeBoxWithModifier(p) 
+	var p = 1.05;
+	var qs = changeBoxWithModifier(p);
 	console.log('data inside searchModel inside getCity is: ',qs)
 	return new Promise(function(resolve, reject) {
 		request.get('http://api.geonames.org/citiesJSON?north='+qs.north+ '&south=' + qs.south + '&east='+qs.east+'&west='+qs.west+'&lang=de&username='+qs.username, qs, function(err, response, body){
