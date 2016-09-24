@@ -8,7 +8,6 @@ export default class Home extends Component {
     return (
       <div>
       <Sidebar />
-      <TripList/>
         <h1>Welcome to Weekendr</h1>
         <UserInput/>
 
