@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { sendInputToState } from '../actions/index.js'
+import { sendInputToState, getLatLng } from '../actions/index.js'
 import { bindActionCreators } from 'redux'
 
 class UserInput extends React.Component {
@@ -18,40 +18,18 @@ class UserInput extends React.Component {
     }
     this.updateState = this.updateState.bind(this);
   }
+  compnentDidMount(){
+        console.log("what?!!!!")
+    this.props.getLatLng();
+  }
 
   updateState(event) {
-
     this.setState({[event.target.id]: event.target.value})
     console.log("this.state: ", this.state)
   }
 
-componentDidMount(){
-    var lat;
-    var long;
-    function getLocation() {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showLocation);
-      } else {
-         console.log( "Geolocation is not supported by this browser.");
-      }
-    }
-    function showLocation(positionA){
-      console.log("Latitude: " + positionA.coords.latitude + " Longitude: ", + positionA.coords.longitude); 
-      lat = positionA.coords.latitude;
-      long = positionA.coords.longitude;
-    }
 
-    var prom = new Promise(
-      function(resolve, reject){
-        resolve(getLocation);
-      }).then(function(val) {
-      console.log("****");
-      val();
-    })
-    .catch(function(reason){
-      console.log('Handle rejected promise ('+reason+') here.');
-    });
-  }
+
 
   render() {
     return (
@@ -75,12 +53,13 @@ componentDidMount(){
 }
 
 function mapStateToProps(state){
-  console.log(state.userInput.userInputForm, "This is on userInputForm");
-  return {userInputForm: state.userInput.userInputForm}
+  return {
+    userInputForm: state.userInput.userInputForm
+  }
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({  sendInputToState: sendInputToState }, dispatch)
+  return bindActionCreators({  sendInputToState: sendInputToState, getLatLng }, dispatch)
 }
 
 
