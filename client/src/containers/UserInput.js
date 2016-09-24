@@ -30,33 +30,32 @@ class UserInput extends React.Component {
     return (
       <div>
         <div>
-        <label>What is your budget?</label>
-          <input type="number" id="budget" onChange={this.updateState} placeholder="$400" min="0" max="99999999999"/>
           <div>
-        <label>How many total homies are going?</label>
-          <input type="number" id="numTravelers" onChange={this.updateState} placeholder="Number of Homies Going" min="0" max="20"/>
+            <label>What is your budget?</label>
+              <input type="number" id="budget" onChange={this.updateState} placeholder="$400" min="0" max="99999999999"/>
           </div>
           <div>
-        <label> Date of Departure </label>
-          <input type="date" id="date" onChange={this.updateState} placeholder="12/20/2016"/>
+            <label>How many total homies are going?</label>
+            <input type="number" id="numTravelers" onChange={this.updateState} placeholder="Number of Homies Going" min="0" max="20"/>
           </div>
+          <div>
+            <label> Date of Departure </label>
+            <input type="date" id="date" onChange={this.updateState} placeholder="12/20/2016"/>
           </div>
-
-        <label> Use your current location as travel origin? </label>
-        <div></div>
-        <div onClick={()=> this.props.getLatLng(this.state)}>
-           Click to toggle.
         </div>
-        <div></div>
-        <div></div>
-        <input type="submit" onClick={ ()=> this.props.sendInputToState()}/>
+        <div>
+          <label> Use your current location as travel origin? </label>
+          <div onClick={()=> this.props.getLatLng(this.state)}>
+            Click to toggle.
+          </div>
+            <input type="submit" onClick={ ()=> this.props.sendInputToState()}/>
+        </div>
       </div>
-    )
+      )
   }
 }
 
 function mapStateToProps(state){
-  console.log(state, "insider of mapStateToProps")
   return {
     userInputForm: state.userInput.userInputForm, 
     coordinates: state.coordinates
