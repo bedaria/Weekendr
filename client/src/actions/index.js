@@ -15,6 +15,7 @@ export function updateUserInfo(username, lastName, firstName, email) {
 }
 
 export function getLatLng(){
+	console.log('we are inside getlatlng')
 	return dispatch => {
 	  var lat = 0;
 	  var long = 0;
@@ -49,6 +50,7 @@ export function getLatLng(){
 }
 
 export function sendInputToState(props){
+	console.log('we are inside sendInputToState props are ', props)
 	return { 
 		type: "RECEIVED_USER_INPUT_DATA",
 		payload: props

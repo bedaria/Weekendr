@@ -20,9 +20,15 @@ export function answerQuestion(answer, props, answersArr) {
 }  
 
 
-export function postQuestionListInput(input) {
-	return dispatch => {
-		axios.get('https://jsonplaceholder.typicode.com/posts')
+export function postQuestionListInput(props) {
+		console.log('props coming into postQuestionListInput are :(props) ', props)
+		let options = {
+			answers: props.quizAnswers,
+			coordinates: props.coordinates,
+			userInputForm: props.userInputForm
+		}
+		return dispatch => {
+		axios.post('/api/search/getCity', options)
 		.then((data) => {
 			console.log('recevied data inside actions: ',data)
 			dispatch({

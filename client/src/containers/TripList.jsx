@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { saveTripToState } from '../actions/index';
+import { sendSelectedTrip } from '../actions/index';
 
 
 class TripList extends Component {
@@ -10,11 +10,22 @@ class TripList extends Component {
 		this.renderTrips = this.renderTrips.bind(this);
 	}
 	
-
 	renderTrips() {
-		console.log('inside TripList received is: ',this.props)
-		//do a map function and pass props to TripListDetails
+		console.log('inside TripList received is: ',this.props.received.data.geonames)
+		return this.props.received.data.geonames.map((city, index) => {
+			return (
+				<div
+				key={index}
+				>
+					<h1>{city.name}</h1>
+					<p>{city.population}</p>
+				</div>
+			)
+		})
 	}
+	
+	
+
 
 
 
@@ -30,13 +41,13 @@ class TripList extends Component {
 
 function mapStateToProps(state) {
 	return {
-		received: state.received
+		received: state.receivedCities
 	}
 }
 
 //send TripModified Data to trip_reducer
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ saveTripToState }, dispatch)
+	return bindActionCreators({ sendSelectedTrip }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripList)

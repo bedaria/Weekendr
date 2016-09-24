@@ -15,12 +15,9 @@ class QuizList extends Component {
 
 	renderQuiz() {
 		if (this.props.quizList.length === this.props.questionIndex) {
-			var dummyData = {
-				"JSON": [
-				'1','2','3']
+			if (this.props.coordinates.latitude && this.props.userInputForm.budget) {
+			this.props.postQuestionListInput(this.props)
 			}
-			console.log('dummyData is: ',dummyData)
-			this.props.postQuestionListInput(dummyData)
 			return (
 				<div>
 				<p>We are at the end of our list</p>
@@ -51,10 +48,13 @@ class QuizList extends Component {
 
 
 		function mapStateToProps(state) {
+			console.log('state inside QuizList is', state)
 			return {
 				quizList: state.quiz.quizList,
 				questionIndex: state.quiz.questionIndex,
-				quizAnswers: state.quiz.quizAnswers
+				quizAnswers: state.quiz.quizAnswers,
+				coordinates: state.coordinates.coordinates,
+				userInputForm: state.userInput.userInputForm
 			}
 		}
 
