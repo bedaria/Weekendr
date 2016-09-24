@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { answerQuestion, postQuestionListInput } from '../actions/index';
+import { answerQuestion, postQuestionListInput } from '../actions/QuizList';
 import { bindActionCreators } from 'redux';
 import  QuizListItem  from '../components/QuizListItem'
 class QuizList extends Component {
