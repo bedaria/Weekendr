@@ -21,6 +21,15 @@ const User = sequelize.define('user', {
   password: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  fullName: {
+    type: Sequelize.STRING
+  },
+  facebookId: {
+    type: Sequelize.STRING
+  },
+  profilePhoto: {
+    type: Sequelize.STRING
   }
 });
 
