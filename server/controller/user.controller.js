@@ -12,7 +12,10 @@ createUser = (req, resp) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: hash
+        password: hash,
+        fullName: null,
+        facebookId: null,
+        profilePhoto: null
       })
       .then(newUser => {
         const token = jwt.sign(req.body, 'catsarecool');
