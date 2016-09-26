@@ -4,3 +4,6 @@ export const RECEIVED_DATA = 'RECEIVED_DATA';
 
 /*TripList */
 export const SELECTED_TRIP = 'SELECTED_TRIP';
+
+/*User*/
+export const LOG_IN = 'LOG_IN';

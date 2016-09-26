@@ -43,7 +43,8 @@ class Signup extends React.Component {
               this.state.username,
               this.state.firstName,
               this.state.lastName,
-              this.state.email
+              this.state.email,
+              true
             )
           }
         })
