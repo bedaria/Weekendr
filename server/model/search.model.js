@@ -4,18 +4,14 @@ const request = require('request');
 
 const searchModel = module.exports;
 
-searchModel.getCity = ((params) => {
+
+
+searchModel.getCity = (params) => {
   console.log('params inside searchModel.getCity : ', params);
-
-  // increment radius function on next request
-  const changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(params.coordinates);
-
-  // budget be params.userInput.userInputForm.budget and come in as string
-  const costPerMile = 0.5
+  const costPerMile = 0.5;
   const budget = params.userInputForm.budget;
-  const percentBudget = 0.40
-  const multiplier = searchModel.determineMultiplier(budget, costPerMile, percentBudget);
-  const qs = changeLocationBoundaryWithModifier(multiplier);
+  const percentBudget = 0.40;
+  const qs = searchModel.getCoordinates(params.coordinates, budget, costPerMile, percentBudget);
   console.log('qs inside searchModel inside getCity is: ', qs);
   return new Promise((resolve, reject) => {
     const options = {
@@ -26,26 +22,39 @@ searchModel.getCity = ((params) => {
       if (error) {
         return reject(console.log('error inside searchModel inside getCity: ', error));
       }
+      console.log('body is: ', body);
       return resolve(body);
     }));
   });
-});
+};
 
-searchModel.getBoxGivenLatLng = ((latLng) => {
-  return function multiplier(num) {
-    console.log('inside getBoxGivenLatLng num is: ', num)
-    return {
-    "north": latLng.latitude + latLng.latitude / num,
-    "south": latLng.latitude - latLng.latitude / num,
-    "west":  latLng.longitude + latLng.longitude / num,
-    "east":  latLng.longitude - latLng.longitude / num,
-    "lang": 'en',
-    "username" : process.env.geoname_username
-    };
+
+searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
+  const miles = (((percentBudget * budget) / costPerMile))
+  const milesAtEquator = 69.172;
+  const milesToDegreesLongitude = () => {
+    return (Math.cos(latLng.latitude) * miles / milesAtEquator);
   };
-});
+
+  const milesToDegreesLatitude = (miles) => {
+    return miles / milesAtEquator;
+  };
+
+  const degreesLatitude = milesToDegreesLatitude(miles)
+  const degreesLongitude = milesToDegreesLongitude(miles)
+
+  const getBoxGivenLatLng = (degLat, degLng) => {
+    return {
+      "north": latLng.latitude + degLat,
+      "south": latLng.latitude - degLat,
+      "west": latLng.longitude + degLng,
+      "east": latLng.longitude - degLng,
+      "lang": 'en',
+      "username" : 'jcmitch',
+      };
+  };
 
 
-searchModel.determineMultiplier = ((budget, costPerMile, percentBudget) => {
-  return (((percentBudget * budget) / costPerMile) / 4)
-})
+  const result = getBoxGivenLatLng(degreesLatitude, degreesLongitude);
+  return result;
+}
