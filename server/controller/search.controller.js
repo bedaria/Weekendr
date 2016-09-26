@@ -6,7 +6,7 @@ function getCity(req, res) {
   console.log('*****req.body inside searchController inside getCity is: ', req.body);
   searchModel.getCity(req.body)
     .then((cityList) => {
-      console.log('result inside search.getCity inside searchController is : ', cityList);
+      // console.log('result inside search.getCity inside searchController is : ', cityList);
       res.status(200).send(cityList);
     })
     .catch((err) => {
