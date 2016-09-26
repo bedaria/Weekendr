@@ -1,23 +1,31 @@
 module.exports = {
   entry: [
-    './client/src/index.js'
+    './client/src/index.js',
   ],
   output: {
     path: __dirname + '/client/build',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
       exclude: /node_modules/,
-      loader: 'babel'
-    }]
+      loader: 'babel',
+    },
+    {
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
+    },
+    ],
+  },
+  eslint: {
+    configFile: './.eslintrc.js',
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
   },
   devServer: {
-    contentBase: './'
-  }
+    contentBase: './',
+  },
 };
 

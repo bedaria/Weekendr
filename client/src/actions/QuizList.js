@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {
 	ANSWER_SELECTED,
-	RECEIVED_DATA
+	RECEIVED_DATA,
 } from './actionTypes';
 
 export function answerQuestion(answer, props, answersArr) {
