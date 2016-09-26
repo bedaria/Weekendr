@@ -13,11 +13,12 @@ searchModel.getCity = function(params) {
 	}
 
 	//increment radius function on next request
-	var changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(latLng)
+	var changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(params.coordinates)
 
 	//budget be params.userInput.userInputForm.budget and come in as string
-	var budget = 1.05
-	var qs = changeLocationBoundaryWithModifier(budget) 
+	var budget = params.userInputForm.budget
+	var a = 1.09
+	var qs = changeLocationBoundaryWithModifier(budget * a) 
 
 	console.log('data inside searchModel inside getCity is: ',qs)
 	return new Promise(function(resolve, reject) {
@@ -38,10 +39,10 @@ searchModel.getCity = function(params) {
 searchModel.getBoxGivenLatLng = function(latLng) {
 	return function multiplier(num) {
 		return {
-			"north": num * latLng.lat,
-			"south": latLng.lat / num,
-			"east": latLng.lng / num,
-			"west": num * latLng.lng,
+			"north": num * latLng.latitude,
+			"south": latLng.latitude / num,
+			"east": latLng.longitude / num,
+			"west": num * latLng.longitude,
 			"lang": 'en',
 			"username" : process.env.geoname_username
 		}

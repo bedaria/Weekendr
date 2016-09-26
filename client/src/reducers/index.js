@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import userReducer from './userReducer';
-import quizListData from './QuizListData';
 import quizListReducer from './reducer_QuizList';
 import receivedCitiesReducer from './reducer_ReceivedCities';
 import userInputReducer from './userInputReducer';

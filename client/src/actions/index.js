@@ -1,6 +1,3 @@
-import axios from 'axios';
-
-
 
 export function updateUserInfo(username, lastName, firstName, email) {
   return {
@@ -27,25 +24,23 @@ export function getLatLng(){
 	      }
 	    }
 	    function showLocation(positionA){
-	      console.log("Latitude: " + positionA.coords.latitude + " Longitude: ", + positionA.coords.longitude); 
-	      lat = positionA.coords.latitude;
-	      long = positionA.coords.longitude;
-	      checkStatus();
-	      var data = {
-	      	latitude: lat,
-	      	longitude: long
-	      }
+	    	console.log("Latitude: " + positionA.coords.latitude + " Longitude: ", + positionA.coords.longitude);
+		    lat = positionA.coords.latitude;
+		    long = positionA.coords.longitude;
+		    checkStatus();
+		    var data = {
+		    	latitude: lat,
+			    longitude: long
+		    }
 	      dispatch({
 					type: 'LAT_LONG',
 					payload: data
-			})
+	      })
 	    }
 	    function checkStatus(){
 	    		console.log('received data inside getLatLng')
-
 	    }
 	    getLocation()
-
 	}
 }
 
