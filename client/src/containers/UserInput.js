@@ -5,6 +5,7 @@ import { getLatLng } from '../actions/getLatLng'
 import { sendInputToState } from '../actions/sendInputToState'
 import { bindActionCreators } from 'redux'
 import ProgressButton from 'react-progress-button'
+import { Input, Row, Icon } from 'react-materialize';
 
 
 class UserInput extends React.Component {
@@ -35,8 +36,6 @@ class UserInput extends React.Component {
   handleClick () {
     this.setState({buttonState: 'loading'})
     setTimeout(function() {
-
-      console.log("inside of the timeout", this.state);
       this.props.sendInputToState(this.state);
       this.setState({buttonState: 'success'});
       var redirectURL = window.location.hostname + "/quiz";
@@ -46,30 +45,29 @@ class UserInput extends React.Component {
 
 
 
+
   render() {
     return (
       <div>
-        <div>
+        <Row>
+            <div>
+              <label for="budget" data-error="Minimum Budget is $150" data-success="Sweet!">What is your Budget?</label>
+              <Input s={12} type="number" id="budget" onChange={this.updateState} placeholder="$400" min="150" max="99999999999" validate><Icon>monetization_on</Icon></Input>
+            </div>
+            <div>                
+              <label for="budget" data-error="You need at least 1 person going on the trip!" data-success="Sweet!">How many total homies are going?</label>
+              <Input s={12} type="number" id="numTravelers" onChange={this.updateState} placeholder="3" min="0" max="20" validate><Icon>group</Icon></Input>
+            </div>
+            <div>
+            <label>Date of Departure</label>
+              <Input s={12} type="date" id="datePicker" onChange={this.updateState} min="2016-09-26" ><Icon>today</Icon></Input>
+            </div>
+        </Row>
           <div>
-            <label>What is your budget?</label>
-              <input type="number" id="budget" onChange={this.updateState} placeholder="$400" min="0" max="99999999999"/>
+            <ProgressButton onClick={this.handleClick} state={this.state.buttonState}>
+              Go!
+            </ProgressButton>
           </div>
-          <div>
-            <label>How many total homies are going?</label>
-            <input type="number" id="numTravelers" onChange={this.updateState} placeholder="Number of Homies Going" min="0" max="20"/>
-          </div>
-          <div>
-            <label> Date of Departure </label>
-            <input type="date" id="datePicker" onChange={this.updateState} min="2016-09-26"/>
-          </div>
-        </div>
-        <div>
-        <div>
-          <ProgressButton onClick={this.handleClick} state={this.state.buttonState}>
-            Go!
-          </ProgressButton>
-        </div>
-      </div>
       </div>
       )
   }
@@ -81,7 +79,6 @@ function mapStateToProps(state){
     coordinates: state.coordinates
   }
 }
-
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ sendInputToState, getLatLng }, dispatch)
