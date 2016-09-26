@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { sendInputToState, getLatLng } from '../actions/index.js'
+import { getLatLng } from '../actions/getLatLng'
+import { sendInputToState } from '../actions/sendInputToState'
 import { bindActionCreators } from 'redux'
 import ProgressButton from 'react-progress-button'
 
@@ -20,8 +21,12 @@ class UserInput extends React.Component {
       }
     }
     this.updateState = this.updateState.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   
+  componentDidMount(){
+    this.props.getLatLng(this.state)
+  }
 
   updateState(event) {
     this.setState({[event.target.id]: event.target.value})
@@ -30,9 +35,17 @@ class UserInput extends React.Component {
   handleClick () {
     this.setState({buttonState: 'loading'})
     setTimeout(function() {
-      this.setState({buttonState: 'success'})
+
+      console.log("inside of the timeout", this.state);
+      this.props.sendInputToState(this.state);
+      this.setState({buttonState: 'success'});
+      var redirectURL = window.location.hostname + "/quiz";
+      location.href = redirectURL;
     }.bind(this), 3000)
   }
+
+
+
   render() {
     return (
       <div>
@@ -47,19 +60,16 @@ class UserInput extends React.Component {
           </div>
           <div>
             <label> Date of Departure </label>
-            <input type="date" id="date" onChange={this.updateState} placeholder="12/20/2016"/>
+            <input type="date" id="datePicker" onChange={this.updateState} min="2016-09-26"/>
           </div>
         </div>
         <div>
-          <label> Use your current location as travel origin? </label>
-          <div onClick={()=> this.props.getLatLng(this.state)}>
-            Click to toggle.
-          </div>
         <div>
-          <ProgressButton onClick={this.handleClick, this.props.getLatLng(this.state)} state={this.state.buttonState}>
+          <ProgressButton onClick={this.handleClick} state={this.state.buttonState}>
             Go!
           </ProgressButton>
         </div>
+      </div>
       </div>
       )
   }
@@ -71,6 +81,7 @@ function mapStateToProps(state){
     coordinates: state.coordinates
   }
 }
+
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ sendInputToState, getLatLng }, dispatch)
