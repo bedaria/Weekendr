@@ -19,4 +19,3 @@ function getCity(req, res) {
 exports.search = {
   getCity,
 };
-

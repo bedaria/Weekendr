@@ -1,53 +1,43 @@
-var _ = require('lodash');
 require('dotenv').config();
-var request = require('request');
 
-var searchModel = module.exports;
+const request = require('request');
 
-searchModel.getCity = function(params) {
-	console.log('params inside searchModel.getCity : ', params)
-	console.log('params should be lat,lng')
-	var latLng = {
-		lat: 34,
-		lng: 118
-	}
+const searchModel = module.exports;
 
-	//increment radius function on next request
-	var changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(params.coordinates)
+searchModel.getCity = ((params) => {
+  console.log('params inside searchModel.getCity : ', params);
 
-	//budget be params.userInput.userInputForm.budget and come in as string
-	var budget = params.userInputForm.budget
-	var a = 1.09
-	var qs = changeLocationBoundaryWithModifier(budget * a) 
+  // increment radius function on next request
+  const changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(params.coordinates);
 
-	console.log('data inside searchModel inside getCity is: ',qs)
-	return new Promise(function(resolve, reject) {
-		var options = {
-			uri: 'http://api.geonames.org/citiesJSON',
-			qs: qs
-		}
-		request(options, function(error, response, body) {
-			if (error) {
-				console.log('error inside searchModel inside getCity: ',error)
-			}  else {
-				return resolve(body)
-			}
-		})
-	})
-}
+  // budget be params.userInput.userInputForm.budget and come in as string
+  const budget = params.userInputForm.budget;
+  const a = 1.09;
+  const qs = changeLocationBoundaryWithModifier(budget * a);
+  console.log('data inside searchModel inside getCity is: ', qs);
+  return new Promise((resolve, reject) => {
+    const options = {
+      uri: 'http://api.geonames.org/citiesJSON',
+      qs,
+    };
+    request(options, ((error, response, body) => {
+      if (error) {
+        return reject(console.log('error inside searchModel inside getCity: ', error));
+      }
+      return resolve(body);
+    }));
+  });
+});
 
-searchModel.getBoxGivenLatLng = function(latLng) {
-	return function multiplier(num) {
-		return {
-			"north": num * latLng.latitude,
-			"south": latLng.latitude / num,
-			"east": latLng.longitude / num,
-			"west": num * latLng.longitude,
-			"lang": 'en',
-			"username" : process.env.geoname_username
-		}
-	}
-}
-
-
-
+searchModel.getBoxGivenLatLng = ((latLng) => {
+  return function multiplier(num) {
+    return {
+    "north": num * latLng.latitude,
+    "south": latLng.latitude / num,
+    "east": latLng.longitude / num,
+    "west": num * latLng.longitude,
+    "lang": 'en',
+    "username" : process.env.geoname_username
+    };
+  };
+});
