@@ -1,53 +1,58 @@
-var _ = require('lodash');
 require('dotenv').config();
-var request = require('request');
 
-var searchModel = module.exports;
+const request = require('request');
 
-searchModel.getCity = function(params) {
-	console.log('params inside searchModel.getCity : ', params)
-	console.log('params should be lat,lng')
-	var latLng = {
-		lat: 34,
-		lng: 118
-	}
-
-	//increment radius function on next request
-	var changeLocationBoundaryWithModifier = searchModel.getBoxGivenLatLng(params.coordinates)
-
-	//budget be params.userInput.userInputForm.budget and come in as string
-	var budget = params.userInputForm.budget
-	var a = 1.09
-	var qs = changeLocationBoundaryWithModifier(budget * a) 
-
-	console.log('data inside searchModel inside getCity is: ',qs)
-	return new Promise(function(resolve, reject) {
-		var options = {
-			uri: 'http://api.geonames.org/citiesJSON',
-			qs: qs
-		}
-		request(options, function(error, response, body) {
-			if (error) {
-				console.log('error inside searchModel inside getCity: ',error)
-			}  else {
-				return resolve(body)
-			}
-		})
-	})
-}
-
-searchModel.getBoxGivenLatLng = function(latLng) {
-	return function multiplier(num) {
-		return {
-			"north": num * latLng.latitude,
-			"south": latLng.latitude / num,
-			"east": latLng.longitude / num,
-			"west": num * latLng.longitude,
-			"lang": 'en',
-			"username" : process.env.geoname_username
-		}
-	}
-}
+const searchModel = module.exports;
 
 
+searchModel.getCity = (params) => {
+  console.log('params inside searchModel.getCity : ', params);
+  /* if user selects Car as mode of transport cost per mile = 0.5 */
+  console.log('***params answers', params.answers[0].option.option);
+  let costPerMile = 0.5;
+  let budget = params.userInputForm.budget;
+  if (params.answers[0].option.option === 'Airplane') {
+    costPerMile -= 0.39;
+    budget -= 50;
+  }
+  const percentBudget = 0.40;
+  const qs = searchModel.getCoordinates(params.coordinates, budget, costPerMile, percentBudget);
+  console.log('qs inside searchModel inside getCity is: ', qs);
+  return new Promise((resolve, reject) => {
+    const options = {
+      uri: 'http://api.geonames.org/citiesJSON',
+      qs,
+    };
+    request(options, ((error, response, body) => {
+      if (error) {
+        return reject(console.log('error inside searchModel inside getCity: ', error));
+      }
+      console.log('body is: ', body);
+      return resolve(body);
+    }));
+  });
+};
 
+
+searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
+  const miles = (((percentBudget * budget) / costPerMile));
+  const milesAtEquator = 69.172;
+  const milesToDegreesLongitude = () => (
+    Math.cos(latLng.latitude) * (miles / milesAtEquator)
+  );
+  const milesToDegreesLatitude = () => miles / milesAtEquator;
+
+  const degreesLatitude = milesToDegreesLatitude(miles);
+  const degreesLongitude = milesToDegreesLongitude(miles);
+
+  const getBoxGivenLatLng = (degLat, degLng) => ({
+    north: latLng.latitude + degLat,
+    south: latLng.latitude - degLat,
+    west: latLng.longitude + degLng,
+    east: latLng.longitude - degLng,
+    lang: 'en',
+    username: 'jcmitch',
+  });
+  const result = getBoxGivenLatLng(degreesLatitude, degreesLongitude);
+  return result;
+};
