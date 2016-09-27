@@ -38,7 +38,7 @@ export function createUser(userName, firstName, lastName, email, password) {
     })
     .then(resp => {
       if(resp.data.error)
-        dispatch({ type: UNAUTHORIZED, payload: {} })
+        dispatch({ type: UNAUTHORIZED, payload: {error: resp.data.error} })
       else {
         localStorage.setItem('token', resp.data.token)
         localStorage.setItem('username', resp.data.userName)
@@ -62,7 +62,7 @@ export function login(username, password) {
     })
     .then(resp => {
       if(resp.data.error)
-        dispatch({type: UNAUTHORIZED, payload: {}})
+        dispatch({type: UNAUTHORIZED, payload: {error: resp.data.error}})
       else {
         localStorage.setItem('token', resp.data.token)
         localStorage.setItem('username', resp.data.userName)

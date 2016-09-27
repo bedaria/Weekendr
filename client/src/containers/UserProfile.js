@@ -29,7 +29,7 @@ class UserProfile extends Component {
   }
 }
 
- function mapStateToProps(state) {
+function mapStateToProps(state) {
   return {
     user: state.user
   };

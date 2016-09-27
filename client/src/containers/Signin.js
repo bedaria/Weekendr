@@ -11,11 +11,17 @@ class Signin extends React.Component {
     this.userLoginInfo = {username: '', password: ''}
     this.getLoginInfo = this.getLoginInfo.bind(this)
     this.showButton = this.showButton.bind(this)
+    this.showErrorMessage = this.showErrorMessage.bind(this);
     this.signin = this.signin.bind(this)
   }
 
   getLoginInfo(event) {
     this.userLoginInfo[event.target.id] = event.target.value
+  }
+
+  showErrorMessage() {
+     if(this.props.error)
+      return <div> {this.props.error} </div>
   }
 
   showButton() {
@@ -27,6 +33,7 @@ class Signin extends React.Component {
           <input type="text" id="username" onChange={this.getLoginInfo} placeholder="Input username"/>
           <input type="password" id="password" onChange={this.getLoginInfo} placeholder="Input password"/>
           <input type="submit" onClick={this.signin}/>
+          {this.showErrorMessage()}
         </div>
       )
   }
@@ -41,4 +48,8 @@ class Signin extends React.Component {
   }
 }
 
-export default connect(null, { login })(Signin)
+function mapStateToProps(state) {
+  return { error: state.user.error }
+}
+
+export default connect(mapStateToProps, { login })(Signin)
