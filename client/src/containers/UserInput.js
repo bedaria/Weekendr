@@ -38,13 +38,10 @@ class UserInput extends React.Component {
     setTimeout(function() {
       this.props.sendInputToState(this.state);
       this.setState({buttonState: 'success'});
-      var redirectURL = window.location.hostname + "/quiz";
+      var redirectURL = window.location.hostname + "/preferences";
       location.href = redirectURL;
     }.bind(this), 3000)
   }
-
-
-
 
   render() {
     return (
