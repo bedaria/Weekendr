@@ -15,7 +15,6 @@ export function getLatLng(){
 	    	console.log("Latitude: " + positionA.coords.latitude + " Longitude: ", + positionA.coords.longitude);
 		    lat = positionA.coords.latitude;
 		    long = positionA.coords.longitude;
-		    checkStatus();
 		    var data = {
 		    	latitude: lat,
 			    longitude: long
@@ -24,9 +23,6 @@ export function getLatLng(){
 			type: 'LAT_LONG',
 			payload: data
 	      })
-	    }
-	    function checkStatus(){
-	    		console.log('received data inside getLatLng')
 	    }
 	    getLocation()
 	}

@@ -17,7 +17,7 @@ class Sidebar extends Component {
       <SidebarUserInput
         budget={this.props.userInputForm && this.props.userInputForm.budget}
         numTravelers={this.props.userInputForm && this.props.userInputForm.numTravelers}
-        date={this.props.userInputForm && this.props.userInputForm.date}
+        date={this.props.userInputForm && this.props.userInputForm.datePicker}
       />
     );
   }
