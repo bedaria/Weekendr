@@ -1,7 +1,8 @@
 export default {
-  quizList: [
+  quizData: [
     {
       title: 'Transportation',
+      question: 'How would you like to travel? Select your preferred mode of transportation:',
       options: [
         {
           id: 1,
@@ -22,6 +23,7 @@ export default {
     },
     {
       title: 'Lodging',
+      question: 'Where would you like to stay? Select one of the following lodging options:',
       options: [
         {
           id: 1,
@@ -42,6 +44,7 @@ export default {
     },
     {
       title: 'Activities',
+      question: 'What do you like to do? Select one of the following activities:',
       options: [
         {
           id: 1,

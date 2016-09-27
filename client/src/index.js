@@ -8,7 +8,7 @@ import { Router, browserHistory } from 'react-router';
 // routes
 import routes from './routes';
 // reducers
-import reducers  from './reducers';
+import reducers from './reducers';
 
 const createStoreWithMiddleWare = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleWare(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
@@ -20,5 +20,5 @@ ReactDOM.render(
       {routes}
     </Router>
   </Provider>
-  , document.querySelector('.container')
+  , document.getElementById('app')
 );

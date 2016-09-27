@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Sidebar from '../containers/Sidebar';
-import QuizList from '../containers/QuizList';
+import Quiz from '../containers/Quiz';
 
 export default class Preferences extends Component {
   render() {
     return (
       <div>
         <Sidebar />
-        <QuizList />
+        <Quiz />
       </div>
     );
   }

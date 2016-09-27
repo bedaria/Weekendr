@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux'
-import userReducer from './userReducer';
-import quizListReducer from './reducer_QuizList';
-import receivedCitiesReducer from './reducer_ReceivedCities';
-import userInputReducer from './userInputReducer';
-import coordinatesReducer from './coordinatesReducer';
+import { combineReducers } from 'redux';
+import quizReducer from './reducer_quiz';
+import userProfileReducer from './reducer_userProfile';
+import userInputReducer from './reducer_userInput';
+import coordinatesReducer from './reducer_coordinates';
+import receivedCitiesReducer from './reducer_receivedCities';
 
 const rootReducer = combineReducers({
-  user: userReducer,
-  quiz: quizListReducer,
-  receivedCities: receivedCitiesReducer,
+  quiz: quizReducer,
+  user: userProfileReducer,
   userInput: userInputReducer,
-  coordinates: coordinatesReducer
-})
+  coordinates: coordinatesReducer,
+  receivedCities: receivedCitiesReducer
+});
 
 export default rootReducer;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class QuizListItem extends Component {
+export default class SidebarUserSelection extends Component {
   constructor(props) {
     super(props);
     // this.changePreference = this.changePreference.bind(this)
@@ -12,12 +12,10 @@ class QuizListItem extends Component {
   render() {
     return (
       <div>
-        <h4>{this.props.title}</h4>
-        <img src={this.props.src} />
+        <h6>{this.props.title}</h6>
+        <img className="sidebar-user-selection-img" src={this.props.src} />
         <p>{this.props.answer}</p>
       </div>
     );
   }
 }
-
-export default QuizListItem;
