@@ -5,12 +5,19 @@ const request = require('request');
 const searchModel = module.exports;
 
 
-
 searchModel.getCity = (params) => {
   console.log('params inside searchModel.getCity : ', params);
-  const costPerMile = 0.5;
-  const budget = params.userInputForm.budget;
+  /* if user selects Car as mode of transport cost per mile = 0.5 */
+  console.log('***params answers', params.answers[0].option.option);
+  let costPerMile = 0.5;
+  let budget = params.userInputForm.budget;
+  if (params.answers[0].option.option === 'Airplane') {
+    costPerMile -= 0.39;
+    budget -= 50;
+  }
   const percentBudget = 0.40;
+  console.log('budget with plane or car: ', budget);
+  console.log('costpermine', costPerMile)
   const qs = searchModel.getCoordinates(params.coordinates, budget, costPerMile, percentBudget);
   console.log('qs inside searchModel inside getCity is: ', qs);
   return new Promise((resolve, reject) => {
@@ -30,18 +37,18 @@ searchModel.getCity = (params) => {
 
 
 searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
-  const miles = (((percentBudget * budget) / costPerMile))
+  const miles = (((percentBudget * budget) / costPerMile));
   const milesAtEquator = 69.172;
   const milesToDegreesLongitude = () => {
-    return (Math.cos(latLng.latitude) * miles / milesAtEquator);
+    return ((Math.cos(latLng.latitude)) * (miles / milesAtEquator));
   };
 
-  const milesToDegreesLatitude = (miles) => {
+  const milesToDegreesLatitude = () => {
     return miles / milesAtEquator;
   };
 
-  const degreesLatitude = milesToDegreesLatitude(miles)
-  const degreesLongitude = milesToDegreesLongitude(miles)
+  const degreesLatitude = milesToDegreesLatitude(miles);
+  const degreesLongitude = milesToDegreesLongitude(miles);
 
   const getBoxGivenLatLng = (degLat, degLng) => {
     return {
@@ -53,8 +60,6 @@ searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
       "username" : 'jcmitch',
       };
   };
-
-
   const result = getBoxGivenLatLng(degreesLatitude, degreesLongitude);
   return result;
-}
+};
