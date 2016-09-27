@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { postQuestionListInput } from '../actions/index';
 import SidebarUserInput from '../components/SidebarUserInput';
-import SidebarPreferenceItem from '../components/SidebarPreferenceItem';
+import SidebarUserSelection from '../components/SidebarUserSelection';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.renderSidebarUserInput = this.renderSidebarUserInput.bind(this);
-    this.renderSidebarPreferenceItems = this.renderSidebarPreferenceItems.bind(this);
+    this.renderSidebarUserSelections = this.renderSidebarUserSelections.bind(this);
   }
 
   renderSidebarUserInput() {
@@ -22,10 +22,10 @@ class Sidebar extends Component {
     );
   }
 
-  renderSidebarPreferenceItems() {
+  renderSidebarUserSelections() {
     return this.props.quizAnswers.map((q, index) => {
       return (
-        <SidebarPreferenceItem
+        <SidebarUserSelection
           key={index}
           title={q.title}
           src={q.option.imageUrl}
@@ -37,13 +37,14 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="sidebar">
+      <div className="sidebar-container">
         <h5>Sidebar</h5>
         <div className="sidebar-user-input">
           {this.renderSidebarUserInput()}
         </div>
-        <div className="SidebarPreferences">
-          {this.renderSidebarPreferenceItems()}
+        <div className="sidebar-user-selections">
+          <h6><strong>Your Trip Preferences:</strong></h6>
+          {this.renderSidebarUserSelections()}
         </div>
       </div>
     );

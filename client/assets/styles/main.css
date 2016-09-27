@@ -1,11 +1,19 @@
+/* ----- NAVBAR ----- */
 .navbar {
   height: 52px;
   box-shadow: none;
 }
-.Sidebar, .SidebarTripInfo, .SidebarPreferences {
-	border: 1px solid;
+
+/* ----- SIDEBAR ----- */
+.sidebar-container, .sidebar-user-input, .sidebar-user-selections {
+  border: 1px solid;
+  width: 200px;
+}
+.sidebar-user-selection-img {
+  width: 100px;
 }
 
+/* ----- PROGRESS BAR ----- */
 .pb-container {
   display: inline-block;
   text-align: center;
