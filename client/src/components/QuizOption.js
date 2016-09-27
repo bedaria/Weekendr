@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class QuizListItem extends Component {
+export default class QuizOption extends Component {
   constructor(props) {
     super(props);
     this.selectAnswer = this.selectAnswer.bind(this);
@@ -18,10 +18,8 @@ class QuizListItem extends Component {
     return (
       <div onClick={this.selectAnswer}>
         <h4>{this.props.option}</h4>
-        <img src={this.props.src} />
+        <img className="quiz-option-img" src={this.props.src} />
       </div>
     );
   }
 }
-
-export default QuizListItem;
