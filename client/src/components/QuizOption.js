@@ -16,8 +16,8 @@ export default class QuizOption extends Component {
     }
 
     return (
-      <div onClick={this.selectAnswer}>
-        <h4>{this.props.option}</h4>
+      <div className="quiz-option-container" onClick={this.selectAnswer}>
+        <h6 className="quiz-option-title">{this.props.option}</h6>
         <img className="quiz-option-img" src={this.props.src} />
       </div>
     );

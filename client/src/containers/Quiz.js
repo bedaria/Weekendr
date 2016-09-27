@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { answerQuestion, postQuestionListInput } from '../actions/QuizList';
-import QuizListItem from '../components/QuizListItem';
+import { answerQuestion, postQuestionListInput } from '../actions/quizActions';
+import QuizOption from '../components/QuizOption';
 
-class QuizList extends Component {
+class Quiz extends Component {
   constructor(props) {
     super(props);
     this.renderQuiz = this.renderQuiz.bind(this);
@@ -12,26 +12,27 @@ class QuizList extends Component {
   }
 
   onAnswerClicked(answer) {
-    console.log('***we are inside onAnswerClicked: ', answer);
     this.props.answerQuestion(answer, this.props);
   }
 
   renderQuiz() {
     if (this.props.quizList.length === this.props.questionIndex) {
-      console.log('***we are inside renderQuiz: ', this.props);
       if (this.props.coordinates.latitude && this.props.userInputForm.budget) {
         this.props.postQuestionListInput(this.props);
       }
+
       return (
         <div>
           <p>You have completed the quiz!</p>
         </div>
       );
     }
-    let arr = this.props.quizList[this.props.questionIndex].options;
+
+    const arr = this.props.quizList[this.props.questionIndex].options;
+
     return arr.map((q) => {
       return (
-        <QuizListItem
+        <QuizOption
           key={q.id}
           option={q.option}
           src={q.imageUrl}
@@ -43,8 +44,8 @@ class QuizList extends Component {
 
   render() {
     return (
-      <div className="QuizList Col-xs={4} xsOffset={2} md={4}">
-        <h3>Preferences Quiz</h3>
+      <div className="quiz">
+        <h5>Preferences Quiz</h5>
         {this.renderQuiz()}
       </div>
     );
@@ -52,7 +53,6 @@ class QuizList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state inside QuizList is', state)
   return {
     quizList: state.quiz.quizList,
     questionIndex: state.quiz.questionIndex,
@@ -63,7 +63,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ answerQuestion: answerQuestion, postQuestionListInput }, dispatch);
+  return bindActionCreators({ answerQuestion, postQuestionListInput }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuizList);
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz);

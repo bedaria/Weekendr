@@ -5,12 +5,39 @@
 }
 
 /* ----- SIDEBAR ----- */
+.sidebar-container {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
 .sidebar-container, .sidebar-user-input, .sidebar-user-selections {
   border: 1px solid;
-  width: 200px;
 }
 .sidebar-user-selection-img {
-  width: 100px;
+  width: 70px;
+}
+
+/* ----- QUIZ ----- */
+.quiz {
+  float: right;
+  border: 1px solid;
+  width: 80%;
+  text-align: center;
+}
+.quiz-option-container {
+  display: inline-block;
+  text-align: center;
+  padding: 30px;
+}
+.quiz-option-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+.quiz-option-img {
+  width: 150px;
+}
+.quiz-option-img:hover {
+  cursor: pointer;
 }
 
 /* ----- PROGRESS BAR ----- */
