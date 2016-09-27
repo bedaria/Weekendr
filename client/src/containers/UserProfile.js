@@ -6,16 +6,9 @@ import { browserHitory } from 'react-router';
 import axios from 'axios';
 
 class UserProfile extends Component {
-
-  logout() {
-    localStorage.removeItem('firstName')
-    localStorage.removeItem('username')
-    localStorage.removeItem('token')
-  }
-
   componentWillMount() {
     if(localStorage.token)
-      this.props.authorizeUser(localStorage.token)
+      this.props.authorizeUser()
   }
 
   render() {
@@ -25,14 +18,15 @@ class UserProfile extends Component {
           <h4>Profile Information</h4>
           <p><strong>Name: </strong>{localStorage.firstName}</p>
           <p><strong>Username: </strong>{localStorage.username}</p>
-          <p><strong>Lastname: </strong>{this.props.user.lastname}</p>
+          <p><strong>Lastname: </strong>{this.props.user.lastName}</p>
           <p><strong>email: </strong>{this.props.user.email}</p>
-          <button onClick={this.logout}> Logout </button>
+          <button onClick={this.props.logout}> Logout </button>
         </div>
       );
     }
     else {
       {broswerHistory.push('/login')}
+    }
   }
 }
 
