@@ -1,11 +1,14 @@
-import {LOG_IN} from '../actions/actionTypes';
+import {
+  LOG_IN,
+  AUTHORIZED,
+  UNAUTHORIZED
+} from '../actions/actionTypes';
 
 const initialState = {
   username: '',
   firstName: '',
   lastName: '',
-  email: '',
-  isLoggedIn: false
+  email: ''
 }
 
 export default (state = initialState, action) => {
@@ -13,11 +16,16 @@ export default (state = initialState, action) => {
     case LOG_IN:
       return {...state,
         username: action.payload.username,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
-        email: action.payload.email,
-        isLoggedIn: action.payload.isLoggedIn
+        firstName: action.payload.firstName
       }
+    case AUTHORIZED:
+      return {...state,
+        email: action.payload.email,
+        lastname: action.payload.lastName
+      }
+    case UNAUTHORIZED:
+      return state
     default: return state
   }
 }
+

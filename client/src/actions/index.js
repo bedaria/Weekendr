@@ -1,19 +1,5 @@
 import axios from 'axios';
 
-
-
-export function updateUserInfo(username, lastName, firstName, email) {
-  return {
-    type: 'LOG_IN',
-    payload: {
-      firstName,
-      lastName,
-      username,
-      email
-    }
-  }
-}
-
 export function getLatLng(){
 	console.log('we are inside getlatlng')
 	return dispatch => {
@@ -27,7 +13,7 @@ export function getLatLng(){
 	      }
 	    }
 	    function showLocation(positionA){
-	      console.log("Latitude: " + positionA.coords.latitude + " Longitude: ", + positionA.coords.longitude); 
+	      console.log("Latitude: " + positionA.coords.latitude + " Longitude: ", + positionA.coords.longitude);
 	      lat = positionA.coords.latitude;
 	      long = positionA.coords.longitude;
 	      checkStatus();
@@ -51,7 +37,7 @@ export function getLatLng(){
 
 export function sendInputToState(props){
 	console.log('we are inside sendInputToState props are ', props)
-	return { 
+	return {
 		type: "RECEIVED_USER_INPUT_DATA",
 		payload: props
 	}
