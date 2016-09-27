@@ -8,12 +8,11 @@ class TripList extends Component {
   constructor(props) {
     super(props);
     this.renderTrips = this.renderTrips.bind(this);
-    this.onSelectCity = this.onSelectCity.bind(this)
+    this.onSelectCity = this.onSelectCity.bind(this);
   }
 
-  onSelectCity(city){
-    console.log('city inside onSelectCity is: ',city)
-    this.props.sendSelectedCity(city)
+  onSelectCity(city) {
+    this.props.sendSelectedCity(city);
   }
 
   renderTrips() {

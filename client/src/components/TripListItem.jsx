@@ -6,7 +6,7 @@ export default class TripListItem extends Component{
     this.selectCity = this.selectCity.bind(this);
   }
 
-  selectCity(){
+  selectCity() {
     this.props.onSelectCity(this.props);
   }
 
