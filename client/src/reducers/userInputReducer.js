@@ -1,5 +1,5 @@
 import UserInputData from './UserInputData';
-
+import  { RECEIVED_USER_INPUT_DATA } from '../actions/actionTypes'
 
 const userInputReducer = (state = [], action) => {
   switch(action.type) {
