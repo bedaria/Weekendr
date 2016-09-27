@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { login } from '../actions/User.js'
+import { browserHistory } from 'react-router';
 
 class Signin extends React.Component {
   constructor(props) {

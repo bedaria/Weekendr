@@ -31,17 +31,20 @@ class Signup extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <input type="text" id="username" onChange={this.getUserInfo} placeholder="Pick a username"/>
-        <input type="text" id="firstName" onChange={this.getUserInfo} placeholder="What's your first name?"/>
-        <input type="text" id="lastName" onChange={this.getUserInfo} placeholder="What's your last name?"/>
-        <input type="text" id="email" onChange={this.getUserInfo} placeholder="What's your email?"/>
-        <input type="password" id="password" onChange={this.getUserInfo} placeholder="Pick a password"/>
-        <input type="password" id="passwordRetype" onChange={this.getUserInfo} placeholder="Retype password"/>
-        <input type="submit" onClick={this.saveUser} value="Submit"/>
-      </div>
-    )
+    if(localStorage.token)
+      return <div> You're already logged in!! </div>
+    else
+      return (
+        <div>
+          <input type="text" id="username" onChange={this.getUserInfo} placeholder="Pick a username"/>
+          <input type="text" id="firstName" onChange={this.getUserInfo} placeholder="What's your first name?"/>
+          <input type="text" id="lastName" onChange={this.getUserInfo} placeholder="What's your last name?"/>
+          <input type="text" id="email" onChange={this.getUserInfo} placeholder="What's your email?"/>
+          <input type="password" id="password" onChange={this.getUserInfo} placeholder="Pick a password"/>
+          <input type="password" id="passwordRetype" onChange={this.getUserInfo} placeholder="Retype password"/>
+          <input type="submit" onClick={this.saveUser} value="Submit"/>
+        </div>
+      )
   }
 }
 

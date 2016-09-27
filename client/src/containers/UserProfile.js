@@ -9,10 +9,11 @@ class UserProfile extends Component {
   componentWillMount() {
     if(localStorage.token)
       this.props.authorizeUser()
+    else {browserHistory.push('/login')}
   }
 
   render() {
-    if(localStorage.token) {
+    if(localStorage.token)
       return (
         <div>
           <h4>Profile Information</h4>
@@ -23,13 +24,12 @@ class UserProfile extends Component {
           <button onClick={this.props.logOut}> Logout </button>
         </div>
       );
-    }
     else
-      return <div> NO </div>
+      return <div> Please login </div>
   }
 }
 
-function mapStateToProps(state) {
+ function mapStateToProps(state) {
   return {
     user: state.user
   };
