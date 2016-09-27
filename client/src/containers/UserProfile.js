@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import TripList from './TripList'
-import { authorizeUser } from '../actions/User.js'
-import { browserHitory } from 'react-router';
+import { authorizeUser, logOut } from '../actions/User.js'
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 class UserProfile extends Component {
@@ -20,13 +20,12 @@ class UserProfile extends Component {
           <p><strong>Username: </strong>{localStorage.username}</p>
           <p><strong>Lastname: </strong>{this.props.user.lastName}</p>
           <p><strong>email: </strong>{this.props.user.email}</p>
-          <button onClick={this.props.logout}> Logout </button>
+          <button onClick={this.props.logOut}> Logout </button>
         </div>
       );
     }
-    else {
-      {broswerHistory.push('/login')}
-    }
+    else
+      return <div> NO </div>
   }
 }
 
@@ -36,4 +35,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { authorizeUser })(UserProfile);
+export default connect(mapStateToProps, { authorizeUser, logOut })(UserProfile);
