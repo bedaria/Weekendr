@@ -6,9 +6,9 @@ const searchModel = module.exports;
 
 
 searchModel.getCity = (params) => {
-  console.log('params inside searchModel.getCity : ', params);
+  // console.log('params inside searchModel.getCity : ', params);
   /* if user selects Car as mode of transport cost per mile = 0.5 */
-  console.log('***params answers', params.answers[0].option.option);
+  // console.log('***params answers', params.answers[0].option.option);
   let costPerMile = 0.5;
   let budget = params.userInputForm.budget;
   if (params.answers[0].option.option === 'Airplane') {
@@ -17,7 +17,7 @@ searchModel.getCity = (params) => {
   }
   const percentBudget = 0.40;
   const qs = searchModel.getCoordinates(params.coordinates, budget, costPerMile, percentBudget);
-  console.log('qs inside searchModel inside getCity is: ', qs);
+  // console.log('qs inside searchModel inside getCity is: ', qs);
   return new Promise((resolve, reject) => {
     const options = {
       uri: 'http://api.geonames.org/citiesJSON',
@@ -27,7 +27,7 @@ searchModel.getCity = (params) => {
       if (error) {
         return reject(console.log('error inside searchModel inside getCity: ', error));
       }
-      console.log('body is: ', body);
+      // console.log('body is: ', body);
       return resolve(body);
     }));
   });
