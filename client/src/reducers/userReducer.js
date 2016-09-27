@@ -1,5 +1,6 @@
 import {
   LOG_IN,
+  LOG_OUT,
   AUTHORIZED,
   UNAUTHORIZED
 } from '../actions/actionTypes';
@@ -8,23 +9,20 @@ const initialState = {
   username: '',
   firstName: '',
   lastName: '',
-  email: ''
+  email: '',
+  error: null
 }
 
 export default (state = initialState, action) => {
   switch(action.type) {
     case LOG_IN:
-      return {...state,
-        username: action.payload.username,
-        firstName: action.payload.firstName
-      }
+      return {...state, username: action.payload.username, firstName: action.payload.firstName}
+    case LOG_OUT:
+      return { initialState }
     case AUTHORIZED:
-      return {...state,
-        email: action.payload.email,
-        lastname: action.payload.lastName
-      }
+      return {...state, email: action.payload.email, lastName: action.payload.lastName }
     case UNAUTHORIZED:
-      return state
+      return {...state, error: action.payload.error }
     default: return state
   }
 }
