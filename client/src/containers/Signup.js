@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { updateUserInfo } from '../actions/User.js'
-import { bindActionCreators } from 'redux'
 
 class Signup extends React.Component {
   constructor(props) {
