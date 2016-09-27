@@ -16,8 +16,6 @@ searchModel.getCity = (params) => {
     budget -= 50;
   }
   const percentBudget = 0.40;
-  console.log('budget with plane or car: ', budget);
-  console.log('costpermine', costPerMile)
   const qs = searchModel.getCoordinates(params.coordinates, budget, costPerMile, percentBudget);
   console.log('qs inside searchModel inside getCity is: ', qs);
   return new Promise((resolve, reject) => {
@@ -39,27 +37,22 @@ searchModel.getCity = (params) => {
 searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
   const miles = (((percentBudget * budget) / costPerMile));
   const milesAtEquator = 69.172;
-  const milesToDegreesLongitude = () => {
-    return ((Math.cos(latLng.latitude)) * (miles / milesAtEquator));
-  };
-
-  const milesToDegreesLatitude = () => {
-    return miles / milesAtEquator;
-  };
+  const milesToDegreesLongitude = () => (
+    Math.cos(latLng.latitude) * (miles / milesAtEquator)
+  );
+  const milesToDegreesLatitude = () => miles / milesAtEquator;
 
   const degreesLatitude = milesToDegreesLatitude(miles);
   const degreesLongitude = milesToDegreesLongitude(miles);
 
-  const getBoxGivenLatLng = (degLat, degLng) => {
-    return {
-      "north": latLng.latitude + degLat,
-      "south": latLng.latitude - degLat,
-      "west": latLng.longitude + degLng,
-      "east": latLng.longitude - degLng,
-      "lang": 'en',
-      "username" : 'jcmitch',
-      };
-  };
+  const getBoxGivenLatLng = (degLat, degLng) => ({
+    north: latLng.latitude + degLat,
+    south: latLng.latitude - degLat,
+    west: latLng.longitude + degLng,
+    east: latLng.longitude - degLng,
+    lang: 'en',
+    username: 'jcmitch',
+  });
   const result = getBoxGivenLatLng(degreesLatitude, degreesLongitude);
   return result;
 };
