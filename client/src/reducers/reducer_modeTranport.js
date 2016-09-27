@@ -1,6 +1,5 @@
 import QuizData from './UserInputData';
 
-
 export default function(state = UserInputData, action) {
 	switch(action.type) {
 		case 'ANSWER_SELECTED':

@@ -1,9 +1,6 @@
-import {
-	LAT_LONG
-} from './actionTypes';
+import { LAT_LONG } from './actionTypes';
 
 export function getLatLng(){
-	console.log('we are inside getlatlng')
 	return dispatch => {
 	  var lat = 0;
 	  var long = 0;
