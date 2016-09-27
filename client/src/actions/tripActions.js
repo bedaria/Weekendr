@@ -41,7 +41,7 @@ export function postQuestionListInput(props) {
           payload: data
         });
       })
-      .catch(function(err) {
+      .catch((err) => {
         console.log('error inside postQuestionListInput inside actions: ', err)
       });
   };
