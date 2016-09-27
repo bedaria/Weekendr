@@ -10,7 +10,6 @@ class TripList extends Component {
     this.renderTrips = this.renderTrips.bind(this);
   }
   renderTrips() {
-    console.log('inside TripList received is: ', this.props.received.data.geonames);
     return this.props.received.data.geonames.map((city, index) => {
       return (
         <div
