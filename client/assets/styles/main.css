@@ -4,6 +4,18 @@
   box-shadow: none;
 }
 
+/* ----- LANDING PAGE ----- */
+.landing-container {
+  text-align: center;
+}
+.landing-message {
+  margin-bottom: 40px;
+}
+.landing-user-input {
+  width: 500px;
+  margin: 0 auto;
+}
+
 /* ----- SIDEBAR ----- */
 .sidebar-container {
   float: left;

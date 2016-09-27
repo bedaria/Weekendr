@@ -41,14 +41,17 @@ class UserInput extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="landing-user-input">
         <Row>
           <div>
-            <label 
+            <label
               htmlFor="budget"
               data-error="Minimum Budget is $150"
-              data-success="Sweet!">What is your Budget?</label>
-            <Input 
+              data-success="Sweet!"
+            >
+              What is your total budget?
+            </label>
+            <Input
               s={12}
               type="number"
               id="budget"
@@ -56,53 +59,64 @@ class UserInput extends React.Component {
               placeholder="$400"
               min="150"
               max="99999999999"
-              validate>
+              validate
+            >
               <Icon>monetization_on</Icon>
             </Input>
           </div>
-          <div>                
-            <label 
-              htmlFor="budget"
+          <div>
+            <label
+              htmlFor="travelers"
               data-error="You need at least 1 person going on the trip!"
-              data-success="Sweet!">How many total homies are going?
+              data-success="Sweet!"
+            >
+              How many people are traveling?
             </label>
-            <Input 
-              s={12} 
+            <Input
+              s={12}
               type="number"
               id="numTravelers"
-              onChange={this.updateState} 
+              onChange={this.updateState}
               placeholder="3"
               min="0"
               max="20"
-              validate>
+              validate
+            >
               <Icon>group</Icon>
             </Input>
           </div>
           <div>
-          <label>Date of Departure</label>
-            <Input 
-              s={12} 
+            <label
+              htmlFor="date"
+            >
+              Which weekend are you free?
+            </label>
+            <Input
+              s={12}
               type="date"
               id="datePicker"
-              onChange={this.updateState} 
-              min="2016-09-26">
+              onChange={this.updateState}
+              min="2016-09-26"
+            >
               <Icon>today</Icon>
             </Input>
           </div>
         </Row>
-          <div>
-            <ProgressButton 
-              onClick={this.handleClick} 
-              state={this.state.buttonState}>Go!
-            </ProgressButton>
-          </div>
+        <div>
+          <ProgressButton
+            onClick={this.handleClick}
+            state={this.state.buttonState}
+          >
+            Go!
+          </ProgressButton>
+        </div>
       </div>
     );
   }
 }
 function mapStateToProps(state) {
   return {
-    userInputForm: state.userInput.userInputForm, 
+    userInputForm: state.userInput.userInputForm,
     coordinates: state.coordinates
   };
 }
