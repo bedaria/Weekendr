@@ -21,14 +21,14 @@ const createUser = (req, resp) => {
       })
       .then(newUser => {
         const token = jwt.sign({userName: req.body.userName}, 'catsarecool');
-        resp.resp({token: token,
+        resp.send({token: token,
           userName: req.body.userName,
           firstName: req.body.firstName})
       })
       .catch(err => {
-        console.log("<Weekendr> Error creating user (user.controller line 23): ", err.errors)
-        var errors = err.errors.map( e => "Account for " + e.value + " already exists")
-        resp.send({error: errors})
+        console.log("<Weekendr> Error creating user (user.controller line 23): ", err)
+        //var errors = err.errors.map( e => "Account for " + e.value + " already exists")
+        resp.send({error: err})
       })
   })
 }
