@@ -1,4 +1,4 @@
 # Weekendr
-Application to curate travel iteneraries
+A web application that curates travel bundles based on budget and preferences
 
-![alt text](https://github.com/Weekendr/Weekendr/blob/dev/client/assets/images/weekendr_wireframe.jpg "Logo Title Text 1")
+![alt text](https://github.com/Weekendr/Weekendr/blob/dev/client/assets/images/weekendr_wireframe.jpg)
