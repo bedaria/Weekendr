@@ -3,7 +3,7 @@ import  { RECEIVED_USER_INPUT_DATA } from '../actions/actionTypes'
 
 const userInputReducer = (state = [], action) => {
   switch(action.type) {
-    case 'RECEIVED_USER_INPUT_DATA':
+    case RECEIVED_USER_INPUT_DATA:
       return {...state, 
         userInputForm: action.payload
       }
