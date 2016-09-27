@@ -4,8 +4,10 @@ const jwt = require('jsonwebtoken');
 
 const createUser = (req, resp) => {
   bcrypt.hash(req.body.password, 8, (err, hash) => {
-    if (err)
+    if (err) {
       console.log("<Weekendr> Error hashing password (user.controller line 8): ", err)
+      resp.send({error: "Error occured, please try again"})
+    }
     else
       User.create({
         userName: req.body.userName,
@@ -24,8 +26,9 @@ const createUser = (req, resp) => {
           firstName: req.body.firstName})
       })
       .catch(err => {
-        console.log("<Weekendr> Error creating user (user.controller line 23): ", err)
-        resp.send("ERROR")
+        console.log("<Weekendr> Error creating user (user.controller line 23): ", err.errors)
+        var errors = err.errors.map( e => "Account for " + e.value + " already exists")
+        resp.send({error: errors})
       })
   })
 }
@@ -38,7 +41,7 @@ const authenticateUser = (req, resp) => {
   })
   .then(user => {
     if(!user)
-      resp.send("ERROR")
+      resp.send({error: "Password or username incorrect."})
 
     bcrypt.compare(req.body.password, user.dataValues.password, (err, isFound) => {
       if(isFound){
@@ -49,11 +52,11 @@ const authenticateUser = (req, resp) => {
       }
       else {
         console.log("<Weekendr> Error authenticating user (user.controller line 46): ", err)
-        resp.send("ERROR")
+        resp.send({error: "Password or username incorrect"})
       }
     })
   })
-  .catch((err) => console.log("<Weekendr> Error authenticating user (user.controller line 52): ", err))
+  .catch(err => console.log("<Weekendr> Error authenticating user (user.controller line 52): ", err))
 }
 
 const authorizeUser = (req, resp) => {
@@ -74,7 +77,7 @@ const authorizeUser = (req, resp) => {
          })
          .catch(err => resp.send({error: "Couldn't find user."}))
         }
-      else console.log("Username not encoded correctly")
+      else console.log("<Weekendr> Error with decoding token payload (user.controller line 80: ", err)
     }
   })
 }
