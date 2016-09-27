@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { sendSelectedTrip } from '../actions/index';
+import { sendSelectedCity } from '../actions/tripActions';
+import TripListItem from '../components/TripListItem';
 
 class TripList extends Component {
   constructor(props) {
     super(props);
     this.renderTrips = this.renderTrips.bind(this);
+    this.onSelectCity = this.onSelectCity.bind(this);
+  }
+
+  onSelectCity(city) {
+    this.props.sendSelectedCity(city);
   }
 
   renderTrips() {
     return this.props.received.data.geonames.map((city, index) => {
       return (
-        <div key={index}>
-          <h1>{city.name}</h1>
-          <p>{city.population}</p>
-        </div>
+        <TripListItem
+        key={index}
+        cityName = {city.name}
+        population={city.population}
+        id = {city.geonameId}
+        lat = {city.lat}
+        lng = {city.lng}
+        countryCode = {city.countrycode}
+        onSelectCity = {this.onSelectCity}
+        >
+        </TripListItem>
       );
     });
   }
@@ -37,7 +50,7 @@ function mapStateToProps(state) {
 
 // send TripModified Data to trip_reducer
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ sendSelectedTrip }, dispatch);
+  return bindActionCreators({ sendSelectedCity }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripList);
