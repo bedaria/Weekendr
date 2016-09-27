@@ -17,10 +17,16 @@ class Signup extends React.Component {
 
     this.updateState = this.updateState.bind(this)
     this.saveUser = this.saveUser.bind(this)
+    this.showErrorMessage = this.showErrorMessage.bind(this)
   }
 
   updateState(event) {
     this.setState({[event.target.id]: event.target.value})
+  }
+
+  showErrorMessage() {
+     if(this.state.error)
+      return <div> {this.state.error} </div>
   }
 
   saveUser(event){
@@ -35,8 +41,9 @@ class Signup extends React.Component {
           password: this.state.password
         })
         .then(resp => {
-          if(resp.data === "ERROR") console.log("Error creating user")
+          if(resp.data.error) this.setState({error: resp.data.error})
           else {
+            this.setState({error: null})
             localStorage.setItem('token', resp.data.token)
             localStorage.setItem('username', resp.data.userName)
             localStorage.setItem('firstName', resp.data.firstName)
@@ -46,7 +53,10 @@ class Signup extends React.Component {
             )
           }
         })
-        .catch(err => console.log("POST /createUser failed", err))
+        .catch(err => {
+          console.log("POST /createUser failed", err)
+          this.setState({error: "Error occurred, please try again"})
+        })
       }
   }
 
@@ -60,6 +70,7 @@ class Signup extends React.Component {
         <input type="password" id="password" onChange={this.updateState} placeholder="Pick a password"/>
         <input type="password" id="passwordRetype" onChange={this.updateState} placeholder="Retype password"/>
         <input type="submit" onClick={this.saveUser} value="Submit"/>
+        {this.showErrorMessage()}
       </div>
     )
   }

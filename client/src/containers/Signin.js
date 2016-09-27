@@ -13,10 +13,16 @@ class Signin extends React.Component {
 
     this.updateState = this.updateState.bind(this)
     this.signin = this.signin.bind(this)
+    this.showErrorMessage = this.showErrorMessage.bind(this)
   }
 
   updateState(event) {
     this.setState({[event.target.id]: event.target.value})
+  }
+
+  showErrorMessage() {
+     if(this.state.error)
+      return <div> {this.state.error} </div>
   }
 
   signin(event) {
@@ -26,8 +32,9 @@ class Signin extends React.Component {
       password: this.state.password
     })
     .then(resp => {
-      if(resp.data === "ERROR") console.log("Error logging in")
+      if(resp.data.error) this.setState({error: resp.data.error})
       else {
+        this.setState({error: null})
         localStorage.setItem('token', resp.data.token)
         localStorage.setItem('username', resp.data.userName)
         localStorage.setItem('firstName', resp.data.firstName)
@@ -37,7 +44,10 @@ class Signin extends React.Component {
         )
       }
     })
-    .catch(err => console.log("POST /signin failed: ", err))
+    .catch(err => {
+      console.log("POST /signin failed: ", err)
+      this.setState({error: "Error occurred, please try again"})
+    })
   }
 
   render() {
@@ -46,6 +56,7 @@ class Signin extends React.Component {
         <input type="text" id="username" onChange={this.updateState} placeholder="Input username"/>
         <input type="password" id="password" onChange={this.updateState} placeholder="Input password"/>
         <input type="submit" onClick={this.signin}/>
+        {this.showErrorMessages()}
       </div>
     )
   }
