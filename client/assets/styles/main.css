@@ -5,12 +5,6 @@
 .Sidebar, .SidebarTripInfo, .SidebarPreferences {
 	border: 1px solid;
 }
-.SideBarImage {
-	vertical-align: middle;
-	height: 182px;
-	float: left;
-	display: flex;
-}
 
 .pb-container {
   display: inline-block;
