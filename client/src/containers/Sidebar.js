@@ -53,7 +53,7 @@ class Sidebar extends Component {
 
 function mapStateToProps(state) {
   return {
-    quizList: state.quiz.quizList,
+    quizData: state.quiz.quizData,
     questionIndex: state.quiz.questionIndex,
     quizAnswers: state.quiz.quizAnswers,
     userInputForm: state.userInput.userInputForm

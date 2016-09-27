@@ -15,8 +15,28 @@ class Quiz extends Component {
     this.props.answerQuestion(answer, this.props);
   }
 
+  renderQuestion() {
+    if (this.props.quizData.length === this.props.questionIndex) {
+      if (this.props.coordinates.latitude && this.props.userInputForm.budget) {
+        this.props.postQuestionListInput(this.props);
+      }
+
+      return (
+        <div>
+          <p>Congratulations!</p>
+        </div>
+      );
+    }
+
+    const question = this.props.quizData[this.props.questionIndex].question;
+
+    return (
+      <h6><strong>{question}</strong></h6>
+    );
+  }
+
   renderQuiz() {
-    if (this.props.quizList.length === this.props.questionIndex) {
+    if (this.props.quizData.length === this.props.questionIndex) {
       if (this.props.coordinates.latitude && this.props.userInputForm.budget) {
         this.props.postQuestionListInput(this.props);
       }
@@ -28,7 +48,7 @@ class Quiz extends Component {
       );
     }
 
-    const arr = this.props.quizList[this.props.questionIndex].options;
+    const arr = this.props.quizData[this.props.questionIndex].options;
 
     return arr.map((q) => {
       return (
@@ -46,6 +66,7 @@ class Quiz extends Component {
     return (
       <div className="quiz">
         <h5>Preferences Quiz</h5>
+        {this.renderQuestion()}
         {this.renderQuiz()}
       </div>
     );
@@ -54,7 +75,7 @@ class Quiz extends Component {
 
 function mapStateToProps(state) {
   return {
-    quizList: state.quiz.quizList,
+    quizData: state.quiz.quizData,
     questionIndex: state.quiz.questionIndex,
     quizAnswers: state.quiz.quizAnswers,
     coordinates: state.coordinates.coordinates,

@@ -1,11 +1,11 @@
-/* QuizList */
+/* Quiz */
 export const ANSWER_SELECTED = 'ANSWER_SELECTED';
 export const RECEIVED_DATA = 'RECEIVED_DATA';
 
- /* TripList */
+/* TripList */
 export const SELECTED_TRIP = 'SELECTED_TRIP';
 
-/*GetLatLong */
+/* GetLatLong */
 export const LAT_LONG = 'LAT_LONG';
 
 /* SendInputToState */

@@ -7,8 +7,8 @@ import {
 
 export function answerQuestion(answer, props) {
   let answerObj = {};
-  answerObj.title = props.quizList[props.questionIndex].title;
-  answerObj.option = props.quizList[props.questionIndex].options.filter((q) => {
+  answerObj.title = props.quizData[props.questionIndex].title;
+  answerObj.option = props.quizData[props.questionIndex].options.filter((q) => {
     return q.option === answer;
   })[0];
   props.quizAnswers.push(answerObj);
