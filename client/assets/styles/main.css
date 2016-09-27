@@ -1,3 +1,7 @@
+.navbar {
+  height: 52px;
+  box-shadow: none;
+}
 .Sidebar, .SidebarTripInfo, .SidebarPreferences {
 	border: 1px solid;
 }
