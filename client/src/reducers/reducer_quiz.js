@@ -1,8 +1,8 @@
-import quizData from './quizData';
 import { ANSWER_SELECTED } from '../actions/actionTypes';
+import quizData from './quizData';
 
-export default function(state = quizData, action) {
-  switch(action.type) {
+export default (state = quizData, action) => {
+  switch (action.type) {
     case ANSWER_SELECTED:
       return {
         ...state,
@@ -12,5 +12,4 @@ export default function(state = quizData, action) {
     default:
       return state;
   }
-  return state;
 }

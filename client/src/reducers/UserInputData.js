@@ -1,23 +1,23 @@
 export default {
-  userInputList: [{
-		title: 'Mode of Transport',
-		options: [
+  userInputData: [{
+    title: 'Transportation',
+    options: [
       {
-  			id: 1,
-  			option: 'Car',
-  			imageUrl: '../assets/images/Car.png',
-  		},
-  		{
-  			id: 2,
-  			option: 'Bus',
-  			imageUrl: '../assets/images/Bus.png',
-  		},
-  		{
+        id: 1,
+        option: 'Airplane',
+        imageUrl: '../assets/images/airplane.png',
+      },
+      {
+        id: 2,
+        option: 'Car',
+        imageUrl: '../assets/images/car.png'
+      },
+      {
         id: 3,
-  			option: 'Airplane',
-  			imageUrl: '../assets/images/Airplane.gif',
-  		}
+        option: 'Train',
+        imageUrl: '../assets/images/train.png'
+      }
     ]
-	}],
-	userInputForm: []
-}
+  }],
+  userInputForm: []
+};
