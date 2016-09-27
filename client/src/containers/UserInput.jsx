@@ -28,8 +28,6 @@ class UserInput extends React.Component {
   }
   updateState(event) {
     this.setState({ [event.target.id]: event.target.value });
-    console.log('this.state: ', this.state);
-    console.log('this.props:', this.props);
   }
   handleClick() {
     this.setState({ buttonState: 'loading' });
