@@ -14,8 +14,7 @@ export function getLatLng() {
       var data = {
 		    latitude: lat,
         longitude: long,
-        airport: airport,
-		  };
+      };
       dispatch({
         type: 'LAT_LONG',
         payload: data,
