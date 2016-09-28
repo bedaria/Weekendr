@@ -9,8 +9,8 @@ searchModel.getCity = (params) => {
   // console.log('params inside searchModel.getCity : ', params);
   /* if user selects Car as mode of transport cost per mile = 0.5 */
   // console.log('***params answers', params.answers[0].option.option);
-  let costPerMile = 0.5;
-  let budget = params.userInputForm.budget;
+  var costPerMile = 0.5;
+  var budget = params.userInputForm.budget;
   if (params.answers[0].option.option === 'Airplane') {
     costPerMile -= 0.39;
     budget -= 50;
