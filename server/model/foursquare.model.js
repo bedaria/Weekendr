@@ -1,4 +1,4 @@
-const categories = require('./categories.js')
+const categories = require('./foursquareCategories.js')
 require('dotenv').config();
 const request = require('request');
 
@@ -19,7 +19,7 @@ fourSquareModel.explore = function(params) {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
-    ll: [34, -118],
+    ll: '34, -118',
     categoryId: '4fceea171983d5d06c3e9823'
   }
   return new Promise((resolve, reject) => {

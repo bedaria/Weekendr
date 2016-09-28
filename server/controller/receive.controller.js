@@ -18,6 +18,13 @@ exports.receive = {
 
 function receiveCity(req, res){
   console.log('inside receiveCity req.body is: ', req.body);
-  fourSquareModel.explore(req.body);
+  fourSquareModel.explore(req.body)
+  .then(function(result) {
+    res.status(200).send(result)
+  })
+  .catch(function(err) {
+    console.log('error inside receiveCity inside receive.controller', err)
+    res.end(err)
+  })
 
 }
