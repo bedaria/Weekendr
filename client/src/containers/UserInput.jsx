@@ -25,16 +25,26 @@ class UserInput extends React.Component {
   componentDidMount() {
     this.props.getLatLng(this.state);
   }
+  checkForLatLng(){
+
+  }
   updateState(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
   handleClick() {
     this.setState({ buttonState: 'loading' });
     this.props.sendInputToState(this.state);
-    setTimeout(function() {
-      this.setState({ buttonState: 'success' });
-      browserHistory.push('/preferences');
-    }.bind(this), 3000);
+    if(this.state.latLng.lat !== 0 && this.state.latLng.lng !== 0){
+      console.log("obviously this works!!!")
+      setTimeout(function() {
+        this.setState({ buttonState: 'success' });
+        browserHistory.push('/preferences');
+      }.bind(this), 3000);
+    } else {
+      setTimeout(function() {
+        this.handleClick();
+      }.bind(this), 3000);
+    };
   }
   render() {
     return (
