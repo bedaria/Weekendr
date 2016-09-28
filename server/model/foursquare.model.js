@@ -34,7 +34,6 @@ fourSquareModel.explore = function(params) {
        if (error) {
         return reject(console.log('error inside fourSquareModel inside explor: ', error));
       }
-      // console.log('body is: ', body);
       return resolve(body);
     }));
   });
