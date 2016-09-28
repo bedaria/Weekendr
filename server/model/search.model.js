@@ -37,9 +37,10 @@ searchModel.getCity = (params) => {
 searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
   const miles = (((percentBudget * budget) / costPerMile));
   const milesAtEquator = 69.172;
-  const milesToDegreesLongitude = () => (
-    Math.cos(latLng.latitude) * (miles / milesAtEquator)
-  );
+  const milesToDegreesLongitude = () => {
+    // Math.cos(latLng.latitude) * (miles / milesAtEquator) 
+  (miles / (Math.cos(latLng.latitude) * milesAtEquator));
+  };
   const milesToDegreesLatitude = () => miles / milesAtEquator;
 
   const degreesLatitude = milesToDegreesLatitude(miles);
