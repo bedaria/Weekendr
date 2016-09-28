@@ -18,6 +18,7 @@ class UserInput extends React.Component {
       latLng: {
         lat: this.props.coordinates.latitude,
         lng: this.props.coordinates.longitude,
+        airport: this.props.coordinates.airport
       },
     };
     this.updateState = this.updateState.bind(this);
