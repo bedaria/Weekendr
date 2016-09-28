@@ -28,6 +28,9 @@ class UserInput extends Component {
   componentDidMount() {
     this.props.getLatLng(this.state);
   }
+  checkForLatLng(){
+
+  }
   updateState(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
