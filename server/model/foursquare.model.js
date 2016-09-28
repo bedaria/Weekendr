@@ -13,17 +13,17 @@ fourSquareModel = module.exports;
    the qs request object
  */
 
-fourSquareModel.explore = function(params) {
-  console.log('params inside fourSquareModel inside search',params)
-  const lat = params.lat.toString()
-  const lng = params.lng.toString()
-  const ll = '' + lat +','+ lng
+fourSquareModel.explore = (params) => {
+  console.log('params inside fourSquareModel inside search', params);
+  const lat = params.lat.toString();
+  const lng = params.lng.toString();
+  const ll = '' + lat + ',' + lng;
   const qs = {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
     ll: ll,
-    categoryId: '4fceea171983d5d06c3e9823'
+    categoryId: '4fceea171983d5d06c3e9823',
   }
   return new Promise((resolve, reject) => {
     const options = {

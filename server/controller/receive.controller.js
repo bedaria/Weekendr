@@ -1,11 +1,6 @@
 const fourSquareModel = require('../model/foursquare.model.js');
 
-exports.receive = {
-  receiveCity: receiveCity
-}
-
- /* req.body inside request 
-  { 
+ /* req.body inside request {
   "cityName": "Los Angeles",
   "population": 3792621,
   "id": 5368361,
@@ -14,17 +9,18 @@ exports.receive = {
  }
   */
 
-
-
-function receiveCity(req, res){
+function receiveCity(req, res) {
   console.log('inside receiveCity req.body is: ', req.body);
   fourSquareModel.explore(req.body)
-  .then(function(result) {
-    res.status(200).send(result)
+  .then((result) => {
+    res.status(200).send(result);
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.log('error inside receiveCity inside receive.controller', err)
-    res.end(err)
-  })
-
+    res.end(err);
+  });
 }
+
+exports.receive = {
+  receiveCity
+};
