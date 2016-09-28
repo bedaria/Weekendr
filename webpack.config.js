@@ -29,11 +29,5 @@ module.exports = {
   devServer: {
     contentBase: './',
   },
-  node: {
-    console: true,
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
-  }
 };
 

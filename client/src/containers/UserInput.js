@@ -18,7 +18,7 @@ class UserInput extends React.Component {
       latLng: {
         lat: this.props.coordinates.latitude,
         lng: this.props.coordinates.longitude,
-        airport: this.props.coordinates.airport
+        airport: this.props.coordinates.airport,
       },
     };
     this.updateState = this.updateState.bind(this);
@@ -43,11 +43,12 @@ class UserInput extends React.Component {
       <div>
         <Row>
           <div>
-            <label 
+            <label
               htmlFor="budget"
               data-error="Minimum Budget is $150"
-              data-success="Sweet!">What is your Budget?</label>
-            <Input 
+              data-success="Sweet!">What is your Budget?
+            </label>
+            <Input
               s={12}
               type="number"
               id="budget"
@@ -56,7 +57,8 @@ class UserInput extends React.Component {
               min="150"
               max="99999999999"
               validate>
-              <Icon>monetization_on</Icon>
+              <Icon>monetization_on
+              </Icon>
             </Input>
           </div>
           <div>                
@@ -69,7 +71,7 @@ class UserInput extends React.Component {
               s={12} 
               type="number"
               id="numTravelers"
-              onChange={this.updateState} 
+              onChange={this.updateState}
               placeholder="3"
               min="0"
               max="20"
