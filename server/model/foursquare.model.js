@@ -15,11 +15,14 @@ fourSquareModel = module.exports;
 
 fourSquareModel.explore = function(params) {
   console.log('params inside fourSquareModel inside search',params)
+  const lat = params.lat.toString()
+  const lng = params.lng.toString()
+  const ll = '' + lat +','+ lng
   const qs = {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
-    ll: '34, -118',
+    ll: ll,
     categoryId: '4fceea171983d5d06c3e9823'
   }
   return new Promise((resolve, reject) => {
