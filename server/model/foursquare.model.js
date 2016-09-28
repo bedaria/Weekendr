@@ -22,16 +22,16 @@ fourSquareModel.explore = (params) => {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
-    ll: ll,
+    ll,
     categoryId: '4fceea171983d5d06c3e9823',
-  }
+  };
   return new Promise((resolve, reject) => {
     const options = {
       uri: 'https://api.foursquare.com/v2/venues/explore',
-      qs
-    }
+      qs,
+    };
     request(options, ((error, response, body) => {
-       if (error) {
+      if (error) {
         return reject(console.log('error inside fourSquareModel inside explor: ', error));
       }
       return resolve(body);
