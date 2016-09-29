@@ -21,12 +21,13 @@ class UserInput extends React.Component {
     };
     this.updateState = this.updateState.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.validateForm = ths.validateForm.bind(this);
   }
   componentDidMount() {
     this.props.getLatLng(this.state);
   }
-  checkForLatLng(){
-
+  validateForm(){
+    this.
   }
   updateState(event) {
     this.setState({ [event.target.id]: event.target.value });
@@ -34,8 +35,8 @@ class UserInput extends React.Component {
   handleClick() {
     this.setState({ buttonState: 'loading' });
     this.props.sendInputToState(this.state);
-    if(this.state.latLng.lat !== 0 && this.state.latLng.lng !== 0){
-      console.log("obviously this works!!!")
+    var LatLng = this.props.coordinates.coordinates;
+    if(LatLng.latitude !== 0 && LatLng.longitude !== 0){
       setTimeout(function() {
         this.setState({ buttonState: 'success' });
         browserHistory.push('/preferences');
@@ -51,11 +52,7 @@ class UserInput extends React.Component {
       <div className="landing-user-input">
         <Row>
           <div>
-            <label
-              htmlFor="budget"
-              data-error="Minimum Budget is $150"
-              data-success="Sweet!"
-            >
+            <label>
               What is your total budget?
             </label>
             <Input
@@ -72,11 +69,7 @@ class UserInput extends React.Component {
             </Input>
           </div>
           <div>
-            <label
-              htmlFor="travelers"
-              data-error="You need at least 1 person going on the trip!"
-              data-success="Sweet!"
-            >
+            <label>
               How many people are traveling?
             </label>
             <Input
@@ -93,9 +86,7 @@ class UserInput extends React.Component {
             </Input>
           </div>
           <div>
-            <label
-              htmlFor="date"
-            >
+            <label>
               Which weekend are you free?
             </label>
             <Input
@@ -113,6 +104,7 @@ class UserInput extends React.Component {
           <ProgressButton
             onClick={this.handleClick}
             state={this.state.buttonState}
+            disabled = {!this.validateForm}
           >
             Go!
           </ProgressButton>

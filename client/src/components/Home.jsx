@@ -10,7 +10,7 @@ export default class Home extends Component {
           <h5>Plan a trip that fits your budget and preferences.</h5>
         </div>
 
-        <UserInput />
+        <UserInput/>
       </div>
     );
   }
