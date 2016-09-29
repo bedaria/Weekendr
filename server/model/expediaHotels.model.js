@@ -4,10 +4,12 @@ const request = require('request');
 expediaHotelsModel = module.exports;
 
 expediaHotelsModel.findHotels = (params) => {
+  const budget = params;
+
   const qs = {
     apikey: process.env.expedia_consumer_key,
-    room1: params.rooms,
-    checkInDate: params.weekend,
+    room1: params.numberOfTravelers,
+    checkInDate: params.date,
     checkOutDate: parseInt(checkInDate) + 2
   };
 
@@ -21,8 +23,10 @@ expediaHotelsModel.findHotels = (params) => {
       if (error)
          return reject(error);
 
-      return resolve(body);
+      const filtered = body.hotelList
+        .filter(hotel =>
+          hotel.isHotelAvailable && parseFloat(hotel.lowRateInfo.formattedTotalPriceWithMandatoryFees) < .4 * budget)
+      return resolve(filtered);
     });
   });
 };
-
