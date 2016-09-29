@@ -5,7 +5,7 @@ export default function(state = null, action) {
     case AIRBNB_LISTINGS:
       return {
         ...state,
-        listings: action.payload
+        listings: action.payload.data.search_results
       };
     default:
       return state;
