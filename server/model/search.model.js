@@ -50,7 +50,7 @@ searchModel.getCoordinates = (latLng, budget, costPerMile, percentBudget) => {
     west: latLng.longitude + degLng,
     east: latLng.longitude - degLng,
     lang: 'en',
-    username: process.env.geoname_username,
+    username: process.env.geoname_username_jon,
   });
   const result = getBoxGivenLatLng(degreesLatitude, degreesLongitude);
   return result;
