@@ -45,5 +45,5 @@ fourSquareModel.explore = (params) => {
 
 
 fourSquareModel.rank = (params) => {
-  console.log('params coming into foursquareDAta are: ', params);
+  // console.log('params coming into foursquareData are: ', params);
 }
