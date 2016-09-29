@@ -1,11 +1,18 @@
 const str = require('./foursquareCategoryData') 
 
- function isNumber(elem) {
+function isNumber(elem) {
    return ((parseInt(elem[0]) / 1) === parseInt(elem[0]))
  }
  
- function hasSuggested(str) {
+function hasSuggested(str) {
    if (str === undefined) return ''
+
+function isNumber(elem) {
+  return ((parseInt(elem[0]) / 1) === parseInt(elem[0]))
+}
+
+function hasSuggested(str) {
+  if (str === undefined) return ''
   if (str.indexOf('Suggested') !== -1) {
     return true
   } else {
