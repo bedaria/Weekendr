@@ -3,7 +3,6 @@ require('dotenv').config();
 const request = require('request');
 
 
-
 fourSquareModel = module.exports;
 
  /* Map state to props inside TripList and send it here
@@ -14,7 +13,7 @@ fourSquareModel = module.exports;
  */
 
 fourSquareModel.explore = (params) => {
-  console.log('params inside fourSquareModel inside search', params);
+  // console.log('params inside fourSquareModel inside search', params);
   const lat = params.lat.toString();
   const lng = params.lng.toString();
   const ll = '' + lat + ',' + lng;

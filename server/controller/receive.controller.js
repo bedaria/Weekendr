@@ -10,7 +10,6 @@ const fourSquareModel = require('../model/foursquare.model.js');
   */
 
 function receiveCity(req, res) {
-  console.log('****inside receiveCity req.body is: ', req.body);
   fourSquareModel.explore(req.body)
   .then((result) => {
     res.status(200).send(result);
