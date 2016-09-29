@@ -1,5 +1,5 @@
 const fourSquareModel = require('../model/foursquare.model.js');
-
+const googleFlights = require('../model/googleFlights.model.js');
  /* req.body inside request {
   "cityName": "Los Angeles",
   "population": 3792621,

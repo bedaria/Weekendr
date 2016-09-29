@@ -14,6 +14,7 @@ class UserInput extends React.Component {
       buttonState: '',
       budget: 400,
       numTravelers: 1,
+      originCity: 'LAX',
       latLng: {
         lat: this.props.coordinates.latitude,
         lng: this.props.coordinates.longitude,

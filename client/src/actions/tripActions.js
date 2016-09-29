@@ -2,6 +2,7 @@ import axios from 'axios';
 import { SELECTED_CITY } from './actionTypes';
 
 export function sendSelectedCity(props, quizAnswers) {
+  console.log(props, "what are these props?")
   const options = {
     name: props.cityName,
     id: props.id,
