@@ -10,7 +10,7 @@ const fourSquareModel = require('../model/foursquare.model.js');
   */
 
 function receiveCity(req, res) {
-  console.log('req.body inside receiveCity', req.body);
+  // console.log('req.body inside receiveCity', req.body);
   fourSquareModel.explore(req.body)
   .then((result) => {
     fourSquareModel.rank(result);
