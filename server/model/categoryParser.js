@@ -1,4 +1,4 @@
-var str = `Arts & Entertainment
+  var str = `Arts & Entertainment
 4d4b7104d754a06370d81259
 
 Amphitheater
@@ -6,7 +6,7 @@ Amphitheater
 
 Aquarium
 4fceea171983d5d06c3e9823
-
+ 
 Arcade
 4bf58dd8d48988d1e1931735
 
