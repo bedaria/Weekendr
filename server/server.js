@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const request = require('request');
 const bodyParser = require('body-parser');
-const db = require('./database.js');
+const db = require('./database');
 
 // Routers
 const yelpRouter = require('./router/yelpRouter');
