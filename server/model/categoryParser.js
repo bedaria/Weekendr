@@ -2850,26 +2850,7 @@ Tunnel
 
 
 
-// var arr = str.split('\n')
-// arr = arr.filter((elem) => {
-//  return (typeof elem === 'string' && elem !== '')
-// })
 
-
-// var reduced = arr.reduce((a,b,i, arr) => {
-//  if (isNumber(b)) {
-//  var suggested = (hasSuggested(arr[i+1]) ? parseSuggested(arr[i+1]) : ['US'])
-//  console.log('suggested', suggested)
-//  a.push({
-//    id: b,
-//    name: arr[i-1],
-//    suggest: suggested
-//  })
-//  }
-//  return a
-// }, [])
-  
-// console.log('reduced',reduced) 
 
 function isNumber(elem) {
   return ((parseInt(elem[0]) / 1) === parseInt(elem[0]))

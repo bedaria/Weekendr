@@ -25,8 +25,8 @@ fourSquareModel.explore = (params) => {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
-    ll,
     categoryId: '4fceea171983d5d06c3e9823',
+    ll,
   };
   return new Promise((resolve, reject) => {
     const options = {
