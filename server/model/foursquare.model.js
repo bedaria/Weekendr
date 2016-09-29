@@ -14,9 +14,13 @@ fourSquareModel = module.exports;
 
 fourSquareModel.explore = (params) => {
   // console.log('params inside fourSquareModel inside search', params);
+  console.log('answers inside fourSquareModel: ', params.answers[3].title);
+  console.log('answers inside fourSquareModel: ', params.answers[3].option)
   const lat = params.lat.toString();
   const lng = params.lng.toString();
   const ll = '' + lat + ',' + lng;
+  const lengthOfCalls = params.answers.length - 2;
+  console.log('lengthOfCalls: ', lengthOfCalls);
   const qs = {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
