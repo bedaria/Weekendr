@@ -6,7 +6,6 @@ export default function(state = null, action) {
       return {
         ...state,
         listings: action.payload.data.search_results
-      };
     default:
       return state;
   }
