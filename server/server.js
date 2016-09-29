@@ -6,7 +6,9 @@ const request = require('request');
 const bodyParse = require('body-parser');
 
 const yelpRouter = require('./router/yelpRouter');
-const searchRouter = require('./router/search.router')
+const searchRouter = require('./router/search.router');
+const googleFlights = require('./router/googleFlights.router');
+
 require('./database.js');
 
 app.use(cors());

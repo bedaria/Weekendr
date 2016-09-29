@@ -13,6 +13,7 @@ class Sidebar extends Component {
   }
 
   renderSidebarUserInput() {
+    console.log(this.props.userInputForm.datePicker, "datePicker")
     return (
       <SidebarUserInput
         budget={this.props.userInputForm && this.props.userInputForm.budget}
