@@ -8,7 +8,7 @@ expediaHotelsModel.findHotels = (params) => {
 
   const qs = {
     apikey: process.env.expedia_consumer_key,
-    room1: params.numberOfTravelers,
+    room1: params.numTravelers,
     checkInDate: params.date,
     checkOutDate: parseInt(checkInDate) + 2
   };
@@ -25,7 +25,7 @@ expediaHotelsModel.findHotels = (params) => {
 
       const filtered = body.hotelList
         .filter(hotel =>
-          hotel.isHotelAvailable && parseFloat(hotel.lowRateInfo.formattedTotalPriceWithMandatoryFees) < .4 * budget)
+          hotel.isHotelAvailable && parseFloat(hotel.lowRateInfo.formattedTotalPriceWithMandatoryFees) < .4 * params.budget)
       return resolve(filtered);
     });
   });
