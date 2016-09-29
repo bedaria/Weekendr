@@ -7,7 +7,8 @@ export default class TripListItem extends Component{
   }
 
   selectCity() {
-    this.props.onSelectCity(this.props, this.props.answers);
+    console.log('inside selectCity userInputForm: ', this.props.userInputForm)
+    this.props.onSelectCity(this.props, this.props.answers, this.props.userInputForm);
   }
 
   render() {

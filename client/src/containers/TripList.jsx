@@ -11,8 +11,8 @@ class TripList extends Component {
     this.onSelectCity = this.onSelectCity.bind(this);
   }
 
-  onSelectCity(city, answers) {
-    this.props.sendSelectedCity(city, answers);
+  onSelectCity(city, answers, userInputForm) {
+    this.props.sendSelectedCity(city, answers, userInputForm);
   }
 
   renderTrips() {
@@ -28,6 +28,7 @@ class TripList extends Component {
         countryCode = {city.countrycode}
         onSelectCity = {this.onSelectCity}
         answers = {this.props.quizAnswers}
+        userInputForm = {this.props.userInputForm}
         >
         </TripListItem>
       );
@@ -47,6 +48,7 @@ function mapStateToProps(state) {
   return {
     received: state.receivedCities,
     quizAnswers: state.quiz.quizAnswers,
+    userInputForm: state.userInput.userInputForm
   };
 }
 

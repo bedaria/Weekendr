@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { SELECTED_CITY } from './actionTypes';
 
-export function sendSelectedCity(props, quizAnswers) {
+export function sendSelectedCity(props, quizAnswers, inputForm) {
+  console.log('inside sendSelectedCity inputForm is : ', inputForm)
   const options = {
     name: props.cityName,
     id: props.id,
@@ -9,6 +10,9 @@ export function sendSelectedCity(props, quizAnswers) {
     lng: props.lng,
     countryCode: props.countrycode,
     answers: quizAnswers,
+    budget: inputForm.budget,
+    numTravelers: inputForm.numTravelers,
+    date: inputForm.datePicker,
   };
   return (dispatch) => {
     axios.post('/api/receive/receiveCity', options)
