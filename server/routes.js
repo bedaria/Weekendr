@@ -19,5 +19,5 @@ module.exports = (app, express) => {
   app.post('/api/googleFlights', googleFlightsController.googleFlights.getFlights);
 
   // airbnb
-  app.post('api/airbnb/getListings', airbnbController.airbnb.getListings);
+  app.post('api/airbnb/getListings', airbnbController.listings.get);
 };
