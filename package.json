@@ -69,6 +69,7 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "request": "^2.75.0",
+    "request-promise": "^4.1.1",
     "sequelize": "^3.24.3",
     "tls": "0.0.1",
     "underscore": "^1.8.3",

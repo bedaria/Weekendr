@@ -10,17 +10,18 @@ const fourSquareModel = require('../model/foursquare.model.js');
   */
 
 function receiveCity(req, res) {
-  // console.log('req.body inside receiveCity', req.body)
+  console.log('req.body inside receiveCity', req.body);
   fourSquareModel.explore(req.body)
   .then((result) => {
+    fourSquareModel.rank(result);
     res.status(200).send(result);
   })
   .catch((err) => {
-    console.log('error inside receiveCity inside receive.controller', err)
+    console.log('error inside receiveCity inside receive.controller', err);
     res.end(err);
   });
 }
 
 exports.receive = {
-  receiveCity
+  receiveCity,
 };
