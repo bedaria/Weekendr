@@ -33,7 +33,7 @@ class UserInput extends React.Component {
     var budgetInput = document.querySelector('#budget');
     var numTravelersInput = document.querySelector('#numTravelers');
     var datePickerInput = document.querySelector('#datePicker');
-    var submit = document.querySelector('#submit');
+    // var submit = document.querySelector('#submit');
 
     function IssueTracker() {
       this.issues = [];
@@ -57,9 +57,10 @@ class UserInput extends React.Component {
         return message;
       }
     };
-
-      var budget = budgetInput.value;
-      var numTravelers = numTravelersInput.value;
+    onClickEvent();
+    function onClickEvent(){
+      var budget = Number(budgetInput.value);
+      var numTravelers = Number(numTravelersInput.value);
       var datePicker = new Date(datePickerInput.value);
 
       var budgetIssuesTracker = new IssueTracker();
@@ -77,7 +78,6 @@ class UserInput extends React.Component {
         mm='0'+mm
       } 
       today = yyyy+'-'+mm+'-'+dd;
-
       function checkRequirements() {
         if (budget < 150) {
           budgetIssuesTracker.add("fewer than minimum $150");
@@ -91,31 +91,27 @@ class UserInput extends React.Component {
           numTravelersIssuesTracker.add("too many travelers, 20 is the max");
         }
 
-        if (datePicker < today) {
-          datePickerInputIssuesTracker.add("cannot book a trip in the past");
-        } else if( datePicker.getFullYear() > today.getFullYear()+1){
+        if (datePicker.getFullYear() < yyyy) {
+          datePickerIssuesTracker.add("cannot book a trip in the past");
+        } else if( datePicker.getFullYear() > yyyy+1){
           datePickerIssuesTracker.add("can't book a trip more than 1 year from today");
         }
       };
 
-      if (budget.length && numTravelers.length && datePicker.length) {
-        checkRequirements();
-      } else {
-        secondInputIssuesTracker.add("Fields must not be empty!");
-      }
-
-      var budgetInputIssues = budgetInputIssuesTracker.retrieve();
-      var numTravelersInputIssues = numTravelersInputIssuesTracker.retrieve();
-      var datePickerInputIssues = datePickerInputIssuesTracker.retrieve();
-
-      budgetPasswordInput.setCustomValidity(budgetInputIssues);
-      numTravelersPasswordInput.setCustomValidity(numTravelersInputIssues);
-      datePickerPasswordInput.setCustomValidity(datePickerInputIssues);
+      checkRequirements();
+    
+      var budgetInputIssues = budgetIssuesTracker.retrieve();
+      var numTravelersInputIssues = numTravelersIssuesTracker.retrieve();
+      var datePickerInputIssues = datePickerIssuesTracker.retrieve();
+      console.log("INSIDE")
+      document.getElementById("submit").setCustomValidity(budgetInputIssues);
+      // document.getElementById("validationButton").setCustomValidity(numTravelersInputIssues);
+      // document.getElementById("validationButton").setCustomValidity(datePickerInputIssues);
 
       if (budgetInputIssues.length + numTravelersInputIssues.length + datePickerInputIssues.length === 0) {
         alert("First questionaire is successful!");
       }
-    
+    }
   }
 
   handleClick() {
@@ -138,7 +134,7 @@ class UserInput extends React.Component {
       <div className="landing-user-input">
         <Row>
           <div>
-            <label>
+            <label id="budgetLabel">
               What is your total budget?
             </label>
             <Input
@@ -150,12 +146,13 @@ class UserInput extends React.Component {
               min="150"
               max="99999999999"
               validate
+              required
             >
               <Icon>monetization_on</Icon>
             </Input>
           </div>
           <div>
-            <label>
+            <label id="numTravelersLabel">
               How many people are traveling?
             </label>
             <Input
@@ -164,37 +161,38 @@ class UserInput extends React.Component {
               id="numTravelers"
               onChange={this.updateState}
               placeholder="3"
-              min="0"
+              min="1"
               max="20"
               validate
+              required
             >
               <Icon>group</Icon>
             </Input>
           </div>
           <div>
-            <label>
-              Which weekend are you free?
+            <label id="dateLabel">
+              Which days are you free?
             </label>
             <Input
               s={12}
               type="date"
               id="datePicker"
               onChange={this.updateState}
+              min="2016-10-9"
+              required
             >
               <Icon>today</Icon>
             </Input>
           </div>
         </Row>
-        <form>
-            <input id="submit" type="submit" onClick={this.validateForm}/>
-        </form>
         <div>
+          <input id="submit" onClick={this.validateForm} />
+
           <ProgressButton
             id="submit"
             onClick={this.handleClick}
             state={this.state.buttonState}
-          >
-            Go!
+          >Go!
           </ProgressButton>
         </div>
       </div>
