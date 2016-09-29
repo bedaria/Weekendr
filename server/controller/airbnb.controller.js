@@ -1,7 +1,7 @@
 const model = require('../model/airbnb.model');
 
 function getListings(req, res) {
-  model.listings.get()
+  model.listings.get(req.body)
     .then((data) => {
       res.status(200).send(data);
     })
