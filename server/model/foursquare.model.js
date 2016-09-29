@@ -1,9 +1,10 @@
-const categories = require('./foursquareCategories.js')
+const categories = require('./foursquareData/foursquareCategoryJSON.js')
 require('dotenv').config();
 const request = require('request');
 
 
 fourSquareModel = module.exports;
+
 
  /* Map state to props inside TripList and send it here
    Search through categories to see if there are matches between
@@ -14,8 +15,8 @@ fourSquareModel = module.exports;
 
 fourSquareModel.explore = (params) => {
   // console.log('params inside fourSquareModel inside search', params);
-  console.log('answers inside fourSquareModel: ', params.answers[3].title);
-  console.log('answers inside fourSquareModel: ', params.answers[3].option)
+  // console.log('answers inside fourSquareModel: ', params.answers[3].title);
+  // console.log('answers inside fourSquareModel: ', params.answers[3].option)
   const lat = params.lat.toString();
   const lng = params.lng.toString();
   const ll = '' + lat + ',' + lng;
