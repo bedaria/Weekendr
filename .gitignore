@@ -4,3 +4,4 @@
 /server/model/categoryParse.js
 npm-debug.log
 .idea/
+/server/model/foursquareDataHandler

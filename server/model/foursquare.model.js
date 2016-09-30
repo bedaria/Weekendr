@@ -37,13 +37,17 @@ fourSquareModel.explore = (params, id) => {
     };
     request(options, ((error, response, body) => {
       if (error) {
-        return reject(console.log('error inside fourSquareModel inside explor: ', error));
+        console.log('error inside fourSquareModel inside explor: ', error);
+        return reject(error);
       }
       return resolve(body);
     }));
   });
 };
 
+fourSquareModel.parseFourSquareData = (dataArr) => {
+  console.log(dataArr[1]);
+};
 
 
 

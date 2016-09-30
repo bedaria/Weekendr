@@ -37,7 +37,7 @@ function receiveCity(req, res) {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
     } else if (first.option.option === 'Airplane') {
-      promiseArray.push(googleFlights.getFlights(req.body));
+      // promiseArray.push(googleFlights.getFlights(req.body));
       console.log('inside receiveCity we receive Airplane');
     } else if (first.option.option === 'Train') {
       console.log('inside receiveCity we received Train');
@@ -54,10 +54,10 @@ function receiveCity(req, res) {
       console.log('inside receivedCity we received Airbnb');
       // SAM
       // push invoked Airbnb model into promiseArray
-      // promiseArray.push()
+      // promiseArray.push(airbnbModel.listings.get(req.body));
     } else if (second.option.option === 'Hotel') {
       console.log('inside receivedCity we received Hotel');
-      promiseArray.push(expediaHotelsModel.findHotels(req.body))
+      // promiseArray.push(expediaHotelsModel.findHotels(req.body))
       // Daria
       // push invoked Hotel model into promiseArray
       // promiseArray.push()
@@ -70,13 +70,17 @@ function receiveCity(req, res) {
   const newPromiseArray = promiseArray.concat(fourSquarePromises);
 
   Promise.all(newPromiseArray)
-  .then((data) => {
+  .then((dataArray) => {
+    console.log('received data from all API calls inside receiveCity:dataArray length ', dataArray.length);
+    var fourSquareDataArray = dataArray; //put dataArray.slice(2) when  other models are fixed
+    fourSquareModel.parseFourSquareData(fourSquareDataArray);
+    // console.log(':::',fourSquareDataArray)
     // console.log('dataArr after promiseArray: ', dataArr);
     // insert data handlers
 
     // manipulate data and change it to bundle
     // res.status(200).send(bundle) <--
-    res.status(200).send(data);
+    res.status(200).send(dataArray);
 
   })
   .catch((err) => {
