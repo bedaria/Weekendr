@@ -24,7 +24,7 @@ const _ = require('underscore');
 
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
-  console.log('inside receiveCity req.body is : ', req.body);
+  // console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
 
   //follow the same pattern below for insertion of Car, Airplane, and Train Models
@@ -59,16 +59,15 @@ function receiveCity(req, res) {
       // promiseArray.push()
     }
   }
+  const answers = req.body.answers.slice(2);
+  const fourSquarePromises = answers.map((answer) => {
+    return fourSquareModel.explore(req.body, answer.option.id);
+  });
+  const newPromiseArray = promiseArray.concat(fourSquarePromises);
 
-
-  //find a way to map through the rest of answers
-  promiseArray.push(fourSquareModel.explore(req.body))
-
-
-
-  Promise.all(promiseArray)
+  Promise.all(newPromiseArray)
   .then((data) => {
-    console.log('data after promiseArray: ', data);
+    // console.log('dataArr after promiseArray: ', dataArr);
     // insert data handlers
 
     // manipulate data and change it to bundle

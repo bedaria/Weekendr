@@ -12,7 +12,7 @@ fourSquareModel = module.exports;
    the qs request object
  */
 
-fourSquareModel.explore = (params) => {
+fourSquareModel.explore = (params, id) => {
   // console.log('params inside fourSquareModel inside search', params);
   // console.log('title inside answers inside fourSquareModel: ', params.answers[3].title);
   // console.log('option inside answers inside fourSquareModel: ', params.answers[3].option);
@@ -26,7 +26,7 @@ fourSquareModel.explore = (params) => {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
-    categoryId: params.answers[3].option.id,
+    categoryId: id,
     ll,
     intent: 'browse',
   };

@@ -47,17 +47,17 @@ export default {
       question: 'What do you like to do? Select one of the following outdoor activities:',
       options: [
         {
-          id: 1,
+          id: '4bf58dd8d48988d18e941735',
           option: 'Hiking',
           imageUrl: '../assets/images/hiking.png',
         },
         {
-          id: 2,
+          id: '5032792091d4c4b30a586d5c',
           option: 'Beach',
           imageUrl: '../assets/images/beach.png',
         },
         {
-          id: 3,
+          id: '4bf58dd8d48988d17f941735',
           option: 'Music Festivals',
           imageUrl: '../assets/images/festival.png',
         },
