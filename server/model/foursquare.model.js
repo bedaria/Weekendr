@@ -1,8 +1,9 @@
-const categories = require('./foursquareData/foursquareCategoryJSON.js')
 require('dotenv').config();
 const request = require('request');
+const Promise = require('bluebird');
+const rp = require('request-promise');
 
-
+const categories = require('./foursquareData/foursquareCategoryJSON.js')
 fourSquareModel = module.exports;
  /* Map state to props inside TripList and send it here
    Search through categories to see if there are matches between
@@ -11,7 +12,7 @@ fourSquareModel = module.exports;
    the qs request object
  */
 
-fourSquareModel.explore = (params) => {
+fourSquareModel.explore = (params, id) => {
   // console.log('params inside fourSquareModel inside search', params);
   // console.log('title inside answers inside fourSquareModel: ', params.answers[3].title);
   // console.log('option inside answers inside fourSquareModel: ', params.answers[3].option);
@@ -25,7 +26,7 @@ fourSquareModel.explore = (params) => {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
     v: '20130815',
-    categoryId: params.answers[3].option.id,
+    categoryId: id,
     ll,
     intent: 'browse',
   };
@@ -42,6 +43,9 @@ fourSquareModel.explore = (params) => {
     }));
   });
 };
+
+
+
 
 
 fourSquareModel.rank = (params) => {
