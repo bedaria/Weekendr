@@ -5,16 +5,29 @@ expediaHotelsModel = module.exports;
 
 expediaHotelsModel.findHotels = (params) => {
   const budget = params;
+  var checkOutDate = params.date.split("-")
+
+  checkOutDate[2] = parseInt(checkOutDate[2]) + 2
+  convert = (str) => {
+    if(str.length === 1) return 0 + str
+    else return str
+  }
+
+   checkOutDate = checkOutDate.map(strNum => {
+    return convert(strNum.toString())
+  })
 
   const qs = {
     apikey: process.env.expedia_consumer_key,
     room1: params.numTravelers,
     checkInDate: params.date,
-    checkOutDate: parseInt(checkInDate) + 2
+    checkOutDate: checkOutDate.join("-"),
+    city: params.name
   };
 
   return new Promise((resolve, reject) => {
     const url = {
+      method: 'GET',
       uri: 'http://terminal2.expedia.com/x/mhotels/search',
       qs
     };
@@ -23,10 +36,7 @@ expediaHotelsModel.findHotels = (params) => {
       if (error)
          return reject(error);
 
-      const filtered = body.hotelList
-        .filter(hotel =>
-          hotel.isHotelAvailable && parseFloat(hotel.lowRateInfo.formattedTotalPriceWithMandatoryFees) < .4 * params.budget)
-      return resolve(filtered);
+      return resolve(JSON.parse(body).hotelList.filter(hotel => hotel.isHotelAvailable));
     });
   });
 };
