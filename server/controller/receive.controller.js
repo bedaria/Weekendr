@@ -43,6 +43,7 @@ function receiveCity(req, res) {
   if (first.title === 'Transportation') {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
+      
     } else if (first.option.option === 'Airplane') {
       // promiseArray.push(googleFlights.getFlights(req.body));
       console.log('inside receiveCity we receive Airplane');

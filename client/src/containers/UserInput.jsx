@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { getLatLng } from '../actions/getLatLng';
 import { sendInputToState } from '../actions/sendInputToState';
-import _ from 'underscore';
 
 class UserInput extends Component {
   constructor(props) {
@@ -35,10 +34,10 @@ class UserInput extends Component {
     this.setState({ [event.target.id]: event.target.value });
   }
   validateForm() {
-    var budgetInput = document.querySelector('#budget');
-    var numTravelersInput = document.querySelector('#numTravelers');
-    var datePickerInput = document.querySelector('#datePicker');
-    var flag = false;
+    let budgetInput = document.querySelector('#budget');
+    let numTravelersInput = document.querySelector('#numTravelers');
+    let datePickerInput = document.querySelector('#datePicker');
+    let flag = false;
     // var submit = document.querySelector('#submit');
     this.setState =  this.setState.bind(this);
     function IssueTracker() {
@@ -54,58 +53,58 @@ class UserInput extends Component {
           case 0:
             break;
           case 1:
-            message = "Please correct the following issue:\n" + this.issues[0];
+            message = 'Please correct the following issue:\n' + this.issues[0];
             break;
           default:
-            message = "Please correct the following issues:\n" + this.issues.join("\n");
+            message = 'Please correct the following issues:\n' + this.issues.join('\n');
             break;
         }
         return message;
-      }
+      },
     };
     onClickEvent();
     function onClickEvent(){
-      var budget = Number(budgetInput.value);
-      var numTravelers = Number(numTravelersInput.value);
-      var datePicker = new Date(datePickerInput.value);
+      let budget = Number(budgetInput.value);
+      let numTravelers = Number(numTravelersInput.value);
+      let datePicker = new Date(datePickerInput.value);
 
-      var budgetIssuesTracker = new IssueTracker();
-      var numTravelersIssuesTracker = new IssueTracker();
-      var datePickerIssuesTracker = new IssueTracker();
+      let budgetIssuesTracker = new IssueTracker();
+      let numTravelersIssuesTracker = new IssueTracker();
+      let datePickerIssuesTracker = new IssueTracker();
 
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1;
-      var yyyy = today.getFullYear();
-      if(dd<10){
+      let today = new Date();
+      let dd = today.getDate();
+      let mm = today.getMonth() +1;
+      let yyyy = today.getFullYear();
+      if (dd<10) {
         dd='0'+dd
       }
-      if(mm<10){
-        mm='0'+mm
+      if (mm<10) {
+        mm = '0' + mm;
       }
-      today = yyyy+'-'+mm+'-'+dd;
+      today = yyyy + '-' + mm + '-' + dd;
       function checkRequirements() {
         if (budget < 150) {
-          budgetIssuesTracker.add("fewer than minimum $150");
+          budgetIssuesTracker.add('fewer than minimum $150');
         } else if (budget > 99999999999) {
-          budgetIssuesTracker.add("greater than max budget: $99,999,999,999");
+          budgetIssuesTracker.add('greater than max budget: $99,999,999,999');
         }
 
         if (numTravelers < 1) {
-          numTravelersIssuesTracker.add("need at least one traveler");
+          numTravelersIssuesTracker.add('need at least one traveler');
         } else if (budget > 99999999999) {
-          numTravelersIssuesTracker.add("too many travelers, 20 is the max");
+          numTravelersIssuesTracker.add('too many travelers, 20 is the max');
         }
 
         if (datePicker.getFullYear() < yyyy) {
-          datePickerIssuesTracker.add("cannot book a trip in the past");
-        } else if( datePicker.getFullYear() > yyyy+1){
-          datePickerIssuesTracker.add("can't book a trip more than 1 year from today");
+          datePickerIssuesTracker.add('cannot book a trip in the past');
+        } else if( datePicker.getFullYear() > yyyy + 1) {
+          datePickerIssuesTracker.add('cannot book a trip more than 1 year from today');
         }
-      };
+      }
 
       checkRequirements();
-
+    
       var budgetInputIssues = budgetIssuesTracker.retrieve();
       var numTravelersInputIssues = numTravelersIssuesTracker.retrieve();
       var datePickerInputIssues = datePickerIssuesTracker.retrieve();
@@ -114,8 +113,8 @@ class UserInput extends Component {
       // document.getElementById("validationButton").setCustomValidity(datePickerInputIssues);
 
       if (budgetInputIssues.length + numTravelersInputIssues.length + datePickerInputIssues.length === 0) {
-        flag= true;
-      }
+        flag = true;
+      } 
 
   }
     if(!flag){
