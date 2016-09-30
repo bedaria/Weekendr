@@ -1,6 +1,6 @@
 require('dotenv').config();
 const request = require('request');
-
+const Promise = require('bluebird');
 const userFlights = module.exports;
 
 userFlights.getFlights = (params) => {
