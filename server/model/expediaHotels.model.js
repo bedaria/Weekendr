@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 require('dotenv').config();
 const request = require('request');
 
