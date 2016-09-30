@@ -37,6 +37,15 @@ export function getLatLng() {
         .catch((error) => {
           console.error('Error inside axios get request for geocode address:', error);
         });
+		    // findAirport(lat, long);
+      var data = {
+		    latitude: lat,
+        longitude: long,
+      };
+      dispatch({
+        type: LAT_LONG,
+        payload: data,
+      });
     }
     //  	function findAirport(lat, long){
 	  //  		var url = 'https://airport.api.aero/airport/nearest/' + lat + '/' + long;

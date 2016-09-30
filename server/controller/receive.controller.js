@@ -5,6 +5,8 @@ const googleFlights = require('../model/googleFlights.model');
 const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
+
+
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
@@ -35,6 +37,7 @@ function receiveCity(req, res) {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
     } else if (first.option.option === 'Airplane') {
+      promiseArray.push(googleFlights.getFlights(req.body));
       console.log('inside receiveCity we receive Airplane');
     } else if (first.option.option === 'Train') {
       console.log('inside receiveCity we received Train');
@@ -74,6 +77,7 @@ function receiveCity(req, res) {
     // manipulate data and change it to bundle
     // res.status(200).send(bundle) <--
     res.status(200).send(data);
+
   })
   .catch((err) => {
     console.log('error inside receiveCity: ', err);
