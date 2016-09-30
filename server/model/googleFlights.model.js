@@ -106,32 +106,3 @@ userFlights.getFlights = (params) => {
   })
 }
 
-userFlights.sort = (body) => {
-  var trip = body.trips.tripOption;
-  var filterResults = [];
-  for(var i = 0; i<body.trips.tripOption.length; i++){
-    filterResults.push(trip[i].saleTotal);
-    for(var j = 0; j<trip[i].slice.length; j++){
-      for(var k = 0; k<trip[i].slice[j].segment[k].length; k++)
-      filterResults.push(trip[i].slice[j].segment.flight, trip[i].slice[j].segment[k].flight, trip[i].slice[j].segment.flight, trip[i].slice[j].segment[k].leg);
-    }
-    filterResults.push(trip[i].saleTotal);
-    filterResults.push(trip[i].saleTotal);
-  }
-console.log(filterResults)
-  // this.tripDetails.flight[departingFlight] = body.tripOption.slice[0].segment.forEach(function(curr){
-  // this.tripDetails.flight.push(curr.flight, curr.leg);
-
-  // if(body.trips.tripOption === undefined){
-  //   console.log("Budget is too low, redirect to home page");
-  // } else {
-  //   var possibleOptions = body.trips.tripOption;
-  //   var filterResults = [];
-  //   for(var i = 0; i < possibleOptions.length; i++){
-  //     var TripResult[i] = new TripResult();
-  //     TripResult[i].add(body[i]);
-  //   }
-  //   return filterResults;
-  // }
-}
-
