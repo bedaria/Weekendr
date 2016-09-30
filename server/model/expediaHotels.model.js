@@ -12,8 +12,7 @@ expediaHotelsModel.findHotels = (params) => {
     if(str.length === 1) return 0 + str
     else return str
   }
-
-   checkOutDate = checkOutDate.map(strNum => {
+  checkOutDate = checkOutDate.map(strNum => {
     return convert(strNum.toString())
   })
 

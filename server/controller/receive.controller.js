@@ -3,6 +3,7 @@ const _ = require('underscore');
 const fourSquareModel = require('../model/foursquare.model');
 const googleFlights = require('../model/googleFlights.model');
 const airbnbModel = require('../model/airbnb.model');
+const expediaHotelsModel = require('../model/expediaHotels.model');
 
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
@@ -53,6 +54,7 @@ function receiveCity(req, res) {
       // promiseArray.push()
     } else if (second.option.option === 'Hotel') {
       console.log('inside receivedCity we received Hotel');
+      promiseArray.push(expediaHotelsModel.findHotels(req.body))
       // Daria
       // push invoked Hotel model into promiseArray
       // promiseArray.push()
