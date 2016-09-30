@@ -23,7 +23,6 @@ const airbnbModel = require('../model/airbnb.model');
      airport: '' } }
   * ******************/
 
-
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
   // console.log('inside receiveCity req.body is : ', req.body);
