@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import ProgressButton from 'react-progress-button';
 import { Input, Row, Icon } from 'react-materialize';
@@ -8,7 +8,7 @@ import { getLatLng } from '../actions/getLatLng';
 import { sendInputToState } from '../actions/sendInputToState';
 import _ from 'underscore';
 
-class UserInput extends Component {
+class UserInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,28 +62,26 @@ class UserInput extends Component {
       }
     };
     onClickEvent();
-
-    function onClickEvent() {
+    function onClickEvent(){
       var budget = Number(budgetInput.value);
       var numTravelers = Number(numTravelersInput.value);
       var datePicker = new Date(datePickerInput.value);
 
       var budgetIssuesTracker = new IssueTracker();
       var numTravelersIssuesTracker = new IssueTracker();
-      var datePickerIssuesTracker = new IssueTracker();
+      var datePickerIssuesTracker = new IssueTracker(); 
 
       var today = new Date();
       var dd = today.getDate();
-      var mm = today.getMonth()+1;
+      var mm = today.getMonth()+1; 
       var yyyy = today.getFullYear();
       if(dd<10){
         dd='0'+dd
-      }
+      } 
       if(mm<10){
         mm='0'+mm
-      }
+      } 
       today = yyyy+'-'+mm+'-'+dd;
-
       function checkRequirements() {
         if (budget < 150) {
           budgetIssuesTracker.add("fewer than minimum $150");
@@ -102,10 +100,10 @@ class UserInput extends Component {
         } else if( datePicker.getFullYear() > yyyy+1){
           datePickerIssuesTracker.add("can't book a trip more than 1 year from today");
         }
-      }
+      };
 
       checkRequirements();
-
+    
       var budgetInputIssues = budgetIssuesTracker.retrieve();
       var numTravelersInputIssues = numTravelersIssuesTracker.retrieve();
       var datePickerInputIssues = datePickerIssuesTracker.retrieve();
@@ -114,8 +112,9 @@ class UserInput extends Component {
       // document.getElementById("validationButton").setCustomValidity(datePickerInputIssues);
 
       if (budgetInputIssues.length + numTravelersInputIssues.length + datePickerInputIssues.length === 0) {
-        flag = true;
-      }
+        flag= true;
+      } 
+
   }
     if(!flag){
         this.setState({ buttonState: 'disabled'})
@@ -126,7 +125,6 @@ class UserInput extends Component {
     this.setState({ buttonState: 'loading' });
     this.props.sendInputToState(this.state);
     var LatLng = this.props.coordinates.coordinates;
-
     if(LatLng.latitude !== 0 && LatLng.longitude !== 0){
       this.validateForm();
       if(this.state.buttonState !== 'disabled'){
@@ -139,9 +137,8 @@ class UserInput extends Component {
       setTimeout(function() {
         this.handleClick();
       }.bind(this), 3000);
-    }
+    };
   }
-
   render() {
     return (
       <div className="landing-user-input">
@@ -158,8 +155,9 @@ class UserInput extends Component {
               placeholder="$400"
               min="150"
               max="99999999999"
-              validate={true}
-              required>
+              validate
+              required
+            >
               <Icon>monetization_on</Icon>
             </Input>
           </div>
@@ -176,7 +174,8 @@ class UserInput extends Component {
               min="1"
               max="20"
               validate={true}
-              required>
+              required
+            >
               <Icon>group</Icon>
             </Input>
           </div>
@@ -191,7 +190,8 @@ class UserInput extends Component {
               onChange={this.updateState}
               min="2016-10-9"
               validate={true}
-              required>
+              required
+            >
               <Icon>today</Icon>
             </Input>
           </div>
@@ -200,22 +200,20 @@ class UserInput extends Component {
           <ProgressButton
             id="submit"
             onClick={this.handleClick}
-            state={this.state.buttonState}>
-            Go!
+            state={this.state.buttonState}
+          >Go!
           </ProgressButton>
         </div>
       </div>
     );
   }
 }
-
 function mapStateToProps(state) {
   return {
     userInputForm: state.userInput.userInputForm,
     coordinates: state.coordinates
   };
 }
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ sendInputToState, getLatLng }, dispatch);
 }
