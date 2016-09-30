@@ -5,6 +5,7 @@ const googleFlights = require('../model/googleFlights.model');
 const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
+
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
@@ -74,6 +75,7 @@ function receiveCity(req, res) {
     // manipulate data and change it to bundle
     // res.status(200).send(bundle) <--
     res.status(200).send(data);
+
   })
   .catch((err) => {
     console.log('error inside receiveCity: ', err);
