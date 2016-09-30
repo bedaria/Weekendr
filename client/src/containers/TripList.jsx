@@ -11,8 +11,8 @@ class TripList extends Component {
     this.onSelectCity = this.onSelectCity.bind(this);
   }
 
-  onSelectCity(city, answers) {
-    this.props.sendSelectedCity(city, answers);
+  onSelectCity(city, answers, userInputForm, coordinates) {
+    this.props.sendSelectedCity(city, answers, userInputForm, coordinates);
   }
 
   renderTrips() {
@@ -28,6 +28,8 @@ class TripList extends Component {
         countryCode = {city.countrycode}
         onSelectCity = {this.onSelectCity}
         answers = {this.props.quizAnswers}
+        userInputForm = {this.props.userInputForm}
+        coordinates = {this.props.coordinates}
         >
         </TripListItem>
       );
@@ -47,6 +49,8 @@ function mapStateToProps(state) {
   return {
     received: state.receivedCities,
     quizAnswers: state.quiz.quizAnswers,
+    userInputForm: state.userInput.userInputForm,
+    coordinates: state.coordinates,
   };
 }
 

@@ -4,7 +4,6 @@ import TripList from './TripList'
 
 class UserProfile extends Component {
   render() {
-    console.log('props inside UserProfile: ', this.props);
     return (
       <div>
             <TripList/>
