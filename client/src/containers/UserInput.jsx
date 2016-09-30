@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { getLatLng } from '../actions/getLatLng';
 import { sendInputToState } from '../actions/sendInputToState';
+import _ from 'underscore';
 
 class UserInput extends React.Component {
   constructor(props) {
@@ -34,8 +35,10 @@ class UserInput extends React.Component {
     var budgetInput = document.querySelector('#budget');
     var numTravelersInput = document.querySelector('#numTravelers');
     var datePickerInput = document.querySelector('#datePicker');
+    var flag = false;
     // var submit = document.querySelector('#submit');
-
+    this.setState =  this.setState.bind(this);
+    console.log(this.state);
     function IssueTracker() {
       this.issues = [];
     }
@@ -104,15 +107,18 @@ class UserInput extends React.Component {
       var budgetInputIssues = budgetIssuesTracker.retrieve();
       var numTravelersInputIssues = numTravelersIssuesTracker.retrieve();
       var datePickerInputIssues = datePickerIssuesTracker.retrieve();
-      console.log("INSIDE")
-      document.getElementById("submit").setCustomValidity(budgetInputIssues);
+      // document.getElementById("submit").setCustomValidity(budgetInputIssues);
       // document.getElementById("validationButton").setCustomValidity(numTravelersInputIssues);
       // document.getElementById("validationButton").setCustomValidity(datePickerInputIssues);
 
       if (budgetInputIssues.length + numTravelersInputIssues.length + datePickerInputIssues.length === 0) {
-        alert("First questionaire is successful!");
+        flag= true;
+      } 
+
+  }
+    if(!flag){
+        this.setState({ buttonState: 'disabled'})
       }
-    }
   }
 
   handleClick() {
@@ -120,11 +126,14 @@ class UserInput extends React.Component {
     this.props.sendInputToState(this.state);
     var LatLng = this.props.coordinates.coordinates;
     if(LatLng.latitude !== 0 && LatLng.longitude !== 0){
-      setTimeout(function() {
+      this.validateForm();
+      if(this.state.buttonState !== 'disabled'){
         this.setState({ buttonState: 'success' });
         browserHistory.push('/preferences');
-      }.bind(this), 3000);
+      }
     } else {
+      console.log("ERROR in handleClick")
+      alert("Errors in inputs");
       setTimeout(function() {
         this.handleClick();
       }.bind(this), 3000);
@@ -146,7 +155,7 @@ class UserInput extends React.Component {
               placeholder="$400"
               min="150"
               max="99999999999"
-              validate
+              validate=""
               required
             >
               <Icon>monetization_on</Icon>
@@ -164,7 +173,7 @@ class UserInput extends React.Component {
               placeholder="3"
               min="1"
               max="20"
-              validate
+              validate="true"
               required
             >
               <Icon>group</Icon>
@@ -179,6 +188,7 @@ class UserInput extends React.Component {
               type="date"
               id="datePicker"
               onChange={this.updateState}
+              on
               min="2016-10-9"
               required
             >
@@ -187,8 +197,6 @@ class UserInput extends React.Component {
           </div>
         </Row>
         <div>
-          <input id="submit" onClick={this.validateForm} />
-
           <ProgressButton
             id="submit"
             onClick={this.handleClick}

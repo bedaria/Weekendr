@@ -4,9 +4,9 @@ const request = require('request');
 const userFlights = module.exports;
 
 userFlights.getFlights = (params) => {
-  console.log(req, "This is params");
+  console.log(params, "This is params");
 
-  const originCity = params.originCity;
+  const originCity = params.userInputForm.originCity;
   const selectedCity = params.cityName;
   const date = params.userInput.userInputForm.datePicker;
   const numTravelers = params.userInputForm.numTravelers;
