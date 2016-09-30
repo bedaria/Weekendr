@@ -1,8 +1,9 @@
-const categories = require('./foursquareData/foursquareCategoryJSON.js')
 require('dotenv').config();
 const request = require('request');
+const Promise = require('bluebird');
+const rp = require('request-promise');
 
-
+const categories = require('./foursquareData/foursquareCategoryJSON.js')
 fourSquareModel = module.exports;
  /* Map state to props inside TripList and send it here
    Search through categories to see if there are matches between
@@ -42,6 +43,9 @@ fourSquareModel.explore = (params) => {
     }));
   });
 };
+
+
+
 
 
 fourSquareModel.rank = (params) => {
