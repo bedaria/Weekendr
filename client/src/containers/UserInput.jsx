@@ -155,7 +155,7 @@ class UserInput extends React.Component {
               placeholder="$400"
               min="150"
               max="99999999999"
-              validate=""
+              validate="true"
               required
             >
               <Icon>monetization_on</Icon>
@@ -190,6 +190,7 @@ class UserInput extends React.Component {
               onChange={this.updateState}
               on
               min="2016-10-9"
+              validate
               required
             >
               <Icon>today</Icon>
