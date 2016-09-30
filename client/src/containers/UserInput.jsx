@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import ProgressButton from 'react-progress-button';
 import { Input, Row, Icon } from 'react-materialize';
@@ -8,7 +8,7 @@ import { getLatLng } from '../actions/getLatLng';
 import { sendInputToState } from '../actions/sendInputToState';
 import _ from 'underscore';
 
-class UserInput extends React.Component {
+class UserInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
