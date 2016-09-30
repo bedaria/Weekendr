@@ -6,11 +6,6 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const db = require('./database');
 
-// Routers
-const yelpRouter = require('./router/yelpRouter');
-const searchRouter = require('./router/search.router');
-const googleFlights = require('./router/googleFlights.router');
-
 // Utilities
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
