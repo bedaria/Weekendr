@@ -15,5 +15,5 @@ module.exports = (app, express) => {
   app.post('/api/search/getCity', searchController.search.getCity);
 
   // airbnb routes
-  app.get('api/airbnb/getListings', airbnbController.listings.get);
+  app.post('/api/airbnb/getListings', airbnbController.listings.get);
 };
