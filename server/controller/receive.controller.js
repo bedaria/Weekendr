@@ -1,14 +1,15 @@
-const fourSquareModel = require('../model/foursquare.model.js');
-const googleFlights = require('../model/googleFlights.model.js');
 const Promise = require('bluebird');
 const _ = require('underscore');
+const fourSquareModel = require('../model/foursquare.model');
+const googleFlights = require('../model/googleFlights.model');
+const airbnbModel = require('../model/airbnb.model');
 
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
   lat: 32.502698,
   lng: -117.003714,
-  answers: 
+  answers:
    [ { title: 'Transportation', option: [Object] },
      { title: 'Lodging', option: [Object] },
      { title: 'Outdoor Activities', option: [Object] },
@@ -16,7 +17,7 @@ const _ = require('underscore');
   budget: '500',
   numTravelers: '3',
   date: '2016-12-31',
-  origin: 
+  origin:
    { latitude: 34.019224699999995,
      longitude: -118.49427560000001,
      airport: '' } }
