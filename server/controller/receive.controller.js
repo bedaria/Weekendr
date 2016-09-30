@@ -6,6 +6,7 @@ const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
 
+
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
