@@ -1,5 +1,5 @@
 const fourSquareModel = require('../model/foursquare.model.js');
-const Promise = require('bluebird')
+const Promise = require('bluebird');
 const _ = require('underscore');
 
 /****** REQ.BODY  ********
@@ -32,11 +32,9 @@ function receiveCity(req, res) {
   if (first.title === 'Transportation') {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
-
-    }  else if (first.option.option === 'Airplane') {
+    } else if (first.option.option === 'Airplane') {
       console.log('inside receiveCity we receive Airplane');
-
-    }  else if (first.option.option === 'Train') {
+    } else if (first.option.option === 'Train') {
       console.log('inside receiveCity we received Train');
     }
   }
@@ -47,12 +45,12 @@ function receiveCity(req, res) {
       console.log('inside receivedCity we received Hostel');
       // push invoked Hostel model into promiseArray
       // promiseArray.push()
-    }  else if (second.option.option === 'Airbnb') {
+    } else if (second.option.option === 'Airbnb') {
       console.log('inside receivedCity we received Airbnb');
       // SAM
       // push invoked Airbnb model into promiseArray
       // promiseArray.push()
-    }  else if (second.option.option === 'Hotel') {
+    } else if (second.option.option === 'Hotel') {
       console.log('inside receivedCity we received Hotel');
       // Daria
       // push invoked Hotel model into promiseArray
