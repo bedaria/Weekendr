@@ -43,7 +43,7 @@ export function getLatLng() {
         longitude: long,
       };
       dispatch({
-        type: 'LAT_LONG',
+        type: LAT_LONG,
         payload: data,
       });
     }
