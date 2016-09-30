@@ -13,6 +13,7 @@ export function getLatLng() {
 
       lat = positionA.coords.latitude;
       long = positionA.coords.longitude;
+
       // findAirport(lat, long);
 
       const GEOCODE_API_KEY = 'AIzaSyCBUyBZfRmKN4pPHQXBL8YVoK3CLrYUbnA';
