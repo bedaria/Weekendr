@@ -10,9 +10,9 @@ function getListings(params) {
       url: 'https://api.airbnb.com/v2/search_results',
       qs: {
         client_id: clientId,
-        location: params.address,
-        user_lat: params.lat,
-        user_lng: params.lng,
+        location: params.origin.address,
+        user_lat: params.origin.latitude,
+        user_lng: params.origin.longitude,
       },
       headers: {
         'postman-token': '5dd567cc-414b-b2ab-1305-0ad7c0478aeb',

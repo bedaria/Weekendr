@@ -28,7 +28,7 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
 
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
-  // console.log('inside receiveCity req.body is : ', req.body);
+  console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
 
   //follow the same pattern below for insertion of Car, Airplane, and Train Models
