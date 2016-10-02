@@ -26,6 +26,12 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
      airport: '' } }
   * ******************/
 
+  /*
+  Things to receive: Country
+  */
+
+
+
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
   console.log('inside receiveCity req.body is : ', req.body);
@@ -69,18 +75,23 @@ function receiveCity(req, res) {
   });
   const newPromiseArray = promiseArray.concat(fourSquarePromises);
 
+  const selectedCategoriesArray = req.body.answers.map((answer) => {
+    return {
+      title: answer.title,
+      id: answer.option.id,
+      option: answer.option.option,
+    };
+  });
+
   Promise.all(newPromiseArray)
   .then((dataArray) => {
-    console.log('received data from all API calls inside receiveCity:dataArray length ', dataArray.length);
-    var fourSquareDataArray = dataArray; //put dataArray.slice(2) when  other models are fixed
-    fourSquareModel.parseFourSquareData(fourSquareDataArray);
-    // console.log(':::',fourSquareDataArray)
-    // console.log('dataArr after promiseArray: ', dataArr);
-    // insert data handlers
+    const fourSquareDataArray = dataArray; // put .slice(2) when other models are entered
+    const bundle = [];
+    bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
+    console.log('*****bundle is: ', bundle);
 
-    // manipulate data and change it to bundle
     // res.status(200).send(bundle) <--
-    res.status(200).send(dataArray);
+    res.status(200).send(bundle);
 
   })
   .catch((err) => {

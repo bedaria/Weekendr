@@ -2,7 +2,7 @@ require('dotenv').config();
 const request = require('request');
 const Promise = require('bluebird');
 const rp = require('request-promise');
-const handleFourSquareData = require('./foursquareDataHandler/handleFourSquareData.js');
+const handleFourSquareData = require('./foursquareData/handleFourSquareData.js');
 
 const categories = require('./foursquareData/foursquareCategoryJSON.js')
 fourSquareModel = module.exports;
@@ -48,10 +48,17 @@ fourSquareModel.explore = (params, id) => {
   });
 };
 
-fourSquareModel.parseFourSquareData = (dataArr) => {
-  console.log('we are inside parseFourSquareData inside foursquareModel')
-  handleFourSquareData.filter(dataArr)
+
+
+fourSquareModel.parseFourSquareData = (dataArr, selectedCategoriesArray) => {
+  console.log('we are inside parseFourSquareData inside foursquareModel');
+  return handleFourSquareData.build(dataArr, selectedCategoriesArray);
 };
+
+// fourSquareModel.activitiesBundle = function(dataArr, selectedCategoriesArray) {
+//   return fourSquareModel.parseFourSquareData(dataArr, selectedCategoriesArray).bind(this);
+// };
+
 
 
 
