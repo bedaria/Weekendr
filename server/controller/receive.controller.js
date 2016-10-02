@@ -34,7 +34,7 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
 
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
-  console.log('inside receiveCity req.body is : ', req.body);
+  // console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
 
   //follow the same pattern below for insertion of Car, Airplane, and Train Models
@@ -89,10 +89,7 @@ function receiveCity(req, res) {
     const bundle = [];
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
     console.log('*****bundle is: ', bundle);
-
-    // res.status(200).send(bundle) <--
     res.status(200).send(bundle);
-
   })
   .catch((err) => {
     console.log('error inside receiveCity: ', err);
