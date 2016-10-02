@@ -47,17 +47,17 @@ export default {
       question: 'What do you like to do? Select one of the following outdoor activities:',
       options: [
         {
-          id: '4bf58dd8d48988d18e941735',
-          option: 'Hiking',
+          id: '4bf58dd8d48988d1e4941735',
+          option: 'Campground',
           imageUrl: '../assets/images/hiking.png',
         },
         {
-          id: '5032792091d4c4b30a586d5c',
-          option: 'Beach',
+          id: '4bf58dd8d48988d116941735',
+          option: 'Bar',
           imageUrl: '../assets/images/beach.png',
         },
         {
-          id: '4bf58dd8d48988d17f941735',
+          id: '5267e4d9e4b0ec79466e48d1',
           option: 'Music Festivals',
           imageUrl: '../assets/images/festival.png',
         },
@@ -83,8 +83,8 @@ export default {
           imageUrl: '../assets/images/festival.png',
         },
         {
-          id: '4fceea171983d5d06c3e9823',
-          option: 'Aquarium',
+          id: '5032792091d4c4b30a586d5c',
+          option: 'Concert Hall',
           imageUrl: '../assets/images/festival.png',
         },
         {

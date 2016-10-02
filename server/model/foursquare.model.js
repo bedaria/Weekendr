@@ -2,6 +2,7 @@ require('dotenv').config();
 const request = require('request');
 const Promise = require('bluebird');
 const rp = require('request-promise');
+const handleFourSquareData = require('./foursquareData/handleFourSquareData.js');
 
 const categories = require('./foursquareData/foursquareCategoryJSON.js')
 fourSquareModel = module.exports;
@@ -21,14 +22,16 @@ fourSquareModel.explore = (params, id) => {
   const lng = params.lng.toString();
   const ll = '' + lat + ',' + lng;
   // use for number of api calls in array
-  const lengthOfCalls = params.answers.length - 2;
+  // const lengthOfCalls = params.answers.length - 2;
   const qs = {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
-    v: '20130815',
+    v: '20160809',
+    m: 'swarm',
     categoryId: id,
     ll,
     intent: 'browse',
+    venuePhotos: 1,
   };
   return new Promise((resolve, reject) => {
     const options = {
@@ -37,12 +40,20 @@ fourSquareModel.explore = (params, id) => {
     };
     request(options, ((error, response, body) => {
       if (error) {
-        return reject(console.log('error inside fourSquareModel inside explor: ', error));
+        console.log('error inside fourSquareModel inside explor: ', error);
+        return reject(error);
       }
       return resolve(body);
     }));
   });
 };
+
+
+fourSquareModel.parseFourSquareData = (dataArr, selectedCategoriesArray) => {
+  console.log('we are inside parseFourSquareData inside foursquareModel');
+  return handleFourSquareData.build(dataArr, selectedCategoriesArray);
+};
+
 
 
 
