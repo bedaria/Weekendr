@@ -16,11 +16,11 @@ export default class NavBar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to={{ pathname: '#' }}>
-                <NavItem>How It Works</NavItem>
+              <LinkContainer to={{ pathname: '/preferences' }}>
+                <NavItem>Preferences</NavItem>
               </LinkContainer>
-              <LinkContainer to={{ pathname: '#' }}>
-                <NavItem>Team</NavItem>
+              <LinkContainer to={{ pathname: '/trip-results' }}>
+                <NavItem>Trip Results</NavItem>
               </LinkContainer>
               <LinkContainer to={{ pathname: '/airbnb' }}>
                 <NavItem>Airbnb</NavItem>
