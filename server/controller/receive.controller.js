@@ -6,7 +6,6 @@ const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
 
-
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
@@ -32,13 +31,12 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
   */
 
 
-
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
   // console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
 
-  //follow the same pattern below for insertion of Car, Airplane, and Train Models
+  // follow the same pattern below for insertion of Car, Airplane, and Train Models
   const first = _.first(req.body.answers);
   if (first.title === 'Transportation') {
     if (first.option.option === 'Car') {
@@ -86,9 +84,12 @@ function receiveCity(req, res) {
 
   Promise.all(newPromiseArray)
   .then((dataArray) => {
-    const fourSquareDataArray = dataArray; // put .slice(2) when other models are entered
+    // put dataArray.slice(2) when other models are entered
+
+    const fourSquareDataArray = dataArray; 
     const bundle = [];
-    //insert data handlers here
+    // insert data handlers here
+
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
     console.log('*****bundle is: ', bundle);
     res.status(200).json(bundle);
@@ -98,7 +99,6 @@ function receiveCity(req, res) {
     res.status(500).end(err);
   });
 }
-
 
 exports.receive = {
   receiveCity,
