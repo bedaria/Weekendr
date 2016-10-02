@@ -27,7 +27,8 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
   * ******************/
 
   /*
-  Things to receive: Country
+  Things to add to req.body 
+  1) Country code: Ie. USA, MX, CN, FR 
   */
 
 
@@ -87,9 +88,10 @@ function receiveCity(req, res) {
   .then((dataArray) => {
     const fourSquareDataArray = dataArray; // put .slice(2) when other models are entered
     const bundle = [];
+    //insert data handlers here
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
     console.log('*****bundle is: ', bundle);
-    res.status(200).send(bundle);
+    res.status(200).json(bundle);
   })
   .catch((err) => {
     console.log('error inside receiveCity: ', err);

@@ -22,7 +22,7 @@ fourSquareModel.explore = (params, id) => {
   const lng = params.lng.toString();
   const ll = '' + lat + ',' + lng;
   // use for number of api calls in array
-  const lengthOfCalls = params.answers.length - 2;
+  // const lengthOfCalls = params.answers.length - 2;
   const qs = {
     client_id: process.env.foursquare_client_id,
     client_secret: process.env.foursquare_client_secret,
@@ -49,15 +49,11 @@ fourSquareModel.explore = (params, id) => {
 };
 
 
-
 fourSquareModel.parseFourSquareData = (dataArr, selectedCategoriesArray) => {
   console.log('we are inside parseFourSquareData inside foursquareModel');
   return handleFourSquareData.build(dataArr, selectedCategoriesArray);
 };
 
-// fourSquareModel.activitiesBundle = function(dataArr, selectedCategoriesArray) {
-//   return fourSquareModel.parseFourSquareData(dataArr, selectedCategoriesArray).bind(this);
-// };
 
 
 

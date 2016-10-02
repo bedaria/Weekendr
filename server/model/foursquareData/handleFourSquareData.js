@@ -27,7 +27,7 @@ const activities = [];
     });
   });
   }
-  return activities.filter(venue => (venue.venue_info.rating > 4));
+  return activities.filter(venue => (venue.venue_info.rating > 2));
 }
 
 const activitiesSorted = buildActivitiesArray(dataArr).sort((a,b) => {

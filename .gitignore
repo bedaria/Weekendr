@@ -5,3 +5,7 @@
 npm-debug.log
 .idea/
 /server/model/foursquareDataHandler
+/server/model/foursquareData/foursquareCategoryData.js
+/server/model/foursquareData/foursquareCategoryJSON.js
+/server/model/foursquareData/categoryParser.js
+
