@@ -8,7 +8,6 @@ import TripResults from './components/TripResults';
 import UserProfile from './containers/UserProfile';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
-import AirbnbList from './containers/AirbnbList';
 
 const routes = (
   <Route path="/" component={App}>
@@ -18,7 +17,6 @@ const routes = (
     <Route path="/profile" component={UserProfile} />
     <Route path="/signup" component={Signup} />
     <Route path="/login" component={Login} />
-    <Route path="/airbnb" component={AirbnbList} />
   </Route>
 );
 
