@@ -52,6 +52,14 @@
   cursor: pointer;
 }
 
+/* ----- TRIP RESULTS ----- */
+.trip-list {
+  float: right;
+  border: 1px solid;
+  width: 80%;
+  text-align: center;
+}
+
 /* ----- PROGRESS BAR ----- */
 .pb-container {
   display: inline-block;

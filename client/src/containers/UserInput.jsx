@@ -41,7 +41,6 @@ class UserInput extends Component {
     var flag = false;
     // var submit = document.querySelector('#submit');
     this.setState =  this.setState.bind(this);
-    console.log(this.state);
     function IssueTracker() {
       this.issues = [];
     }
@@ -72,18 +71,18 @@ class UserInput extends Component {
 
       var budgetIssuesTracker = new IssueTracker();
       var numTravelersIssuesTracker = new IssueTracker();
-      var datePickerIssuesTracker = new IssueTracker(); 
+      var datePickerIssuesTracker = new IssueTracker();
 
       var today = new Date();
       var dd = today.getDate();
-      var mm = today.getMonth()+1; 
+      var mm = today.getMonth()+1;
       var yyyy = today.getFullYear();
       if(dd<10){
         dd='0'+dd
-      } 
+      }
       if(mm<10){
         mm='0'+mm
-      } 
+      }
       today = yyyy+'-'+mm+'-'+dd;
       function checkRequirements() {
         if (budget < 150) {
@@ -106,7 +105,7 @@ class UserInput extends Component {
       };
 
       checkRequirements();
-    
+
       var budgetInputIssues = budgetIssuesTracker.retrieve();
       var numTravelersInputIssues = numTravelersIssuesTracker.retrieve();
       var datePickerInputIssues = datePickerIssuesTracker.retrieve();
@@ -116,7 +115,7 @@ class UserInput extends Component {
 
       if (budgetInputIssues.length + numTravelersInputIssues.length + datePickerInputIssues.length === 0) {
         flag= true;
-      } 
+      }
 
   }
     if(!flag){

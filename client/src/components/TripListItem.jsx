@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Col, Thumbnail, Button } from 'react-bootstrap';
 
 export default class TripListItem extends Component{
   constructor(props){
@@ -7,18 +8,25 @@ export default class TripListItem extends Component{
   }
 
   selectCity() {
-  this.props.onSelectCity(this.props, this.props.answers, this.props.userInputForm, this.props.coordinates);
+    this.props.onSelectCity(this.props, this.props.answers, this.props.userInputForm, this.props.coordinates);
+    console.log('*** Check terminal to see Transportation/Lodging/Activities data received from receive controller ***');
   }
 
   render() {
     return (
-      <div onClick={this.selectCity}>
-        <h1>{this.props.cityName}</h1>
-        <h2>{this.props.population}</h2>
-        <h3>{this.props.id}</h3>
+      <div>
+        <Col sm={12} md={6} lg={4}>
+          <Thumbnail>
+            <h6><strong>{this.props.cityName}</strong></h6>
+            <p>Population: {this.props.population}</p>
+            <p>Latitude: {this.props.lat}</p>
+            <p>Longitude: {this.props.lng}</p>
+            <p>
+              <Button onClick={this.selectCity} bsStyle="primary">Select city</Button>
+            </p>
+          </Thumbnail>
+        </Col>
       </div>
     );
   }
 }
-
-
