@@ -5,12 +5,12 @@ const googleFlights = require('../model/googleFlights.model');
 const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
-/* ******** REQ.BODY ********
-req.body inside receiveCity:
-{ name: 'Los Angeles',
-  id: 5368361,
-  lat: 34.0522342,
-  lng: -118.2436849,
+
+/****** REQ.BODY  ********
+ req.body inside receiveCity { name: 'Tijuana',
+  id: 3981609,
+  lat: 32.502698,
+  lng: -117.003714,
   answers:
    [ { title: 'Transportation', option: [Object] },
      { title: 'Lodging', option: [Object] },
@@ -26,18 +26,25 @@ req.body inside receiveCity:
      airport: '' } }
 ****************** */
 
-// NEW RECEIVE CITY PROMISIFIED
+  /*
+  Things to add to req.body
+  1) Country code: Ie. USA, MX, CN, FR
+  */
+
+
+// NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
   console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
 
   // TRANSPORTATION
+  // follow the same pattern below for insertion of Car, Airplane, and Train Models
   const first = _.first(req.body.answers);
   if (first.title === 'Transportation') {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
     } else if (first.option.option === 'Airplane') {
-      promiseArray.push(googleFlights.getFlights(req.body));
+      // promiseArray.push(googleFlights.getFlights(req.body));
       console.log('inside receiveCity we receive Airplane');
     } else if (first.option.option === 'Train') {
       console.log('inside receiveCity we received Train');
@@ -46,12 +53,16 @@ function receiveCity(req, res) {
 
   // LODGING
   const second = req.body.answers[1];
-  if (second.option.option === 'Airbnb') {
-    console.log('inside receivedCity we received Airbnb');
-    promiseArray.push(airbnbModel.getListings(req.body));
-  } else if (second.option.option === 'Hotel') {
-    console.log('inside receivedCity we received Hotel');
-    promiseArray.push(expediaHotelsModel.findHotels(req.body));
+  if (second.title === 'Lodging') {
+    if (second.option.option === 'Airbnb') {
+      console.log('inside receivedCity we received Airbnb');
+      promiseArray.push(airbnbModel.getListings(req.body));
+    } else if (second.option.option === 'Hotel') {
+      console.log('inside receivedCity we received Hotel');
+      promiseArray.push(expediaHotelsModel.findHotels(req.body));
+    } else if (second.option.option === 'Hostel') {
+        console.log('inside receivedCity we received Hostel');
+    }
   }
 
   const answers = req.body.answers.slice(2);
@@ -59,22 +70,30 @@ function receiveCity(req, res) {
     return fourSquareModel.explore(req.body, answer.option.id);
   });
   const newPromiseArray = promiseArray.concat(fourSquarePromises);
+  const selectedCategoriesArray = req.body.answers.map((answer) => {
+    return {
+      title: answer.title,
+      id: answer.option.id,
+      option: answer.option.option,
+    };
+  });
 
   Promise.all(newPromiseArray)
-    .then((data) => {
-      console.log('dataArr after promiseArray: ', data);
-      // insert data handlers
+  .then((dataArray) => {
+    const bundle = [];
+    console.log('dataArray length is: ', dataArray);
+    const fourSquareDataArray = dataArray.slice(2);
+    // insert data handlers here
 
-      // manipulate data and change it to bundle
-      // res.status(200).send(bundle) <--
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      console.log('error inside receiveCity: ', err);
-      res.status(500).end(err);
-    });
+    bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
+    console.log('*****bundle is: ', bundle);
+    res.status(200).json(bundle);
+  })
+  .catch((err) => {
+    console.log('error inside receiveCity: ', err);
+    res.status(500).end(err);
+  });
 }
-
 
 exports.receive = {
   receiveCity,
