@@ -2,23 +2,29 @@ const request = require('request');
 require('dotenv').config();
 const clientId = process.env.airbnb_client_id;
 
-function getListings(params) {
+exports.getListings = (params) => {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
       url: 'https://api.airbnb.com/v2/search_results',
       qs: {
         client_id: clientId,
-        location: params.address,
+        locale: 'en-US',
+        currency: 'USD',
+        _format: 'for_search_results',
+        _limit: 20,
+        guests: params.numTravelers,
+        location: params.name,
+        price_max: params.budget,
         user_lat: params.lat,
-        user_lng: params.lng
+        user_lng: params.lng,
       },
       headers: {
         'postman-token': '5dd567cc-414b-b2ab-1305-0ad7c0478aeb',
         'cache-control': 'no-cache',
-        'content-type': 'application/json'
+        'content-type': 'application/json',
       },
-      json: true
+      json: true,
     };
 
     request(options, (error, response, body) => {
@@ -30,8 +36,4 @@ function getListings(params) {
       }
     })
   });
-}
-
-exports.listings = {
-  get: getListings
-}
+};

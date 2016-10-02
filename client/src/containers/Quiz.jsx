@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link, browserHistory } from 'react-router';
+import { Button } from 'react-bootstrap';
 import { answerQuestion, postQuestionListInput } from '../actions/quizActions';
 import { fetchAirbnbListings } from '../actions/airbnbActions';
 import QuizOption from '../components/QuizOption';
@@ -10,10 +12,15 @@ class Quiz extends Component {
     super(props);
     this.renderQuiz = this.renderQuiz.bind(this);
     this.onAnswerClicked = this.onAnswerClicked.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onAnswerClicked(answer) {
     this.props.answerQuestion(answer, this.props);
+  }
+
+  onClick() {
+    browserHistory.push('/trip-results');
   }
 
   renderQuestion() {
@@ -38,11 +45,6 @@ class Quiz extends Component {
 
   renderQuiz() {
     if (this.props.quizData.length === this.props.questionIndex) {
-      if(this.props.quizAnswers[1].option.option === 'Airbnb') {
-        console.log('*** FETCHING AIRBNB LISTINGS ***');
-        this.props.fetchAirbnbListings(this.props);
-      }
-
       if (this.props.coordinates.latitude && this.props.userInputForm.budget) {
         this.props.postQuestionListInput(this.props);
       }
@@ -50,6 +52,7 @@ class Quiz extends Component {
       return (
         <div>
           <p>You have completed the quiz!</p>
+          <Button onClick={this.onClick} bsStyle="primary">See trip results</Button>
         </div>
       );
     }

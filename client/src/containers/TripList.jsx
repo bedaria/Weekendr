@@ -19,26 +19,26 @@ class TripList extends Component {
     return this.props.received.data.geonames.map((city, index) => {
       return (
         <TripListItem
-        key={index}
-        cityName = {city.name}
-        population={city.population}
-        id = {city.geonameId}
-        lat = {city.lat}
-        lng = {city.lng}
-        countryCode = {city.countrycode}
-        onSelectCity = {this.onSelectCity}
-        answers = {this.props.quizAnswers}
-        userInputForm = {this.props.userInputForm}
-        coordinates = {this.props.coordinates}
-        >
-        </TripListItem>
+          key = {index}
+          cityName = {city.name}
+          population = {city.population}
+          id = {city.geonameId}
+          lat = {city.lat}
+          lng = {city.lng}
+          countryCode = {city.countrycode}
+          onSelectCity = {this.onSelectCity}
+          answers = {this.props.quizAnswers}
+          userInputForm = {this.props.userInputForm}
+          coordinates = {this.props.coordinates}
+        />
       );
     });
   }
 
   render() {
     return (
-      <div className="TripList Col-xs={4} xsOffset={2} md={4}">
+      <div className="trip-list">
+        <h5>Select your destination:</h5>
         {this.renderTrips()}
       </div>
     );
