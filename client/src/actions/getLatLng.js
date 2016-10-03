@@ -3,7 +3,7 @@ import { LAT_LONG } from './actionTypes';
 require('dotenv').config();
 
 export function getLatLng() {
-  return (dispatch) => {
+  return (dispatch) => {  
     let lat = 0;
     let long = 0;
     function showLocation(positionA) {
