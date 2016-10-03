@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LAT_LONG } from './actionTypes';
-require('dotenv').config();
+import {geocode_API_KEY} from '../config/googleConfig.js';
 
 export function getLatLng() {
   return (dispatch) => {  
@@ -11,7 +11,9 @@ export function getLatLng() {
 
       lat = positionA.coords.latitude;
       long = positionA.coords.longitude;
-
+      console.log('geocode api key is ', geocode_API_KEY)
+        const GEOCODE_API_KEY = geocode_API_KEY;
+        const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${GEOCODE_API_KEY}`;
       axios.get(geocodeUrl)
         .then((geocodeObj) => {
           const address = geocodeObj.data.results[0].formatted_address;
