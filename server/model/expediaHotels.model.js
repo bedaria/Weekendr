@@ -1,5 +1,6 @@
 require('dotenv').config();
 const request = require('request');
+const Promise = require('bluebird');
 
 expediaHotelsModel = module.exports;
 
