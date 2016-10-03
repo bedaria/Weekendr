@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 require('dotenv').config();
 const request = require('request');
 
@@ -6,23 +5,18 @@ expediaHotelsModel = module.exports;
 
 expediaHotelsModel.findHotels = (params) => {
   const budget = params;
-  var checkOutDate = params.date.split("-")
 
-  checkOutDate[2] = parseInt(checkOutDate[2]) + 2
-  convert = (str) => {
-    if(str.length === 1) return 0 + str
-    else return str
-  }
-  checkOutDate = checkOutDate.map(strNum => {
-    return convert(strNum.toString())
-  })
+  var checkOutDate = new Date(params.date);
+  checkOutDate.setDate(checkOutDate.getDate() + 2)
+  checkOutDate = checkOutDate.toJSON().slice(0,10).toString();
 
   const qs = {
     apikey: process.env.expedia_consumer_key,
     room1: params.numTravelers,
     checkInDate: params.date,
-    checkOutDate: checkOutDate.join("-"),
-    city: params.name
+    checkOutDate: checkOutDate,
+    city: params.name,
+    resultsPerPage: -1
   };
 
   return new Promise((resolve, reject) => {
