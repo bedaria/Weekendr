@@ -1,9 +1,9 @@
 import { RECEIVED_USER_INPUT_DATA } from './actionTypes';
 
 export function sendInputToState(props){
-	return { 
+	return {
 		type: 'RECEIVED_USER_INPUT_DATA',
-		payload: props
+		payload: props, 
 	};
 }
 
