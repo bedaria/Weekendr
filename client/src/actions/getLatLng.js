@@ -12,8 +12,6 @@ export function getLatLng() {
       lat = positionA.coords.latitude;
       long = positionA.coords.longitude;
 
-      const GEOCODE_API_KEY = 'AIzaSyCBUyBZfRmKN4pPHQXBL8YVoK3CLrYUbnA';
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${GEOCODE_API_KEY}`;
       axios.get(geocodeUrl)
         .then((geocodeObj) => {
           const address = geocodeObj.data.results[0].formatted_address;
