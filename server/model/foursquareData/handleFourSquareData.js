@@ -35,6 +35,7 @@ const activitiesSorted = buildActivitiesArray(dataArr).sort((a, b) => {
 });
 
 const selectedActivities = selectedCategories.slice(2);
+
 const activitiesBundle = activitiesSorted.reduce((a, b) => {
   if (a[b.category]) {
     a[b.category].push(b);

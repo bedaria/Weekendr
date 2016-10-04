@@ -80,10 +80,12 @@ function receiveCity(req, res) {
 
   Promise.all(newPromiseArray)
   .then((dataArray) => {
+
+    const fourSquareDataArray = dataArray.slice(2);
     const bundle = [];
     // console.log('dataArray length is: ', dataArray);
-    const fourSquareDataArray = dataArray.slice(2);
     // insert data handlers here
+    console.log('fourSquareDataArray', fourSquareDataArray)
 
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
     console.log('*****bundle is: ', bundle);
