@@ -5,7 +5,6 @@ const googleFlights = require('../model/googleFlights.model');
 const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
-
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
@@ -82,7 +81,7 @@ function receiveCity(req, res) {
   Promise.all(newPromiseArray)
   .then((dataArray) => {
     const bundle = [];
-    console.log('dataArray length is: ', dataArray);
+    // console.log('dataArray length is: ', dataArray);
     const fourSquareDataArray = dataArray.slice(2);
     // insert data handlers here
 
