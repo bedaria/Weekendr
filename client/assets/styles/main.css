@@ -1,11 +1,11 @@
-/* ----- NAVBAR ----- */
-/*.navbar {
+/*----- NAVBAR ----- */
+.navbar {
   height: 52px;
   box-shadow: none;
-}*/
+}
 
 /* ----- LANDING PAGE ----- */
-/*.landing-container {
+.landing-container {
   text-align: center;
 }
 .landing-message {
@@ -14,25 +14,25 @@
 .landing-user-input {
   width: 500px;
   margin: 0 auto;
-}*/
+}
 
 /* ----- SIDEBAR ----- */
-/*.sidebar-container {
+.sidebar-container {
   float: left;
   width: 20%;
   text-align: center;
 }
-.sidebar-container, .sidebar-user-input, .sidebar-user-selections {
-  border: 1px solid;
+.sidebar-user-input, .sidebar-user-selections {
+  border: 1px solid gray;
+  border-radius: 5px
 }
 .sidebar-user-selection-img {
   width: 70px;
-}*/
+}
 
 /* ----- QUIZ ----- */
-/*.quiz {
+.quiz {
   float: right;
-  border: 1px solid;
   width: 80%;
   text-align: center;
 }
@@ -50,18 +50,17 @@
 }
 .quiz-option-img:hover {
   cursor: pointer;
-}*/
+}
 
 /* ----- TRIP RESULTS ----- */
-/*.trip-list {
+.trip-list {
   float: right;
-  border: 1px solid;
   width: 80%;
   text-align: center;
-}*/
+}
 
 /* ----- PROGRESS BAR ----- */
-/*.pb-container {
+.pb-container {
   display: inline-block;
   text-align: center;
   width: 100%;
@@ -165,4 +164,3 @@
     transform-origin: center center;
   }
 }
-*/

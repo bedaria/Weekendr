@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import { Button } from 'react-bootstrap';
 import { answerQuestion, postQuestionListInput } from '../actions/quizActions';
-import { fetchAirbnbListings } from '../actions/airbnbActions';
 import QuizOption from '../components/QuizOption';
 
 class Quiz extends Component {
@@ -31,7 +30,7 @@ class Quiz extends Component {
 
       return (
         <div>
-          <p>Congratulations!</p>
+          <h5>Congratulations!</h5>
         </div>
       );
     }
@@ -39,7 +38,7 @@ class Quiz extends Component {
     const question = this.props.quizData[this.props.questionIndex].question;
 
     return (
-      <h6><strong>{question}</strong></h6>
+      <h5><strong>{question}</strong></h5>
     );
   }
 
@@ -51,7 +50,7 @@ class Quiz extends Component {
 
       return (
         <div>
-          <p>You have completed the quiz!</p>
+          <h5>You have completed the quiz!</h5>
           <Button onClick={this.onClick} bsStyle="primary">See trip results</Button>
         </div>
       );
@@ -74,7 +73,6 @@ class Quiz extends Component {
   render() {
     return (
       <div className="quiz">
-        <h5>Preferences Quiz</h5>
         {this.renderQuestion()}
         {this.renderQuiz()}
       </div>
@@ -93,7 +91,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ answerQuestion, postQuestionListInput, fetchAirbnbListings }, dispatch);
+  return bindActionCreators({ answerQuestion, postQuestionListInput }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
