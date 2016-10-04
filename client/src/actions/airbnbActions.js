@@ -5,7 +5,7 @@ export function fetchAirbnbListings(props) {
   const options = {
     address: props.coordinates.address,
     lat: props.coordinates.latitude,
-    lng: props.coordinates.longitude
+    lng: props.coordinates.longitude,
   };
 
   return (dispatch) => {
@@ -14,7 +14,7 @@ export function fetchAirbnbListings(props) {
         console.log('Data from axios call inside fetchAirbnbListings in airbnbActions:', data);
         dispatch({
           type: AIRBNB_LISTINGS,
-          payload: data
+          payload: data,
         });
       })
       .catch((err) => {
