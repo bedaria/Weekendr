@@ -24,13 +24,13 @@ userFlights.getFlights = (params) => {
   }
   const findOriginAirport = new Promise((resolve, reject) => {
     var options0 = { method: 'GET',
-      url: 'https://airport.api.aero/airport/nearest/' + originLat  + '/' + originLng, 
+      url: 'https://airport.api.aero/airport/nearest/' + originLat  + '/' + originLng,
       qs: { user_key: process.env.airport_API },
-      headers: 
+      headers:
        { 'postman-token': 'fdabd356-6d99-3917-fc45-f2107c01af12',
          'cache-control': 'no-cache',
-         'content-type': 'application/json' 
-       } 
+         'content-type': 'application/json'
+       }
      }
     request(options0, function (error, response, body) {
       if (error) {
@@ -45,13 +45,13 @@ userFlights.getFlights = (params) => {
   })
   const flights =  new Promise((resolve, reject) => {
     var options1 = { method: 'GET',
-      url: 'https://airport.api.aero/airport/nearest/' + destinLat  + '/' + destinLong, 
+      url: 'https://airport.api.aero/airport/nearest/' + destinLat  + '/' + destinLong,
       qs: { user_key: process.env.airport_API },
-      headers: 
+      headers:
        { 'postman-token': 'fdabd356-6d99-3917-fc45-f2107c01af12',
          'cache-control': 'no-cache',
-         'content-type': 'application/json' 
-       } 
+         'content-type': 'application/json'
+       }
      }
     request(options1, function (error, response, body) {
       if (error) {
@@ -74,16 +74,16 @@ userFlights.getFlights = (params) => {
       var options2 = { method: 'POST',
       url: 'https://www.googleapis.com/qpxExpress/v1/trips/search',
       qs: { key: process.env.GoogleFlights_API },
-      headers: 
+      headers:
        { 'postman-token': 'a65c633a-e5d1-fc9a-5ea9-0357a2ff93c9',
          'cache-control': 'no-cache',
          'content-type': 'application/json' },
-      body: 
-       { request: 
+      body:
+       { request:
           { slice: [ { origin: originCity, destination: destinationCity, date: date},
-                     { origin: destinationCity, destination: originCity, date: returnDay} 
+                     { origin: destinationCity, destination: originCity, date: returnDay}
                    ],
-            passengers: 
+            passengers:
              { adultCount: numTravelers,
                infantInLapCount: 0,
                infantInSeatCount: 0,
@@ -96,10 +96,11 @@ userFlights.getFlights = (params) => {
     return new Promise((resolve, reject) => {
       request(options2, function(error, response, body) {
         if (error) {
+          console.log("rejecting flights")
           return reject('error inside airport inside getFlights:'+ error);
         } else {
-          console.log("FLIGHTS>>>>", body)
-          return resolve(body);
+          console.log('resolving flights with ', body.trips)
+          return resolve(body.trips);
         }
       })
     })
