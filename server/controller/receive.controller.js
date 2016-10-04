@@ -33,8 +33,10 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
 
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
-  console.log('inside receiveCity req.body is : ', req.body);
+  // console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
+  var activity1 = req.body.answers[3].option.option
+  var activity2 = req.body.answers[2].option.option
 
   // TRANSPORTATION
   // follow the same pattern below for insertion of Car, Airplane, and Train Models
@@ -42,9 +44,8 @@ function receiveCity(req, res) {
   if (first.title === 'Transportation') {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
-      
     } else if (first.option.option === 'Airplane') {
-      // promiseArray.push(googleFlights.getFlights(req.body));
+      promiseArray.push(googleFlights.getFlights(req.body));
       console.log('inside receiveCity we receive Airplane');
     } else if (first.option.option === 'Train') {
       console.log('inside receiveCity we received Train');
@@ -69,7 +70,7 @@ function receiveCity(req, res) {
   const fourSquarePromises = answers.map((answer) => {
     return fourSquareModel.explore(req.body, answer.option.id);
   });
-  const newPromiseArray = promiseArray.concat(fourSquarePromises);
+  const newPromiseArray = promiseArray //.concat(fourSquarePromises);
   const selectedCategoriesArray = req.body.answers.map((answer) => {
     return {
       title: answer.title,
@@ -78,18 +79,19 @@ function receiveCity(req, res) {
     };
   });
 
+  console.log("newPromiseArray: ", newPromiseArray)
+
   Promise.all(newPromiseArray)
   .then((dataArray) => {
 
-    const fourSquareDataArray = dataArray.slice(2);
     const bundle = [];
-    // console.log('dataArray length is: ', dataArray);
-    // insert data handlers here
-    console.log('fourSquareDataArray', fourSquareDataArray)
+    const fourSquareDataArray = dataArray.slice(2);
 
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
-    console.log('*****bundle is: ', bundle);
-    res.status(200).json(bundle);
+    // console.log('*****bundle is: ', bundle);
+    var bundles = []
+
+    res.status(200).send("hello");
   })
   .catch((err) => {
     console.log('error inside receiveCity: ', err);

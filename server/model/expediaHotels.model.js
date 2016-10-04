@@ -16,8 +16,7 @@ expediaHotelsModel.findHotels = (params) => {
     room1: params.numTravelers,
     checkInDate: params.date,
     checkOutDate: checkOutDate,
-    city: params.name,
-    resultsPerPage: -1
+    city: params.name //,resultsPerPage: -1
   };
 
   return new Promise((resolve, reject) => {
@@ -28,10 +27,20 @@ expediaHotelsModel.findHotels = (params) => {
     };
 
     request(url, (error, response, body) => {
-      if (error)
-         return reject(error);
+      if (error) {
+        console.log("rejecting hotels")
+        return reject (error);
 
-      return resolve(JSON.parse(body).hotelList.filter(hotel => hotel.isHotelAvailable));
+      }
+      //console.log("body: ", body)
+      if(body === '')
+        return resolve("empty") //re-request
+      if(!JSON.parse(body).hotelList.length)
+         return resolve ("couldn't find any hotels");
+
+       console.log("resolving hotels")
+       var returnBody = JSON.parse(body).hotelList.filter(hotel => hotel.isHotelAvailable)
+      return resolve(returnBody);
     });
   });
 };
