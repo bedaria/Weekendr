@@ -22,8 +22,9 @@
   width: 20%;
   text-align: center;
 }
-.sidebar-container, .sidebar-user-input, .sidebar-user-selections {
-  border: 1px solid;
+.sidebar-user-input, .sidebar-user-selections {
+  border: 1px solid gray;
+  border-radius: 5px
 }
 .sidebar-user-selection-img {
   width: 70px;
@@ -32,7 +33,6 @@
 /* ----- QUIZ ----- */
 .quiz {
   float: right;
-  border: 1px solid;
   width: 80%;
   text-align: center;
 }
@@ -55,7 +55,6 @@
 /* ----- TRIP RESULTS ----- */
 .trip-list {
   float: right;
-  border: 1px solid;
   width: 80%;
   text-align: center;
 }
