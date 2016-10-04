@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Button } from 'react-bootstrap';
 import { answerQuestion, postQuestionListInput } from '../actions/quizActions';
 import { fetchAirbnbListings } from '../actions/airbnbActions';
