@@ -18,6 +18,10 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'eslint-loader',
     },
+    {
+      test: /\.scss$/,
+      loaders: ["style", "css", "sass"],
+    },
     ],
   },
   eslint: {
@@ -30,4 +34,6 @@ module.exports = {
     contentBase: './',
   },
 };
+
+
 

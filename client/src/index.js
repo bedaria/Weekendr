@@ -9,7 +9,7 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 // reducers
 import reducers from './reducers';
-
+const styles = require("../assets/styles/main.scss");
 const createStoreWithMiddleWare = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleWare(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
