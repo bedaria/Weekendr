@@ -1,3 +1,15 @@
+/* Base Colors */
+$primary-dark-green: #00B140;
+$primary-light-green: #66BD49;
+$primary-green: #A0D468;
+$primary-extra-light-green: #f0f9f3;
+$primary-grey-background: #fefefe;
+$primary-offwhite-light: #F1F1F1;
+$primary-offwhite-dark: #bab8b8;
+$primary-red: #ED5565;
+$primary-white: #fff;
+
+
 /* ----- NAVBAR ----- */
 .navbar {
   height: 52px;
@@ -58,7 +70,9 @@
   border: 1px solid;
   width: 80%;
   text-align: center;
+  background-color: $primary-extra-light-green;
 }
+
 
 /* ----- PROGRESS BAR ----- */
 .pb-container {
@@ -107,7 +121,7 @@
 }
 .pb-container .pb-button svg.pb-checkmark path,
 .pb-container .pb-button svg.pb-cross path {
-  stroke: #fff;
+  stroke: $primary-white;
   stroke-linecap: round;
   stroke-width: 4;
 }
@@ -117,7 +131,7 @@
 .pb-container.loading .pb-button {
   width: 54px;
   border-width: 6.5px;
-  border-color: #ddd;
+  border-color: $primary-offwhite-dark;
   cursor: wait;
   background-color: transparent;
   padding: 0;
@@ -132,8 +146,8 @@
   opacity: 1;
 }
 .pb-container.success .pb-button {
-  border-color: #A0D468;
-  background-color: #A0D468;
+  border-color: $primary-green;
+  background-color: $primary-green;
 }
 .pb-container.success .pb-button span {
   transition: all 0.15s;
@@ -144,8 +158,8 @@
   opacity: 1;
 }
 .pb-container.error .pb-button {
-  border-color: #ED5565;
-  background-color: #ED5565;
+  border-color: $primary-red;
+  background-color: $primary-red;
 }
 .pb-container.error .pb-button span {
   transition: all 0.15s;
