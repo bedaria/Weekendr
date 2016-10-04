@@ -13,6 +13,3 @@ export const RECEIVED_USER_INPUT_DATA = 'RECEIVED_USER_INPUT_DATA';
 
 /* UserProfile */
 export const LOG_IN = 'LOG_IN';
-
-/* Airbnb */
-export const AIRBNB_LISTINGS = 'AIRBNB_LISTINGS';

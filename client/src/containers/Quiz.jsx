@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import { Button } from 'react-bootstrap';
 import { answerQuestion, postQuestionListInput } from '../actions/quizActions';
-import { fetchAirbnbListings } from '../actions/airbnbActions';
 import QuizOption from '../components/QuizOption';
 
 class Quiz extends Component {
@@ -93,7 +92,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ answerQuestion, postQuestionListInput, fetchAirbnbListings }, dispatch);
+  return bindActionCreators({ answerQuestion, postQuestionListInput }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
