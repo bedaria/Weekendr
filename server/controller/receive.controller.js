@@ -83,11 +83,12 @@ function receiveCity(req, res) {
 
   Promise.all(newPromiseArray)
   .then((dataArray) => {
-
+    console.log(dataArray[1].search_results[0])
     const bundle = [];
     const fourSquareDataArray = dataArray.slice(2);
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
     const bundles = createBundles.createBundles(dataArray[0], dataArray[1], bundle, req.body)
+
 
     res.status(200).send(bundles);
   })

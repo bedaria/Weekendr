@@ -16,9 +16,6 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
 
     bundles.forEach(bundle => {
         hotels.forEach(hotel => {
-          if(hotel.lowRate < budgetDistribution.lodging * Number(userData.budget)) {
-            var bundleRating = (Number(hotel.hotelStarRating) + Number(hotel.hotelGuestRating))/2
-
             var bundleCopy = bundle.slice()
             bundleCopy.push({ 'hotel':
               {name: hotel.name,
@@ -31,7 +28,6 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
               }
             })
             addHotel.push(bundleCopy)
-          }
         })
       })
 
@@ -96,7 +92,7 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
   }
 
   if(!bundles.length)
-    bundles = [[{'transportation': 'Sorry nothing found'}, {'lodging': 'Sorry nothing found'}, {'activities': 'Sorry nothing found'}]]
+    bundles = [[{'transportation': 'Sorry nothing found'}, {'lodging': 'Sorry nothing found'}, {'activity': 'Sorry nothing found'}]]
 
   if(bundles.length >= 6)
     return bundles.slice(0,6)
