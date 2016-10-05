@@ -9,14 +9,31 @@ class BundleList extends Component {
   }
 
   renderBundles() {
-    return this.props.selectedCity.data.map((city, index) => {
+    if(!this.props.selectedCity) {
+      return <div>Loading...</div>;
+    }
+
+    return this.props.selectedCity.data.data.map((bundle, index) => {
+      console.log("typeof bundle: ", bundle)
+      const transport = bundle[0].transportation;
+      var lodging = '';
+      if(bundle[1].hotel) {
+        lodging = bundle[1].hotel.name;
+      } else if(bundle[1].airbnb) {
+        lodging = bundle[1].airbnb;
+      } else {
+        lodging = bundle[1].lodging;
+      }
+      const activity1 = bundle[2].activity;
+      const activity2 = bundle[3].activity;
+
       return (
         <BundleListItem
           key={index}
-          cityName={city.name}
-          population={city.population}
-          lat={city.lat}
-          lng={city.lng}
+          transport={transport}
+          lodging={lodging}
+          activity1={activity1}
+          activity2={activity2}
         />
       );
     });
