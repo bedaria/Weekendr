@@ -83,7 +83,6 @@ function receiveCity(req, res) {
 
   Promise.all(newPromiseArray)
   .then((dataArray) => {
-    console.log(dataArray[1].search_results[0])
     const bundle = [];
     const fourSquareDataArray = dataArray.slice(2);
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later

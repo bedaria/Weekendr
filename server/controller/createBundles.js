@@ -3,9 +3,8 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
   var budgetDistribution = {transportation: 0.4, lodging: 0.4, activities: 0.2}
 
   if(transportation && transportation.tripOption.length) {
-    var bundle = []
     transportation.tripOption.forEach(transportation => {
-      bundle.push([{'transportation': transportation}])
+      bundles.push([{'transportation': transportation}])
       })
   }
 
