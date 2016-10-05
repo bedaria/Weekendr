@@ -52,8 +52,15 @@
   cursor: pointer;
 }
 
-/* ----- TRIP RESULTS ----- */
-.trip-list {
+/* ----- DESTINATION ----- */
+.city-list {
+  float: right;
+  width: 80%;
+  text-align: center;
+}
+
+/* ----- TRIP BUNDLES ----- */
+.bundle-list {
   float: right;
   width: 80%;
   text-align: center;

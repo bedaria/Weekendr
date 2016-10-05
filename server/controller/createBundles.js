@@ -48,7 +48,7 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
     var addActivity = []
 
     if(!bundles.length)
-      bundles = [[{'lodging': 'Stay with a Friend!'}, {'transportation': 'Travel by Car!'}]]
+      bundles = [[{'transportation': 'Travel by Car!'}, {'lodging': 'Stay with a Friend!'}]]
 
     var activity1 = userData.answers[2].option.option
     var activity2 = userData.answers[3].option.option

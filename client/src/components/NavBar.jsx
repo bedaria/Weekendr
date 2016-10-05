@@ -19,8 +19,11 @@ export default class NavBar extends Component {
               <LinkContainer to={{ pathname: '/preferences' }}>
                 <NavItem>Preferences</NavItem>
               </LinkContainer>
-              <LinkContainer to={{ pathname: '/trip-results' }}>
-                <NavItem>Trip Results</NavItem>
+              <LinkContainer to={{ pathname: '/destination' }}>
+                <NavItem>Destination</NavItem>
+              </LinkContainer>
+              <LinkContainer to={{ pathname: '/trip-bundles' }}>
+                <NavItem>Trip Bundles</NavItem>
               </LinkContainer>
             </Nav>
             <Nav pullRight>
