@@ -5,7 +5,6 @@ const googleFlights = require('../model/googleFlights.model');
 const airbnbModel = require('../model/airbnb.model');
 const expediaHotelsModel = require('../model/expediaHotels.model');
 
-
 /****** REQ.BODY  ********
  req.body inside receiveCity { name: 'Tijuana',
   id: 3981609,
@@ -71,7 +70,7 @@ function receiveCity(req, res) {
   const fourSquarePromises = answers.map((answer) => {
     return fourSquareModel.explore(req.body, answer.option.id);
   });
-  const newPromiseArray = promiseArray.concat(fourSquarePromises);
+  const newPromiseArray = promiseArray //.concat(fourSquarePromises);
   const selectedCategoriesArray = req.body.answers.map((answer) => {
     return {
       title: answer.title,
@@ -79,6 +78,7 @@ function receiveCity(req, res) {
       option: answer.option.option,
     };
   });
+
 
 var createBundles = (transportation, hotels, activities) => {
   var bundles = []
@@ -192,8 +192,10 @@ var createBundles = (transportation, hotels, activities) => {
   else return bundles
 }
 
+
   Promise.all(newPromiseArray)
   .then((dataArray) => {
+
     const bundle = [];
 
     const fourSquareDataArray = dataArray.slice(2);
@@ -202,6 +204,7 @@ var createBundles = (transportation, hotels, activities) => {
 
     var bundles = createBundles(dataArray[0], dataArray[1], bundle)
     console.log("bundles.length: ", bundles.length)
+
     res.status(200).send(bundles);
 
   })

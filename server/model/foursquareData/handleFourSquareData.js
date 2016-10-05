@@ -36,27 +36,26 @@ const activitiesSorted = buildActivitiesArray(dataArr).sort((a, b) => {
 
 const selectedActivities = selectedCategories.slice(2);
 
-const activitiesBundle = activitiesSorted.map((activity, i, arr) => {
-  var results = [];
-  if (arr[i + 1]) {
-  if (arr[i + 1].name !== activity.name) {
-    results.push(activity);
-    return {
-      category: activity.category,
-      results: results,
-    };
-  }
+const activitiesBundle = activitiesSorted.reduce((a, b) => {
+  if (a[b.category]) {
+    a[b.category].push(b);
   } else {
-    return {
-    category: activity.category,
-    results: [activity],
-    };
-  };
+    a[b.category] = [b];
+  }
+  return a;
+}, {});
+
+const activitiesBundleArray = _.map(activitiesBundle, (val, key) => {
+  return {
+    category: key,
+    results: val,
+  }
 });
-  return activitiesBundle;
-};
 
-
-
-
-
+const activitiesFilter = activitiesBundleArray.filter((activity) => {
+  return _.some(selectedActivities, (selected) => {
+    return (selected.option === activity.category);
+  });
+});
+return activitiesFilter
+}

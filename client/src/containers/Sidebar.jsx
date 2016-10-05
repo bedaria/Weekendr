@@ -38,7 +38,6 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar-container">
-        <h5>Sidebar</h5>
         <div className="sidebar-user-input">
           {this.renderSidebarUserInput()}
         </div>

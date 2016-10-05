@@ -16,8 +16,7 @@ expediaHotelsModel.findHotels = (params) => {
     room1: params.numTravelers,
     checkInDate: params.date,
     checkOutDate: checkOutDate,
-    city: params.name,
-    resultsPerPage: -1
+    city: params.name //,resultsPerPage: -1
   };
 
   return new Promise((resolve, reject) => {

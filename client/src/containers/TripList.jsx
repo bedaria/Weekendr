@@ -38,7 +38,7 @@ class TripList extends Component {
   render() {
     return (
       <div className="trip-list">
-        <h5>Select your destination:</h5>
+        <h5 className="trip-list-h5">Select your destination:</h5>
         {this.renderTrips()}
       </div>
     );
