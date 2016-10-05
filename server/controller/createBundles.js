@@ -2,21 +2,11 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
   var bundles = []
   var budgetDistribution = {transportation: 0.4, lodging: 0.4, activities: 0.2}
 
-  if(transportation) {
-    var addTransportation = []
-
-    if(!bundles.length)
-      bundles = [[{'transportation': 'None'}]]
-
-    bundles.forEach(bundle => {
-      transportation.tripOption.forEach(transportation => {
-          var bundleCopy = bundle.slice()
-          bundleCopy.push({'transportation': transportation})
-          addTransportation.push(bundleCopy)
+  if(transportation && transportation.tripOption.length) {
+    var bundle = []
+    transportation.tripOption.forEach(transportation => {
+      bundle.push([{'transportation': transportation}])
       })
-    })
-
-    bundles = addTransportation
   }
 
   if(hotels.length > 0) {
@@ -26,18 +16,22 @@ exports.createBundles = (transportation, hotels, activities, userData) => {
 
     bundles.forEach(bundle => {
         hotels.forEach(hotel => {
-              var bundleCopy = bundle.slice()
-              bundleCopy.push({ 'hotel':
-                {name: hotel.name,
-                 address: hotel.address,
-                 city: hotel.city,
-                 hotelStarRating: hotel.hotelStarRating,
-                 hotelGuestRating: hotel.hotelGuestRating,
-                 pic: hotel.thumbnailUrl,
-                 lowRate: hotel.lowRate
-                }
-              })
-              addHotel.push(bundleCopy)
+          if(hotel.lowRate < budgetDistribution.lodging * Number(userData.budget)) {
+            var bundleRating = (Number(hotel.hotelStarRating) + Number(hotel.hotelGuestRating))/2
+
+            var bundleCopy = bundle.slice()
+            bundleCopy.push({ 'hotel':
+              {name: hotel.name,
+               address: hotel.address,
+               city: hotel.city,
+               hotelStarRating: hotel.hotelStarRating,
+               hotelGuestRating: hotel.hotelGuestRating,
+               pic: hotel.thumbnailUrl,
+               lowRate: hotel.lowRate
+              }
+            })
+            addHotel.push(bundleCopy)
+          }
         })
       })
 
