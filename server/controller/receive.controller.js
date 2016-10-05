@@ -103,36 +103,33 @@ var createBundles = (transportation, hotels, activities) => {
 
   if(hotels.length > 0) {
     var addHotel = []
-    console.log("hotels before each: ")
+
     if(!bundles.length)
         bundles = [[{transportation: 'Travel by car!'}]]
 
-    console.log("hotels")
     bundles.forEach(bundle => {
         hotels.forEach(hotel => {
-            if(Number(hotel.lowRate)  < budgetDistribution.lodging * req.body.budget) {
-              var bundleCopy = bundle.slice()
+          if(Number(hotel.lowRate)  < budgetDistribution.lodging * req.body.budget) {
+            var bundleCopy = bundle.slice()
 
-              bundleCopy.push({ 'hotel':
-                {name: hotel.name,
-                 address: hotel.address,
-                 city: hotel.city,
-                 hotelStarRating: hotel.hotelStarRating,
-                 hotelGuestRating: hotel.hotelGuestRating,
-                 pic: hotel.thumbnailUrl,
-                 lowRate: hotel.lowRate
-                }
-              })
-              addHotel.push(bundleCopy)
-            }
+            bundleCopy.push({ 'hotel':
+              {name: hotel.name,
+               address: hotel.address,
+               city: hotel.city,
+               hotelStarRating: hotel.hotelStarRating,
+               hotelGuestRating: hotel.hotelGuestRating,
+               pic: hotel.thumbnailUrl,
+               lowRate: hotel.lowRate
+              }
+            })
+            addHotel.push(bundleCopy)
+          }
         })
       })
-    console.log("after hotels")
     bundles = addHotel
   }
 
-  console.log("before activities length: ", activities[0].length)
-  if(activities && activities.length) {
+  if(activities && activities.length  !== [[]]) {
     var addActivity = []
 
     if(!bundles.length)
@@ -179,14 +176,12 @@ var createBundles = (transportation, hotels, activities) => {
 
       })
     })
-    console.log("activities after")
     bundles = addActivity
   }
 
   if(!bundles.length)
-    bundles = [[{'transportation': 'Sorry nothing found'}, {'lodging': 'Sorry nothing found'}, {'activities': 'Sorry nothing found'}]]
+    bundles = [[{'transportation': 'Sorry nothing found'}, {'lodging': 'Sorry nothing found'}, {'activity': 'Sorry nothing found'}]]
 
-  console.log("bundles: ", bundles.length)
   if(bundles.length >= 6)
     return bundles.slice(0,6)
   else return bundles
@@ -197,13 +192,9 @@ var createBundles = (transportation, hotels, activities) => {
   .then((dataArray) => {
 
     const bundle = [];
-
     const fourSquareDataArray = dataArray.slice(2);
-
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
-
-    var bundles = createBundles(dataArray[0], dataArray[1], bundle)
-    console.log("bundles.length: ", bundles.length)
+    const bundles = createBundles(dataArray[0], dataArray[1], bundle)
 
     res.status(200).send(bundles);
 

@@ -96,10 +96,8 @@ userFlights.getFlights = (params) => {
     return new Promise((resolve, reject) => {
       request(options2, function(error, response, body) {
         if (error) {
-          console.log("rejecting flights")
           return reject('error inside airport inside getFlights:'+ error);
         } else {
-          console.log('resolving flights with ', body.trips)
           return resolve(body.trips);
         }
       })
