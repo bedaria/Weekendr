@@ -33,8 +33,10 @@ const expediaHotelsModel = require('../model/expediaHotels.model');
 
 // NEW RECEIVE CITY PROMISIED
 function receiveCity(req, res) {
-  console.log('inside receiveCity req.body is : ', req.body);
+  // console.log('inside receiveCity req.body is : ', req.body);
   const promiseArray = [];
+  var activity1 = req.body.answers[3].option.option
+  var activity2 = req.body.answers[2].option.option
 
   // TRANSPORTATION
   // follow the same pattern below for insertion of Car, Airplane, and Train Models
@@ -42,9 +44,8 @@ function receiveCity(req, res) {
   if (first.title === 'Transportation') {
     if (first.option.option === 'Car') {
       console.log('inside receivedCity we received Car');
-      
     } else if (first.option.option === 'Airplane') {
-      // promiseArray.push(googleFlights.getFlights(req.body));
+      promiseArray.push(googleFlights.getFlights(req.body));
       console.log('inside receiveCity we receive Airplane');
     } else if (first.option.option === 'Train') {
       console.log('inside receiveCity we received Train');
@@ -69,7 +70,7 @@ function receiveCity(req, res) {
   const fourSquarePromises = answers.map((answer) => {
     return fourSquareModel.explore(req.body, answer.option.id);
   });
-  const newPromiseArray = promiseArray.concat(fourSquarePromises);
+  const newPromiseArray = promiseArray //.concat(fourSquarePromises);
   const selectedCategoriesArray = req.body.answers.map((answer) => {
     return {
       title: answer.title,
@@ -78,18 +79,125 @@ function receiveCity(req, res) {
     };
   });
 
+
+var createBundles = (transportation, hotels, activities) => {
+  var bundles = []
+  var budgetDistribution = {transportation: 0.4, lodging: 0.4, activities: 0.2}
+
+  if(transportation) {
+    var addTransportation = []
+
+    if(!bundles.length)
+      bundles = [[{'transportation': 'None'}]]
+
+    bundles.forEach(bundle => {
+      transportation.tripOption.forEach(transportation => {
+          var bundleCopy = bundle.slice()
+          bundleCopy.push({'transportation': transportation})
+          addTransportation.push(bundleCopy)
+      })
+    })
+
+    bundles = addTransportation
+  }
+
+  if(hotels.length > 0) {
+    var addHotel = []
+
+    if(!bundles.length)
+        bundles = [[{transportation: 'Travel by car!'}]]
+
+    bundles.forEach(bundle => {
+        hotels.forEach(hotel => {
+          if(Number(hotel.lowRate)  < budgetDistribution.lodging * req.body.budget) {
+            var bundleCopy = bundle.slice()
+
+            bundleCopy.push({ 'hotel':
+              {name: hotel.name,
+               address: hotel.address,
+               city: hotel.city,
+               hotelStarRating: hotel.hotelStarRating,
+               hotelGuestRating: hotel.hotelGuestRating,
+               pic: hotel.thumbnailUrl,
+               lowRate: hotel.lowRate
+              }
+            })
+            addHotel.push(bundleCopy)
+          }
+        })
+      })
+    bundles = addHotel
+  }
+
+  if(activities && activities.length  !== [[]]) {
+    var addActivity = []
+
+    if(!bundles.length)
+      bundles = [[{'lodging': 'Stay with a Friend!'}, {'transportation': 'Travel by Car!'}]]
+
+    var activity1 = req.body.answers[2].option.option
+    var activity2 = req.body.answers[3].option.option
+
+    bundles.forEach(bundle => {
+      activities.forEach(activity => {
+        activity.forEach(act => {
+
+          if(act.category === activity1) {
+
+            var bundleCopy = bundle.slice()
+            bundleCopy.push({'activity1': {
+                category: act.category,
+                results: act.results
+              }
+            })
+            addActivity.push(bundleCopy)
+          }
+        })
+        bundles = addActivity
+      })
+    })
+
+    addActivity = []
+    bundles.forEach(bundle => {
+      activities.forEach(activity => {
+        activity.forEach(act => {
+
+          if(act.category === activity2) {
+
+            var bundleCopy = bundle.slice()
+            bundleCopy.push({'activity2': {
+                category: act.category,
+                results: act.results
+              }
+            })
+            addActivity.push(bundleCopy)
+          }
+        })
+
+      })
+    })
+    bundles = addActivity
+  }
+
+  if(!bundles.length)
+    bundles = [[{'transportation': 'Sorry nothing found'}, {'lodging': 'Sorry nothing found'}, {'activity': 'Sorry nothing found'}]]
+
+  if(bundles.length >= 6)
+    return bundles.slice(0,6)
+  else return bundles
+}
+
+
   Promise.all(newPromiseArray)
   .then((dataArray) => {
 
-    const fourSquareDataArray = dataArray.slice(2);
     const bundle = [];
-    // console.log('dataArray length is: ', dataArray);
-    // insert data handlers here
-    console.log('fourSquareDataArray', fourSquareDataArray)
-
+    const fourSquareDataArray = dataArray.slice(2);
     bundle.push(fourSquareModel.parseFourSquareData(fourSquareDataArray, selectedCategoriesArray)); //add country later
-    console.log('*****bundle is: ', bundle);
-    res.status(200).json(bundle);
+    const bundles = createBundles(dataArray[0], dataArray[1], bundle)
+
+    res.status(200).send(bundles);
+
   })
   .catch((err) => {
     console.log('error inside receiveCity: ', err);

@@ -16,8 +16,7 @@ expediaHotelsModel.findHotels = (params) => {
     room1: params.numTravelers,
     checkInDate: params.date,
     checkOutDate: checkOutDate,
-    city: params.name,
-    resultsPerPage: -1
+    city: params.name //,resultsPerPage: -1
   };
 
   return new Promise((resolve, reject) => {
@@ -29,7 +28,11 @@ expediaHotelsModel.findHotels = (params) => {
 
     request(url, (error, response, body) => {
       if (error)
-         return reject(error);
+        return reject (error);
+      if(body === '')
+        return resolve('')
+      if(!JSON.parse(body).hotelList.length)
+         return resolve ('');
 
       return resolve(JSON.parse(body).hotelList.filter(hotel => hotel.isHotelAvailable));
     });
