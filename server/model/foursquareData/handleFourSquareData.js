@@ -57,11 +57,5 @@ const activitiesFilter = activitiesBundleArray.filter((activity) => {
     return (selected.option === activity.category);
   });
 });
-console.log('activitiesFilter', activitiesFilter)
-return activitiesBundleArray
+return activitiesFilter
 }
-
-
-
-
-
