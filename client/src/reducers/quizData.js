@@ -38,39 +38,39 @@ export default {
       ],
     },
     {
-      title: 'Outdoors & Recreation',
-      question: 'Feeling adventurous? Select one of the following outdoor activities:',
+      title: 'Outdoor Activities',
+      question: 'Feeling adventurous? Select one of the following outdoor activity categories:',
       options: [
         {
           id: '4bf58dd8d48988d159941735',
-          option: 'Hiking',
+          option: 'Trails',
           imageUrl: '../assets/images/hiking.png',
         },
         {
           id: '4bf58dd8d48988d1e4941735',
-          option: 'Camping',
+          option: 'Campground',
           imageUrl: '../assets/images/camping.png',
         },
         {
           id: '4d4b7105d754a06377d81259',
-          option: 'Outdoors, Sports & Recreation',
+          option: 'Outdoors & Recreation',
           imageUrl: '../assets/images/recreation.png',
         },
       ],
     },
     {
-      title: 'Arts & Entertainment',
-      question: 'Explore your destination and get cultured. Select one of the following indoor activities:',
+      title: 'Indoor Activities',
+      question: 'Explore your destination and get cultured. Select one of the following indoor activity categories:',
       options: [
         {
-          id: '4bf58dd8d48988d1f1931735',
-          option: 'Entertainment',
-          imageUrl: '../assets/images/entertainment.png',
+          id: '4d4b7104d754a06370d81259',
+          option: 'Arts & Entertainment',
+          imageUrl: '../assets/images/artsculture.png',
         },
         {
-          id: '4d4b7104d754a06370d81259',
-          option: 'Arts & Culture',
-          imageUrl: '../assets/images/artsculture.png',
+          id: '4bf58dd8d48988d1f1931735',
+          option: 'General Entertainment',
+          imageUrl: '../assets/images/entertainment.png',
         },
         {
           id: '4bf58dd8d48988d1e5931735',
@@ -79,7 +79,7 @@ export default {
         },
         {
           id: '4d4b7105d754a06376d81259',
-          option: 'Nightlife',
+          option: 'Nightlife Spot',
           imageUrl: '../assets/images/nightlife.png',
         },
         {
