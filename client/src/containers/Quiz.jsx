@@ -19,7 +19,7 @@ class Quiz extends Component {
   }
 
   onClick() {
-    browserHistory.push('/trip-results');
+    browserHistory.push('/destination');
   }
 
   renderQuestion() {
@@ -30,7 +30,7 @@ class Quiz extends Component {
 
       return (
         <div>
-          <h5>Congratulations!</h5>
+          <h5>Thanks for providing your trip preferences.</h5>
         </div>
       );
     }
@@ -50,7 +50,7 @@ class Quiz extends Component {
 
       return (
         <div>
-          <h5>You have completed the quiz!</h5>
+          <h5>You're almost there! Next, select your desired destination.</h5>
           <Button onClick={this.onClick} bsStyle="primary">See trip results</Button>
         </div>
       );
@@ -86,7 +86,7 @@ function mapStateToProps(state) {
     questionIndex: state.quiz.questionIndex,
     quizAnswers: state.quiz.quizAnswers,
     coordinates: state.coordinates.coordinates,
-    userInputForm: state.userInput.userInputForm
+    userInputForm: state.userInput.userInputForm,
   };
 }
 

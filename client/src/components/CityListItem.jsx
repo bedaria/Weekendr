@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { Col, Thumbnail, Button } from 'react-bootstrap';
 
-export default class TripListItem extends Component{
-  constructor(props){
+export default class CityListItem extends Component {
+  constructor(props) {
     super(props);
     this.selectCity = this.selectCity.bind(this);
   }
 
   selectCity() {
     this.props.onSelectCity(this.props, this.props.answers, this.props.userInputForm, this.props.coordinates);
+    browserHistory.push('/trip-bundles');
     console.log('*** Check terminal to see Transportation/Lodging/Activities data received from receive controller ***');
   }
 
