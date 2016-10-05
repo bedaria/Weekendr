@@ -2,7 +2,7 @@
 export const ANSWER_SELECTED = 'ANSWER_SELECTED';
 export const RECEIVED_DATA = 'RECEIVED_DATA';
 
-/* TripList */
+/* Destination */
 export const SELECTED_CITY = 'SELECTED_CITY';
 
 /* GetLatLong */

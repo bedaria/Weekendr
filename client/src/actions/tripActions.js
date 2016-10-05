@@ -2,7 +2,6 @@ import axios from 'axios';
 import { SELECTED_CITY } from './actionTypes';
 
 export function sendSelectedCity(props, quizAnswers, inputForm, coordinates) {
-
   const options = {
     name: props.cityName,
     id: props.id,
