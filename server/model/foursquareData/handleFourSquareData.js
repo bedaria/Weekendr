@@ -59,8 +59,3 @@ const activitiesFilter = activitiesBundleArray.filter((activity) => {
 });
 return activitiesFilter
 }
-
-
-
-
-
